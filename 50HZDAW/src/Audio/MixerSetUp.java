@@ -21,8 +21,9 @@ public class MixerSetUp {
     private Mixer.Info [] mixInfos;
     private ArrayList <Track> tracks;
     private Line [] lines;
+    private OutputTrack output;
     private int trackCount;
-
+    private long playOffset;
 
 
 
@@ -46,6 +47,7 @@ public class MixerSetUp {
         mixer = AudioSystem.getMixer(mixInfos[audioPreferences]);  // assign our mixer to a chosen i/o system.
 
         trackCount = 0;
+        playOffset = 0;
 
         tracks = new ArrayList<>();
 
@@ -113,7 +115,9 @@ public class MixerSetUp {
 
     public void playOutput () throws LineUnavailableException{
 
-        OutputTrack output = new OutputTrack("Output");
+            output = new OutputTrack("OutPut", playOffset);
+            System.out.println("Mixer offset is " + playOffset);
+
             for (Track track: tracks) {
                 output.addToOutput(track);
             }
@@ -124,6 +128,14 @@ public class MixerSetUp {
                 System.out.println(e.getMessage());
             }
 
+    }
+
+    public void pauseOutput (){
+        playOffset = output.pause();
+
+    }
+    public void stopOutput (){
+        playOffset = output.stop();
     }
 
 

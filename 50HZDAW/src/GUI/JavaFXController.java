@@ -236,10 +236,12 @@ public class JavaFXController extends Application implements Serializable {
 
         // Pause all added tracks
         Button pause = new Button("Pause");
+        pause.setOnAction(event -> controller.pause());
 
 
         // Stop all added tracks
         Button stop = new Button("Stop");
+        stop.setOnAction(event -> controller.stop());
 
 
         // Currently non functional

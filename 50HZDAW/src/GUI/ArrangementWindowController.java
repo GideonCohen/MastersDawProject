@@ -35,12 +35,12 @@ public class ArrangementWindowController {
     }
 
     public void pause() {
-
+        mixerSetUp.pauseOutput();
     }
 
     public void stop() {
-
-}
+        mixerSetUp.stopOutput();
+    }
 
     public void removeTrack(Track track) {
 

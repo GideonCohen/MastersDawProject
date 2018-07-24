@@ -30,6 +30,10 @@ public class OutputTrack {
     private int minValue;
     private int maxValue;
     private ByteArrayInputStream outputStream;
+    private boolean pause;
+    private long trackOffset;
+    private int count;
+
 
 
 
@@ -40,7 +44,7 @@ public class OutputTrack {
      *
      */
 
-    public OutputTrack(String name) throws LineUnavailableException {
+    public OutputTrack(String name, long offset) throws LineUnavailableException {
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
         trackName = name;
@@ -60,6 +64,10 @@ public class OutputTrack {
         byteToFloat = new ByteToFloat();
 
         readBuffer = new byte [readBufferSize];
+
+        pause = false;
+        trackOffset = offset;
+        count = 1;
 
     }
 
@@ -139,10 +147,11 @@ public class OutputTrack {
         //   public void run() {
 
         int numBytesRead = 0;
-        int count = 1;
 
         try {
-            while ((numBytesRead = outputStream.read(readBuffer)) != -1) {
+            outputStream.skip(trackOffset);
+            System.out.println("Offset is " + trackOffset);
+            while (((numBytesRead = outputStream.read(readBuffer)) != -1) && pause == false){
 
                 source.write(readBuffer, 0, numBytesRead);
                 //System.out.println(count);
@@ -201,5 +210,24 @@ public class OutputTrack {
 
         //  };
 
+    }
+
+    public long pause() {
+
+        trackOffset = count * readBuffer.length;
+        System.out.println(trackOffset);
+        pause = true;
+        System.out.println("Pause pressed. playbackThread interrupted");
+        System.out.println("Interrupt");
+        return trackOffset;
+    }
+
+
+    public long stop() {
+
+        pause = true;
+        count = 0;
+        System.out.println("Track stopped start again from beginning.");
+        return 0;
     }
 }
