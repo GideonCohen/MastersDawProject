@@ -42,7 +42,7 @@ public class Track {
      * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
      */
 ;
-    public Track (String name, File file, float volume) throws LineUnavailableException {
+    public Track (String name, File file1, float volume) throws LineUnavailableException {
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
             // default audio format for data line if no file is added. will change once audio file is added.
@@ -53,7 +53,7 @@ public class Track {
         source.open(audioFormat, source.getBufferSize()); // line must be open to appear in mixer
         // still data to be written before any playback!!!  also need to call start before write.
         audioTrackData = new ArrayList<>();
-        addAudioTrackData(file);    // add an audio file to be part of the tracks stream. audio processing can be added to a track.
+        addAudioTrackData(file1);    // add an audio file to be part of the tracks stream. audio processing can be added to a track.
         playbackBuffer = new byte [source.getBufferSize()];
 
         byteToFloat = new ByteToFloat();

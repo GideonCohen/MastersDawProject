@@ -27,11 +27,11 @@ public class MixerSetUp {
 
 
 
-/*   public static void main (String [] args) throws LineUnavailableException{
+   public static void main (String [] args) throws LineUnavailableException{
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
-    }*/
+    }
 
 
 
@@ -62,15 +62,14 @@ public class MixerSetUp {
         File file1 = new File(filepath1_24bit);
         File file2 = new File(filepath_24bit);
 
-
-        //addTrack("Track1", file2, 0.8f);     // create mixer with one track as default.
+        addTrack("Track1", file1, 0.8f);     // create mixer with one track as default.
         //addTrack("Track1", file1, 0.8f);     // create mixer with one track as default.
-        System.out.println("tracks: " + tracks.size());
+        //System.out.println("tracks: " + tracks.size());
 
 
-        System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
+        //System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
 
-        //playOutput();
+        playOutput();
 
     }
 
@@ -94,6 +93,12 @@ public class MixerSetUp {
         lines = mixer.getSourceLines();  // refresh amount of lines in mixer.
 
         return newTrack;
+    }
+
+    public void removeTrack (Track track) {
+        tracks.remove(track);
+        trackCount --;
+        lines = mixer.getSourceLines();
     }
 
     /**

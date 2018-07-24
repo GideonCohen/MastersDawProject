@@ -142,10 +142,6 @@ public class OutputTrack {
 
         source.start();
 
-        //Thread playbackThread = new Thread () {
-
-        //   public void run() {
-
         int numBytesRead = 0;
 
         try {
@@ -217,8 +213,11 @@ public class OutputTrack {
         trackOffset = count * readBuffer.length;
         System.out.println(trackOffset);
         pause = true;
-        System.out.println("Pause pressed. playbackThread interrupted");
+        System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
+        source.stop();
+        source.drain();
+        outputStream.reset();
         return trackOffset;
     }
 
@@ -228,6 +227,9 @@ public class OutputTrack {
         pause = true;
         count = 0;
         System.out.println("Track stopped start again from beginning.");
+        source.stop();
+        source.drain();
+        outputStream.reset();
         return 0;
     }
 }

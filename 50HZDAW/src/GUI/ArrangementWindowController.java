@@ -43,7 +43,7 @@ public class ArrangementWindowController {
     }
 
     public void removeTrack(Track track) {
-
+        mixerSetUp.removeTrack(track);
     }
 
     public boolean addTrack(File file) {
