@@ -23,7 +23,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 
 import javax.sound.sampled.AudioFormat;
@@ -54,11 +53,12 @@ public class JavaFXController extends Application implements Serializable {
     private MixerSetUp mixerSetUp;
 
 
-/*    public static void main(String[] args) {
+    public static void main(String[] args) {
         // calls the args method of application
         // must override start method
         launch(args);
-    }*/
+    }
+
 
     /**
      * Start method from JavaFX application
@@ -68,13 +68,13 @@ public class JavaFXController extends Application implements Serializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
-
         // Create the main layout
         makeMainWindow();
 
+        // The mixer for the audio
         mixerSetUp = new MixerSetUp(0);
 
+        // Controller for the Gui
         controller = new ArrangementWindowController(this, mixerSetUp);
 
         // Set window as primary stage and give it a title
@@ -104,8 +104,6 @@ public class JavaFXController extends Application implements Serializable {
 
         // Main layout for the window
         BorderPane mainLayout = new BorderPane();
-
-
 
         // Add the split pane to a scroll pane so able to show many windows
         ScrollPane channels = new ScrollPane();
@@ -364,6 +362,7 @@ public class JavaFXController extends Application implements Serializable {
             @Override
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
+                // If the drag board has at least one file
                 if (db.hasFiles()) {
                     event.acceptTransferModes(TransferMode.COPY);
                 } else {
@@ -378,9 +377,10 @@ public class JavaFXController extends Application implements Serializable {
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
-                // if item is dropped
+                // if at least one item is dropped
                 if (db.hasFiles()) {
                     success = true;
+                    // do something for each file dropped
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
