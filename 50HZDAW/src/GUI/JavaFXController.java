@@ -465,14 +465,14 @@ public class JavaFXController extends Application implements Serializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         String filePath = file.getAbsolutePath();
 
-       /*
+        /*
         AudioInputStream a = AudioSystem.getAudioInputStream(file);
         byte [] stereoByteArray = new byte [(int)file.length()];
         a.read(stereoByteArray);
 
         WaveformGenerator test = new WaveformGenerator(stereoByteArray, gc);
         test.draw();
-*/
+        */
         WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
         wf.draw();
         canvas.setOnMouseClicked(e -> {
