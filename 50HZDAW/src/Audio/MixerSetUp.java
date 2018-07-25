@@ -28,13 +28,13 @@ public class MixerSetUp {
     private long playOffset;
 
 
-/*
-   public static void main (String [] args) throws LineUnavailableException{
+
+/*   public static void main (String [] args) throws LineUnavailableException{
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
-    }
-*/
+    }*/
+
 
 
 
@@ -59,8 +59,8 @@ public class MixerSetUp {
         //Default offset is 0
         playOffset = 0;
 
-/*
 
+/*
         // Testing files
         String filepath_24bit = "50HZDAW/Samples/emotionalpads.wav";
         String hello16bit = "50HZDAW/Samples/Hello16bit.wav";
@@ -68,8 +68,8 @@ public class MixerSetUp {
         String filepath1_24bit = "50HZDAW/Samples/loopy3.wav";
 
         File file = new File(filepath_16bit);
-        File file1 = new File(filepath1_24bit);
-        File file2 = new File(filepath_24bit);
+        File file1 = new File(filepath_24bit);
+        File file2 = new File(filepath1_24bit);
 
         // For testing without the GUI
         addTrack("Track1", file1, 0.8f);     // create mixer with one track as default.
@@ -77,8 +77,9 @@ public class MixerSetUp {
         System.out.println("tracks: " + tracks.size());
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
         playOutput();
-
 */
+
+
     }
 
     /**
@@ -107,6 +108,9 @@ public class MixerSetUp {
         return newTrack;
     }
 
+    public void addToTrack (Track track, File file, long start) throws LineUnavailableException{
+        track.addAudioTrackData(file, start);
+    }
 
     /**
      * Remove a given Track

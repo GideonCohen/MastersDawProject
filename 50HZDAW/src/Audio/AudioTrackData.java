@@ -20,17 +20,21 @@ public class AudioTrackData {
     private int minValue;
     private int maxValue;
     private byte [] stereoByteArray;
-    private StereoSplit stereoSplit;
     private ByteToFloat byteToFloat;
+    private boolean reverse;
+
+    private long start;
+    private long finish;
 
 
 
+    public AudioTrackData (File file, long start) throws UnsupportedAudioFileException, IOException {
 
-    public AudioTrackData (File file) throws UnsupportedAudioFileException, IOException {
-
+        this.start = setStart(start);
         byteToFloat = new ByteToFloat();
         setUpStream(file);
         setStereoByteArray();
+        reverse = false;
 
     }
 
@@ -46,6 +50,7 @@ public class AudioTrackData {
         frameSize = audioFormat.getFrameSize();
         frameRate = audioFormat.getFrameRate();
         durationInSeconds = (audioFileLength / (frameSize * frameRate));
+        finish = audioFileLength + start;
 
         minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
         maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
@@ -53,6 +58,7 @@ public class AudioTrackData {
         System.out.println("Audio Format of File " + audioFileLength + " bytes " + (float)audioFileLength/1000000 + " mb" +  "  " + audioFormat + "  " + frameSize + "  "  + frameRate + "  "  + durationInSeconds);
 
         System.out.println("Representation limits for " + audioFormat.getSampleSizeInBits() + "-bit integer: " + minValue + " to " + maxValue + "\n");
+
 
     }
 
@@ -65,9 +71,26 @@ public class AudioTrackData {
         stereoByteArray = new byte [(int)audioFileLength];
         inputStream.read(stereoByteArray);  // sets a stereo byte array to bit split for processing.    // fill byte array with pre-processed audio.
 
-        stereoSplit = new StereoSplit(getStereoFloatArray());         // split byte array into right and left for panning controls.
-        stereoSplit.split();
-        stereoByteArray = byteToFloat.floatToByteArray(stereoSplit.convergeMonoArrays(), minValue, maxValue);
+        // reverse = true; // set audio file in reverse.
+        //  reverseAudio();
+
+
+    }
+
+    /**
+     * Reverse audio file. Flip negative values to positive and positive values to negative.
+     */
+
+
+    public void reverseAudio () {
+
+        if(reverse == true) {
+
+            for(int i = 0; i < stereoByteArray.length; i++) {
+
+                stereoByteArray[i] = ((byte)(stereoByteArray[i] * -1));
+            }
+        }
 
 
     }
@@ -114,6 +137,7 @@ public class AudioTrackData {
         return stereoByteArray;
     }
 
+
     /**
      * Get byte array of processed audio. This can be used for addition with other audio data for full output playback.
      */
@@ -122,6 +146,55 @@ public class AudioTrackData {
 
         return byteToFloat.byteToFloatArray(stereoByteArray, maxValue);
     }
+
+
+
+    /**
+     * Set start time of audio file in track stream.
+     */
+
+    public long setStart(long start) {
+
+        long startByte = (start/1000) * 176400;
+        return startByte;
+    }
+
+
+
+    /**
+     * Set finish time of audio file in track stream.
+     */
+
+    public void setFinish(long finish) {
+
+        this.finish = finish;
+
+    }
+
+    /**
+     * Get start time of audio file in track stream.
+     */
+
+    public long getStart() {
+
+        return start;
+
+    }
+
+    /**
+     * Get finish time of audio file in track stream.
+     */
+
+    public long getFinish() {
+
+        return finish;
+
+    }
+
+
+
+
+
 
 
 }

@@ -28,12 +28,12 @@ public class Track {
     private ArrayList<AudioTrackData> audioTrackData;
     private AudioProcessing audioProcessing;
     private ByteToFloat byteToFloat;
+    private StereoSplit stereoSplit;
+    private int minValue;
+    private int maxValue;
 
     private int trackSizeSeconds;
     private byte [] trackBuffer;   // fill track buffer with 0's for silence.
-
-
-
 
 
 
@@ -42,7 +42,7 @@ public class Track {
      * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
      */
 ;
-    public Track (String name, File file1, float volume) throws LineUnavailableException {
+    public Track (String name, File file, float volume) throws LineUnavailableException {
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
             // default audio format for data line if no file is added. will change once audio file is added.
@@ -53,12 +53,13 @@ public class Track {
         source.open(audioFormat, source.getBufferSize()); // line must be open to appear in mixer
         // still data to be written before any playback!!!  also need to call start before write.
         audioTrackData = new ArrayList<>();
-        addAudioTrackData(file1);    // add an audio file to be part of the tracks stream. audio processing can be added to a track.
+        addAudioTrackData(file, 0);    // add an audio file to be part of the tracks stream. audio processing can be added to a track.
+        //addAudioTrackData(file, 30000);
         playbackBuffer = new byte [source.getBufferSize()];
 
         byteToFloat = new ByteToFloat();
 
-        trackBuffer = new byte [source.getBufferSize() * 120];     // all tracks should have the same data length for addition in output.
+        trackBuffer = new byte [source.getBufferSize() * 240];     // all tracks should have the same data length for addition in output.
 
         addDataToTrack();
         addProcessing(volume);
@@ -66,6 +67,10 @@ public class Track {
 
     }
 
+
+    public Track () {
+
+    }
 
     /**
      * Set the name of a given track.
@@ -127,11 +132,13 @@ public class Track {
      * Add an audio file to the data line which should change its format.
      */
 
-    public void addAudioTrackData (File file) throws LineUnavailableException {
+    public void addAudioTrackData (File file, long start) throws LineUnavailableException {
 
         try {
-            audioTrackData.add(new AudioTrackData(file));
+            audioTrackData.add(new AudioTrackData(file, start));
             audioFormat = audioTrackData.get(0).getFileFormat();
+            minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
+            maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;   // min & max values can be passed when converting byte to float & vice versa.
         }
         catch (UnsupportedAudioFileException uafe) {
             System.out.println(uafe.getMessage());
@@ -149,15 +156,28 @@ public class Track {
      */
 
     public void addDataToTrack () {
-        int check = 0;
-        for(int i = 0; i < audioTrackData.get(0).getStereoByteArray().length; i++) {
-            try {
-                trackBuffer[i] = audioTrackData.get(0).getStereoByteArray()[i];
-            } catch (IndexOutOfBoundsException e) {
-                check++;
+
+        long dataFinish = 0;
+        long dataOffset = 0;
+
+        for(int i = 0; i < audioTrackData.size(); i++) {
+            if(audioTrackData.get(i).getFinish() > dataFinish) {
+                dataFinish = audioTrackData.get(i).getFinish();
             }
         }
-        System.out.println("Index problems: " + check + ".");
+
+        System.out.println("End of Audio: " + dataFinish);
+
+        trackBuffer = new byte [(int)dataFinish];    // set buffer size to finish of audio content.
+
+
+        for(int i = 0; i < audioTrackData.size(); i++) {
+            dataOffset = audioTrackData.get(i).getStart();
+            for (int j = 0; j < audioTrackData.get(i).getStereoByteArray().length; j++) {
+                trackBuffer[(int) dataOffset] = audioTrackData.get(i).getStereoByteArray()[j];
+                dataOffset++;
+            }
+        }
     }
 
     /**
@@ -167,7 +187,10 @@ public class Track {
 
     public void addProcessing (float volume) {
 
-        audioProcessing = new AudioProcessing(trackBuffer, audioTrackData.get(0).getMinValue(), audioTrackData.get(0).getMaxValue(), volume);
+        stereoSplit = new StereoSplit(getTrackOutput());         // split byte array into right and left for panning controls.
+        stereoSplit.split();
+        trackBuffer = byteToFloat.floatToByteArray(stereoSplit.convergeMonoArrays(), minValue, maxValue);
+        audioProcessing = new AudioProcessing(trackBuffer, minValue, maxValue, volume);
         trackBuffer = audioProcessing.getProcessedByteAudio();
         inputPostStream = new ByteArrayInputStream(trackBuffer);
 

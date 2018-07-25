@@ -130,7 +130,7 @@ public class JavaFXController extends Application implements Serializable {
 
         // make the scene
         mainWindow = new Scene(split1, 400, 400);
-        //mainWindow.getStylesheets().add("Style.css");
+        mainWindow.getStylesheets().add("GUI/Style.css");
 
 
         // Allow for drag and drop for adding files
@@ -153,12 +153,19 @@ public class JavaFXController extends Application implements Serializable {
         Menu fileMenu = new Menu("File");
 
         // File Items
-        MenuItem addTrack = new MenuItem("Add Track");
+        MenuItem addTrack = new MenuItem("Add Audio");
         // Import file via browser window
         addTrack.setOnAction(event -> {
             importFile(pane);
         });
         fileMenu.getItems().add(addTrack);
+
+        MenuItem newTrack = new MenuItem("New Track");
+        newTrack.setOnAction(event -> {
+            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow);
+            pane.getItems().add(trackLine.createTrack());
+        });
+        fileMenu.getItems().add(newTrack);
 
         // Aesthetic seperator
         fileMenu.getItems().add(new SeparatorMenuItem());

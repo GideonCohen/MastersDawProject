@@ -53,9 +53,9 @@ public class OutputTrack {
         source = (SourceDataLine) AudioSystem.getLine(newLine);
         source.open(audioFormat, source.getBufferSize()); //
 
-        bufferSize = 1024 * 8;
-        readBufferSize = bufferSize * 2;
-        sdlBufferSize = bufferSize * 4;
+        bufferSize = 1024;
+        readBufferSize = bufferSize;
+        sdlBufferSize = bufferSize * 2;
 
         minValue = -32768;
         maxValue =  32767;
@@ -124,7 +124,11 @@ public class OutputTrack {
         for (int i = 0; i < tracks.size(); i++) {
             currentFloatArray = tracks.get(i).getTrackOutput();
             for (int j = 0; j < currentFloatArray.length; j++) {
-                outputFloatArray [j] += currentFloatArray [j];
+                try {
+                    outputFloatArray [j] += currentFloatArray [j];
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("System out of bounds exception at : " + i);
+                }
             }
         }
         outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);
@@ -145,6 +149,7 @@ public class OutputTrack {
         int numBytesRead = 0;
 
         try {
+            System.out.println("Resume at : " + trackOffset);
             outputStream.skip(trackOffset);
             System.out.println("Offset is " + trackOffset);
             while (((numBytesRead = outputStream.read(readBuffer)) != -1) && pause == false){
@@ -152,12 +157,16 @@ public class OutputTrack {
                 source.write(readBuffer, 0, numBytesRead);
                 //System.out.println(count);
                 count++;
+                System.out.println(numBytesRead);
 
             }
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
         }
 
+        if (numBytesRead == -1) {
+            count = 0;
+        }
         source.stop();
         source.drain();
         outputStream.reset();
@@ -211,7 +220,7 @@ public class OutputTrack {
     public long pause() {
 
         trackOffset = count * readBuffer.length;
-        System.out.println(trackOffset);
+        System.out.println("Paused at " + trackOffset);
         pause = true;
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
