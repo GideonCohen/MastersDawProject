@@ -48,7 +48,6 @@ public class ConfirmationBox {
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
-        scene.getStylesheets().add("Style.css");
         window.setScene(scene);
         //Show and wait - show and wait for it to be hidden or closed before it returns to main
         //Blocks user interaction until the alert box is closed

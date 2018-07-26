@@ -8,23 +8,26 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
+
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -52,6 +55,10 @@ public class JavaFXController extends Application implements Serializable {
 
     // Audio Player
     private MixerSetUp mixerSetUp;
+
+    private boolean isPointerShowing = false;
+
+
 
 
 /*    public static void main(String[] args) {
@@ -131,8 +138,8 @@ public class JavaFXController extends Application implements Serializable {
         split1.getChildren().add(mainLayout);
 
         // make the scene
-        mainWindow = new Scene(split1, 400, 400);
-        //mainWindow.getStylesheets().add("Style.css");
+        mainWindow = new Scene(split1, 800, 800);
+
 
 
         // Allow for drag and drop for adding files
@@ -227,28 +234,42 @@ public class JavaFXController extends Application implements Serializable {
 
 
         // Media Player button block
-        HBox playerButtons = new HBox();
+        HBox playerButtons = new HBox(10);
+        playerButtons.setAlignment(Pos.CENTER);
+
+        Region r = new Region();
 
         // Play all added tracks
-        Button play = new Button("play");
+        Button play = new Button();
+        Image playImage = new Image("Resources/play.png");
+        play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> controller.play());
 
 
         // Pause all added tracks
-        Button pause = new Button("Pause");
+        Button pause = new Button();
+        Image pauseImage = new Image("Resources/pause.png");
+        pause.setGraphic(new ImageView(pauseImage));
         pause.setOnAction(event -> controller.pause());
 
 
         // Stop all added tracks
-        Button stop = new Button("Stop");
+        Button stop = new Button();
+        Image stopImage = new Image("Resources/stop.png");
+        stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> controller.stop());
 
 
         // Currently non functional
-        Button skipF = new Button(">>");
-        Button skipB = new Button("<<");
+        Button skipF = new Button();
+        Image FFImage = new Image("Resources/ff.png");
+        skipF.setGraphic(new ImageView(FFImage));
 
-        playerButtons.getChildren().addAll(skipB, play, pause, stop, skipF);
+        Button skipB = new Button();
+        Image RWImage = new Image("Resources/rw.png");
+        skipB.setGraphic(new ImageView(RWImage));
+
+        playerButtons.getChildren().addAll(r, play, pause, stop, skipB, skipF);
 
 
         // Timer
@@ -285,14 +306,14 @@ public class JavaFXController extends Application implements Serializable {
         Track track = mixerSetUp.addTrack(file.getName(), file, 1f);
 
         // Whole Channel - Settings and waveform
-        HBox channelBox = new HBox(20);
+        HBox channelBox = new HBox(30);
         channelBox.prefWidthProperty().bind(mainWindow.widthProperty());
-        channelBox.setMinHeight(1);
 
         // Parent for all settings buttons
         VBox optionsBox = new VBox(5);
-        optionsBox.setMinWidth(150);
-        optionsBox.setMaxWidth(150);
+        optionsBox.setMinHeight(1);
+        optionsBox.setMinWidth(100);
+        optionsBox.setMaxWidth(100);
 
 
         // Channel Name
@@ -337,15 +358,21 @@ public class JavaFXController extends Application implements Serializable {
 
         // Box that creates a split between timeline and waveform display
         VBox timelineSplit = new VBox();
-        timelineSplit.getChildren().addAll(timelineBox, createWaveform(durationInSeconds, file));
+        WaveformCanvas WC = new WaveformCanvas(durationInSeconds, file);
+        timelineSplit.getChildren().addAll(timelineBox, WC.createWaveform());
 
         // Final waveform box with pointer, timeline and waveform display
         VBox finalBox = new VBox();
 
         int width = (int) Math.round(durationInSeconds);
-        createPointer(width);
 
-        finalBox.getChildren().addAll(rect, timelineSplit);
+        if (!isPointerShowing) {
+            createPointer(width);
+            finalBox.getChildren().add(rect);
+            isPointerShowing = true;
+        }
+
+        finalBox.getChildren().add(timelineSplit);
 
         channelBox.getChildren().addAll(optionsBox, finalBox);
         pane.getItems().add(channelBox);
@@ -458,36 +485,6 @@ public class JavaFXController extends Application implements Serializable {
         TT.setInterpolator(Interpolator.LINEAR);
     }
 
-    public Canvas createWaveform(Double durationInSeconds, File file) throws Exception {
-
-        int width = (int) Math.round(durationInSeconds);
-        Canvas canvas = new Canvas(width * 10, 100);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        String filePath = file.getAbsolutePath();
-
-       /*
-        AudioInputStream a = AudioSystem.getAudioInputStream(file);
-        byte [] stereoByteArray = new byte [(int)file.length()];
-        a.read(stereoByteArray);
-
-        WaveformGenerator test = new WaveformGenerator(stereoByteArray, gc);
-        test.draw();
-*/
-        WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
-        wf.draw();
-        canvas.setOnMouseClicked(e -> {
-            WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
-        });
-
-        //to set starting position for waveform
-        canvas.setTranslateX(0);
-        //10 pixels = 1 second or 1000 ms
-        //1 pixel = 0.1 second or 100ms
-        //if setting position with ms, /100
-
-        return canvas;
-    }
-
     public TranslateTransition getTT() {
         return TT;
     }
@@ -495,4 +492,7 @@ public class JavaFXController extends Application implements Serializable {
     public Rectangle getRect() {
         return rect;
     }
+
+
+
 }

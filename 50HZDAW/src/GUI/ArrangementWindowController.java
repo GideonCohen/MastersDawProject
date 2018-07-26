@@ -36,10 +36,13 @@ public class ArrangementWindowController {
 
     public void pause() {
         mixerSetUp.pauseOutput();
+        view.getTT().pause();
     }
 
     public void stop() {
         mixerSetUp.stopOutput();
+        view.getTT().stop();
+        view.getRect().setTranslateX(0);
     }
 
     public void removeTrack(Track track) {

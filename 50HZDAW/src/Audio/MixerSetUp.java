@@ -25,16 +25,6 @@ public class MixerSetUp {
     private int trackCount;
     private long playOffset;
 
-
-
-/*   public static void main (String [] args) throws LineUnavailableException{
-
-        MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
-
-    }*/
-
-
-
     /**
      * Create a mixer object with a given i/o choice from mixinfos. This may be changed in preferences as a later date.
      *
@@ -50,21 +40,6 @@ public class MixerSetUp {
         playOffset = 0;
 
         tracks = new ArrayList<>();
-
-
-        String filepath_24bit = "50HZDAW/Samples/emotionalpads.wav";
-        String hello16bit = "50HZDAW/Samples/Hello16bit.wav";
-        String filepath_16bit = "50HZDAW/Samples/doublebass.wav";
-        String filepath1_24bit = "50HZDAW/Samples/loopy3.wav";
-
-
-        File file = new File(filepath_16bit);
-        File file1 = new File(filepath1_24bit);
-        File file2 = new File(filepath_24bit);
-
-
-        //addTrack("Track1", file2, 0.8f);     // create mixer with one track as default.
-        //addTrack("Track1", file1, 0.8f);     // create mixer with one track as default.
         System.out.println("tracks: " + tracks.size());
 
 
@@ -138,7 +113,7 @@ public class MixerSetUp {
         playOffset = output.stop();
     }
 
-
-
-
+    public ArrayList<Track> getTracks() {
+        return tracks;
+    }
 }

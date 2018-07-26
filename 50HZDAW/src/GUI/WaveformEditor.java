@@ -1,5 +1,9 @@
 package GUI;
 
+import Audio.ArrangementHelper;
+import Audio.AudioTrackData;
+import Audio.MixerSetUp;
+import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class WaveformEditor {
 
@@ -32,6 +37,7 @@ public class WaveformEditor {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Waveform Editor");
         window.setMinWidth(200);
+        window.setWidth(500);
 
         VBox layout = new VBox();
         ScrollPane sp = new ScrollPane();
@@ -54,9 +60,7 @@ public class WaveformEditor {
 
         });
 
-
         Scene scene = new Scene(layout);
-        scene.getStylesheets().add("Style.css");
         window.setScene(scene);
 
         window.show();

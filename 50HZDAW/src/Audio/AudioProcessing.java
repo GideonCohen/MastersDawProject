@@ -28,7 +28,6 @@ public class AudioProcessing {
 
         adjustVolume();
 
-
     }
 
 
@@ -53,7 +52,6 @@ public class AudioProcessing {
         stereoPostByteArray = byteToFloat.floatToByteArray(stereoFloatArray, minValue, maxValue);
 
     }
-
 
 
     /**

@@ -41,11 +41,11 @@ public class Track {
      * Create a data line with specific audio settings that may be changed by the user. One must specify the format
      * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
      */
-;
+    ;
     public Track (String name, File file, float volume) throws LineUnavailableException {
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
-            // default audio format for data line if no file is added. will change once audio file is added.
+        // default audio format for data line if no file is added. will change once audio file is added.
         trackName = name;
         newLine = new DataLine.Info(SourceDataLine.class, audioFormat);
         // set up a data line with given audio format and specify the type of line it will be (source data line).
@@ -74,7 +74,7 @@ public class Track {
 
     public void setTrackName (String name) {
 
-       trackName = name;
+        trackName = name;
 
     }
 
@@ -191,9 +191,9 @@ public class Track {
         int count = 1;
         try {
             while ((numBytesRead = inputPostStream.read(playbackBuffer)) != -1) {
-                    source.write(playbackBuffer, 0, numBytesRead);
-                    //System.out.println(count);
-                    count ++;
+                source.write(playbackBuffer, 0, numBytesRead);
+                //System.out.println(count);
+                count ++;
 
             }
         } catch (IllegalArgumentException iae) {
