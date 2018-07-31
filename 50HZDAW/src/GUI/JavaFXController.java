@@ -162,7 +162,7 @@ public class JavaFXController extends Application implements Serializable {
 
         MenuItem newTrack = new MenuItem("New Track");
         newTrack.setOnAction(event -> {
-            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow);
+            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
             pane.getItems().add(trackLine.createTrack());
         });
         fileMenu.getItems().add(newTrack);
@@ -271,92 +271,6 @@ public class JavaFXController extends Application implements Serializable {
 
     }
 
-
-    /**
-     * Make a channel line when a new file is added
-     * @param file - the .wav file attatched to the channel line
-     * @param pane - the SplitPane that houses all the channels
-     */
-    private void makeChannelLine(File file, SplitPane pane) throws Exception{
-
-
-
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-        AudioFormat format = audioInputStream.getFormat();
-        long frames = audioInputStream.getFrameLength();
-        double durationInSeconds = (frames+0.0)/format.getFrameRate();
-        System.out.println("Audio file is " + durationInSeconds + " Seconds long");
-
-        Track track = mixerSetUp.addTrack(file.getName(), file, 1f);
-
-        // Whole Channel - Settings and waveform
-        HBox channelBox = new HBox(20);
-        channelBox.prefWidthProperty().bind(mainWindow.widthProperty());
-        channelBox.setMinHeight(1);
-
-        // Parent for all settings buttons
-        VBox optionsBox = new VBox(5);
-        optionsBox.setMinWidth(150);
-        optionsBox.setMaxWidth(150);
-
-
-        // Channel Name
-        Label fileName = new Label(file.getName());
-        fileName.getStyleClass().add("track-label");
-
-        // Mute and Solo
-        HBox muteSolo = new HBox(5);
-        Button mute = new Button("Mute");
-        mute.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-        Button solo = new Button("Solo");
-        solo.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-        muteSolo.getChildren().addAll(mute, solo);
-
-
-        // Gain control
-        HBox gain = new HBox(5);
-
-        Button gainUp = new Button("Gain +");
-        gainUp.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-        Button gainDown = new Button("Gain -");
-        gainDown.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-
-        gain.getChildren().addAll(gainUp, gainDown);
-
-        // Delete Channel
-        Button deleteChannel = new Button("Delete channel");
-        deleteChannel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-        deleteChannel.setOnAction(event -> {
-            // Remove the channel from the scene
-            pane.getItems().remove(channelBox);
-            controller.removeTrack(track);
-        });
-
-        // Layout for buttons
-        optionsBox.getChildren().addAll(fileName, muteSolo, gain, deleteChannel);
-
-
-        HBox timelineBox = new HBox(75);
-
-        createTimeline(timelineBox);
-
-        // Box that creates a split between timeline and waveform display
-        VBox timelineSplit = new VBox();
-        timelineSplit.getChildren().addAll(timelineBox, createWaveform(durationInSeconds, file));
-
-        // Final waveform box with pointer, timeline and waveform display
-        VBox finalBox = new VBox();
-
-        int width = (int) Math.round(durationInSeconds);
-        createPointer(width);
-
-        finalBox.getChildren().addAll(rect, timelineSplit);
-
-        channelBox.getChildren().addAll(optionsBox, finalBox);
-        pane.getItems().add(channelBox);
-
-    }
-
     /**
      * Allows .wav files to be added to the application. Will create channels as files are added
      * @param scene - Area that can be dragged into
@@ -391,7 +305,9 @@ public class JavaFXController extends Application implements Serializable {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                makeChannelLine(file, pane);
+                                TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
+                                pane.getItems().add(trackLine.createTrack());
+                                trackLine.addWaveForm(file);
                             } catch (Exception e) {
 
                             }
@@ -425,7 +341,9 @@ public class JavaFXController extends Application implements Serializable {
         // If appropriate file type is chosen
         try {
             // Make a channel for the player
-            makeChannelLine(file, pane);
+            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
+            pane.getItems().add(trackLine.createTrack());
+            trackLine.addWaveForm(file);
         } catch(Exception e) {
 
         }
@@ -434,72 +352,5 @@ public class JavaFXController extends Application implements Serializable {
 
     public Stage getWindow() {
         return window;
-    }
-
-    public HBox createTimeline(HBox box) {
-
-        for (int i = 0; i < 1000; i += 10) {
-            Label label = new Label(i + "");
-            label.setMinWidth(25);
-            label.setMinHeight(25);
-            label.setMinHeight(25);
-            label.setMinHeight(25);
-
-            box.getChildren().add(label);
-        }
-
-
-        return box;
-    }
-
-    public void createPointer(int width) {
-
-        rect = new Rectangle();
-        rect.setStroke(Color.BLACK);
-        rect.setWidth(5);
-        rect.setHeight(15);
-        rect.setFill(Color.BLACK);
-
-        TT = new TranslateTransition(Duration.seconds(width), rect);
-        TT.setToX(width * 10);
-        TT.setInterpolator(Interpolator.LINEAR);
-    }
-
-    public Canvas createWaveform(Double durationInSeconds, File file) throws Exception {
-
-        int width = (int) Math.round(durationInSeconds);
-        Canvas canvas = new Canvas(width * 10, 100);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        String filePath = file.getAbsolutePath();
-
-        /*
-        AudioInputStream a = AudioSystem.getAudioInputStream(file);
-        byte [] stereoByteArray = new byte [(int)file.length()];
-        a.read(stereoByteArray);
-
-        WaveformGenerator test = new WaveformGenerator(stereoByteArray, gc);
-        test.draw();
-        */
-        WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
-        wf.draw();
-        canvas.setOnMouseClicked(e -> {
-            WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
-        });
-
-        //to set starting position for waveform
-        canvas.setTranslateX(0);
-        //10 pixels = 1 second or 1000 ms
-        //1 pixel = 0.1 second or 100ms
-        //if setting position with ms, /100
-
-        return canvas;
-    }
-
-    public TranslateTransition getTT() {
-        return TT;
-    }
-
-    public Rectangle getRect() {
-        return rect;
     }
 }

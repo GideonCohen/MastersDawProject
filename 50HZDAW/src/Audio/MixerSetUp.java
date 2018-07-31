@@ -36,9 +36,6 @@ public class MixerSetUp {
     }*/
 
 
-
-
-
     /**
      * Create a mixer object with a given i/o choice from mixinfos. This may be changed in preferences as a later date.
      * @param audioPreferences - I/O preferences
@@ -59,8 +56,12 @@ public class MixerSetUp {
         //Default offset is 0
         playOffset = 0;
 
+        //testOutput();
 
-/*
+
+    }
+
+    public void testOutput() throws LineUnavailableException{
         // Testing files
         String filepath_24bit = "50HZDAW/Samples/emotionalpads.wav";
         String hello16bit = "50HZDAW/Samples/Hello16bit.wav";
@@ -77,9 +78,6 @@ public class MixerSetUp {
         System.out.println("tracks: " + tracks.size());
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
         playOutput();
-*/
-
-
     }
 
     /**

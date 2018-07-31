@@ -1,10 +1,13 @@
 package GUI;
 
+import Audio.MixerSetUp;
+import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,10 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -29,6 +33,11 @@ public class TrackLineGUI {
     private String lineName;
     private SplitPane parent;
     private Scene mainWindow;
+    private Track track;
+    private long start;
+    private MixerSetUp mixerSetUp;
+    private HBox displayLine;
+    private IntegerProperty volume;
 
     private ArrayList<File> files;
 
@@ -38,10 +47,13 @@ public class TrackLineGUI {
     // TranslateTransition object used to move pointer over time
     private TranslateTransition TT;
 
-    public TrackLineGUI(String name, SplitPane pane, Scene window) {
+    public TrackLineGUI(String name, SplitPane pane, Scene window, MixerSetUp mixer) {
         lineName = name;
         parent = pane;
         mainWindow = window;
+        files = new ArrayList<>();
+        mixerSetUp = mixer;
+        start = 0;
     }
     
     public HBox createTrack(){
@@ -87,8 +99,25 @@ public class TrackLineGUI {
             parent.getItems().remove(trackLine);
         });
 
+        // volume volumeSlider
+        Slider volumeSlider = new Slider();
+        volumeSlider.setMin(10);
+        volumeSlider.setMax(110);
+        volumeSlider.setValue(100);
+        volumeSlider.setShowTickLabels(true);
+        volumeSlider.setShowTickMarks(true);
+        volumeSlider.setMajorTickUnit(20);
+        volumeSlider.setMinorTickCount(5);
+        volumeSlider.setBlockIncrement(1);
+
+        volume = new SimpleIntegerProperty();
+        volume.bind(volumeSlider.valueProperty());
+        volume.addListener((v, oldValue, newValue) -> {
+            adjustVolume(newValue.floatValue()/oldValue.floatValue());
+        });
+
         // Layout for buttons
-        optionsBox.getChildren().addAll(name, muteSolo, gain, deleteChannel);
+        optionsBox.getChildren().addAll(name, muteSolo, gain, deleteChannel, volumeSlider);
 
 
         HBox timelineBox = new HBox(75);
@@ -97,7 +126,8 @@ public class TrackLineGUI {
 
         // Box that creates a split between timeline and waveform display
         VBox timelineSplit = new VBox();
-        timelineSplit.getChildren().addAll(timelineBox, new Canvas(100, 100));
+        displayLine = new HBox(10);
+        timelineSplit.getChildren().addAll(timelineBox, displayLine);
 
         // Final waveform box with pointer, timeline and waveform display
         VBox finalBox = new VBox();
@@ -111,13 +141,19 @@ public class TrackLineGUI {
         finalBox.getChildren().addAll(rect, timelineSplit);
 
         trackLine.getChildren().addAll(optionsBox, finalBox);
-        parent.getItems().add(trackLine);
 
         acceptDragDrop(trackLine);
 
         return trackLine;
     }
 
+    private void adjustVolume(float vol) {
+        try {
+            track.addProcessing(vol);
+        } catch (NullPointerException e) {
+            //System.out.println("No track);
+        }
+    }
     private void acceptDragDrop(HBox line){
 
         // Handler for drag over
@@ -147,7 +183,8 @@ public class TrackLineGUI {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                addFile(file);
+                                Canvas canvas = addFile(file);
+                                displayLine.getChildren().add(canvas);
                             } catch (Exception e) {
 
                             }
@@ -192,12 +229,34 @@ public class TrackLineGUI {
         return canvas;
     }
 
-    public void addWaveForm() {
+    public void addWaveForm(File file) throws java.lang.Exception{
+        Canvas canvas = addFile(file);
+        displayLine.getChildren().add(canvas);
     }
 
-    public void addFile(File file) {
-        System.out.println("I tried to add a file");
+    public Canvas addFile(File file) throws Exception {
+
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+        AudioFormat format = audioInputStream.getFormat();
+        long frames = audioInputStream.getFrameLength();
+        double durationInSeconds = (frames+0.0)/format.getFrameRate();
+
+        if (files.size() == 0) {
+            System.out.println("I tried to add a track");
+            track = mixerSetUp.addTrack(file.getName(), file, (volume.get()/100));
+        } else {
+            System.out.println("I tried to add to a existing track");
+            track.addAudioTrackData(file, 10000);
+        }
+
+        Canvas canvas = createWaveform(durationInSeconds, file);
+
         files.add(file);
+
+        start += file.length();
+        System.out.println("Start at :" + start);
+
+        return canvas;
     }
 
     public HBox createTimeline(HBox box) {

@@ -194,8 +194,6 @@ public class Track {
         trackBuffer = audioProcessing.getProcessedByteAudio();
         inputPostStream = new ByteArrayInputStream(trackBuffer);
 
-
-
     }
 
     /**

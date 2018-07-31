@@ -20,7 +20,6 @@ public class ArrangementWindowController {
 
     public void play() {
         try {
-            view.getTT().play();
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     try {

@@ -127,7 +127,7 @@ public class OutputTrack {
                 try {
                     outputFloatArray [j] += currentFloatArray [j];
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("System out of bounds exception at : " + i);
+                    //System.out.println("System out of bounds exception at : " + i);
                 }
             }
         }
@@ -157,7 +157,7 @@ public class OutputTrack {
                 source.write(readBuffer, 0, numBytesRead);
                 //System.out.println(count);
                 count++;
-                System.out.println(numBytesRead);
+                //System.out.println(numBytesRead);
 
             }
         } catch (IllegalArgumentException iae) {
@@ -175,8 +175,6 @@ public class OutputTrack {
         //  };
 
     }
-
-
 
 
     /**
@@ -219,9 +217,9 @@ public class OutputTrack {
 
     public long pause() {
 
+        pause = true;
         trackOffset = count * readBuffer.length;
         System.out.println("Paused at " + trackOffset);
-        pause = true;
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
         source.stop();

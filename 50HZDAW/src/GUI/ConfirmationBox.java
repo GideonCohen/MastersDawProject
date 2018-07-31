@@ -54,6 +54,9 @@ public class ConfirmationBox {
         //Blocks user interaction until the alert box is closed
         window.showAndWait();
 
+
         return answer;
     }
+
+
 }
