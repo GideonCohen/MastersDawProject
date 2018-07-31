@@ -20,10 +20,11 @@ public class ArrangementWindowController {
 
     public void play() {
         try {
-            view.getTT().play();
+
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     try {
+                        view.getTT().play();
                         mixerSetUp.playOutput();
                     } catch (Exception e)  {}
                 }
@@ -47,6 +48,7 @@ public class ArrangementWindowController {
 
     public void removeTrack(Track track) {
 
+        mixerSetUp.getTracks().remove(track);
     }
 
     public boolean addTrack(File file) {

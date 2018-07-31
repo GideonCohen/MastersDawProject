@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import java.io.File;
 
@@ -18,15 +19,30 @@ public class WaveformCanvas {
     private int width;
     private Canvas canvas;
 
+    private int index;
+
+    private MixerSetUp mixer;
+
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
 
-    public WaveformCanvas(double d, File f) {
+    private HBox waveformSplit;
+
+
+    public WaveformCanvas(double d, File f, int i, MixerSetUp mixerSetUp, HBox h) throws Exception {
+
+        index = i;
         durationInSeconds = d;
         file = f;
+        mixer = mixerSetUp;
+        waveformSplit = h;
+
     }
 
+
+
     public Canvas createWaveform() {
+
         width = (int) Math.round(durationInSeconds);
         canvas = new Canvas(width * 10, 100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -45,6 +61,7 @@ public class WaveformCanvas {
         return canvas;
     }
 
+
     public void addMouseListeners() {
 
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -52,7 +69,7 @@ public class WaveformCanvas {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
+                    WaveformEditor w = new WaveformEditor(width, index, file, mixer, waveformSplit);
                 }
             }
         });

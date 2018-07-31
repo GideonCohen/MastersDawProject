@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *  MixerSetUp class represents a 32 channel mixer than may consist of one or or more lines of data.
@@ -25,6 +26,8 @@ public class MixerSetUp {
     private int trackCount;
     private long playOffset;
 
+    private HashMap<Integer, Track> fileToTrackMap;
+
     /**
      * Create a mixer object with a given i/o choice from mixinfos. This may be changed in preferences as a later date.
      *
@@ -40,13 +43,7 @@ public class MixerSetUp {
         playOffset = 0;
 
         tracks = new ArrayList<>();
-        System.out.println("tracks: " + tracks.size());
-
-
-        System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
-
-        //playOutput();
-
+        fileToTrackMap = new HashMap<>();
     }
 
     /**
@@ -115,5 +112,13 @@ public class MixerSetUp {
 
     public ArrayList<Track> getTracks() {
         return tracks;
+    }
+
+    public HashMap<Integer, Track> getFileToTrackMap() {
+        return fileToTrackMap;
+    }
+
+    public void setFileToTrackMap(HashMap<Integer, Track> fileToTrackMap) {
+        this.fileToTrackMap = fileToTrackMap;
     }
 }

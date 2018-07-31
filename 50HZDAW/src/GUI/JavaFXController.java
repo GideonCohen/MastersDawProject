@@ -34,6 +34,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.io.Serializable;
+import java.util.HashMap;
 
 
 public class JavaFXController extends Application implements Serializable {
@@ -58,6 +59,11 @@ public class JavaFXController extends Application implements Serializable {
 
     private boolean isPointerShowing = false;
 
+    private int index = 0;
+
+    private VBox timelineSplit;
+
+    private HBox waveformSplit;
 
 
 
@@ -295,8 +301,6 @@ public class JavaFXController extends Application implements Serializable {
      */
     private void makeChannelLine(File file, SplitPane pane) throws Exception{
 
-
-
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         AudioFormat format = audioInputStream.getFormat();
         long frames = audioInputStream.getFrameLength();
@@ -304,6 +308,10 @@ public class JavaFXController extends Application implements Serializable {
         System.out.println("Audio file is " + durationInSeconds + " Seconds long");
 
         Track track = mixerSetUp.addTrack(file.getName(), file, 1f);
+
+
+        mixerSetUp.getFileToTrackMap().put(index, track);
+
 
         // Whole Channel - Settings and waveform
         HBox channelBox = new HBox(30);
@@ -357,9 +365,12 @@ public class JavaFXController extends Application implements Serializable {
         createTimeline(timelineBox);
 
         // Box that creates a split between timeline and waveform display
-        VBox timelineSplit = new VBox();
-        WaveformCanvas WC = new WaveformCanvas(durationInSeconds, file);
-        timelineSplit.getChildren().addAll(timelineBox, WC.createWaveform());
+        timelineSplit = new VBox();
+        waveformSplit = new HBox();
+        WaveformCanvas WC = new WaveformCanvas(durationInSeconds, file, index, mixerSetUp, waveformSplit);
+
+        waveformSplit.getChildren().add(WC.createWaveform());
+        timelineSplit.getChildren().addAll(timelineBox, waveformSplit);
 
         // Final waveform box with pointer, timeline and waveform display
         VBox finalBox = new VBox();
@@ -376,6 +387,7 @@ public class JavaFXController extends Application implements Serializable {
 
         channelBox.getChildren().addAll(optionsBox, finalBox);
         pane.getItems().add(channelBox);
+        index++;
 
     }
 
@@ -480,8 +492,8 @@ public class JavaFXController extends Application implements Serializable {
         rect.setHeight(15);
         rect.setFill(Color.BLACK);
 
-        TT = new TranslateTransition(Duration.seconds(width), rect);
-        TT.setToX(width * 10);
+        TT = new TranslateTransition(Duration.seconds(1000), rect);
+        TT.setToX(1000 * 10);
         TT.setInterpolator(Interpolator.LINEAR);
     }
 

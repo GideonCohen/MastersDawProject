@@ -130,7 +130,8 @@ public class Track {
     public void addAudioTrackData (File file) throws LineUnavailableException {
 
         try {
-            audioTrackData.add(new AudioTrackData(file));
+            AudioTrackData ATD = new AudioTrackData(file);
+            audioTrackData.add(ATD);
             audioFormat = audioTrackData.get(0).getFileFormat();
         }
         catch (UnsupportedAudioFileException uafe) {
@@ -239,6 +240,7 @@ public class Track {
         return byteToFloat.byteToFloatArray(trackBuffer, audioTrackData.get(0).getMaxValue());
     }
 
-
-
+    public ArrayList<AudioTrackData> getAudioTrackData() {
+        return audioTrackData;
+    }
 }

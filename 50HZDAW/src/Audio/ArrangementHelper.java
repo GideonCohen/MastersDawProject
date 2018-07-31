@@ -1,4 +1,7 @@
 package Audio;
+
+import java.util.ArrayList;
+
 /**
  * Class to handle simple audio arrangement functionality such as editing the length of
  * an audio track, adding padding to the start/end of an audio track etc.
@@ -22,6 +25,37 @@ public class ArrangementHelper {
             newArray[i] = oldArray[i];
         }
         return newArray;
+    }
+
+    public ArrayList<byte[]> splitArray(int splitIndex, byte[] bytes) {
+
+        ArrayList<byte[]> splitArrays = new ArrayList<>();
+        byte[] arrayOne = new byte[splitIndex];
+        byte[] arrayTwo = new byte[bytes.length-splitIndex];
+
+        int count = 0;
+
+        for (int i = 0; i < splitIndex; i++) {
+            arrayOne[i] = bytes[i];
+        }
+
+        for (int i = splitIndex; i < bytes.length; i++) {
+            arrayTwo[count] = bytes[i];
+            count++;
+        }
+
+        splitArrays.add(arrayOne);
+        splitArrays.add(arrayTwo);
+
+        return splitArrays;
+    }
+
+    public byte[] duplicateArray(byte[] oldArray) {
+
+        byte[] duplicate = oldArray;
+        return addTwoArrays(oldArray, duplicate);
+
+
     }
 
     /**
@@ -91,6 +125,30 @@ public class ArrangementHelper {
         }
 
         return newArray;
+    }
+
+    public int getFirstElementPosition(byte[] array) {
+
+        int position = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+            }
+            else {
+                position = array[i];
+                break;
+            }
+        }
+
+        getFirstMS(position);
+        System.out.println(position);
+        return position;
+    }
+
+    public double getFirstMS(int position) {
+
+        double ms = position * 176.4;
+        System.out.println(ms);
+        return ms;
     }
 
     /**

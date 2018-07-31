@@ -23,6 +23,10 @@ public class AudioTrackData {
     private StereoSplit stereoSplit;
     private ByteToFloat byteToFloat;
 
+    private static int index = 0;
+
+    private byte[] originalArray;
+
 
 
 
@@ -31,6 +35,8 @@ public class AudioTrackData {
         byteToFloat = new ByteToFloat();
         setUpStream(file);
         setStereoByteArray();
+        this.index = index;
+        index++;
 
     }
 
@@ -67,8 +73,9 @@ public class AudioTrackData {
 
         stereoSplit = new StereoSplit(getStereoFloatArray());         // split byte array into right and left for panning controls.
         stereoSplit.split();
-        stereoByteArray = byteToFloat.floatToByteArray(stereoSplit.convergeMonoArrays(), minValue, maxValue);
 
+        originalArray = stereoByteArray;
+        // = byteToFloat.floatToByteArray(stereoSplit.convergeMonoArrays(), minValue, maxValue);
 
     }
 
@@ -123,7 +130,13 @@ public class AudioTrackData {
         return byteToFloat.byteToFloatArray(stereoByteArray, maxValue);
     }
 
+    public void setStereoByteArray(byte[] stereoByteArray) {
+        this.stereoByteArray = stereoByteArray;
+    }
 
+    public byte[] getOriginalArray() {
+        return originalArray;
+    }
 }
 
 
