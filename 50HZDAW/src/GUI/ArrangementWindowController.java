@@ -24,7 +24,7 @@ public class ArrangementWindowController {
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     try {
-                        view.getTT().play();
+                        mixerSetUp.giveTT(view.getTT());
                         mixerSetUp.playOutput();
                     } catch (Exception e)  {}
                 }

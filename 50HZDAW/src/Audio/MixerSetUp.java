@@ -1,5 +1,7 @@
 package Audio;
 
+import javafx.animation.TranslateTransition;
+
 import javax.sound.sampled.*;
 import javax.xml.transform.Source;
 import java.io.ByteArrayInputStream;
@@ -25,6 +27,8 @@ public class MixerSetUp {
     private OutputTrack output;
     private int trackCount;
     private long playOffset;
+
+    private TranslateTransition transition;
 
     private HashMap<Integer, Track> fileToTrackMap;
 
@@ -94,6 +98,7 @@ public class MixerSetUp {
                 output.addToOutput(track);
             }
             try {
+                transition.play();
                 output.playTrack();
 
             } catch (Exception e) {
@@ -120,5 +125,10 @@ public class MixerSetUp {
 
     public void setFileToTrackMap(HashMap<Integer, Track> fileToTrackMap) {
         this.fileToTrackMap = fileToTrackMap;
+    }
+
+    public void giveTT(TranslateTransition TT) {
+
+        transition = TT;
     }
 }

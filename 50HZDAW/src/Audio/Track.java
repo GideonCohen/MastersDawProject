@@ -58,7 +58,9 @@ public class Track {
 
         byteToFloat = new ByteToFloat();
 
-        trackBuffer = new byte [source.getBufferSize() * 120];     // all tracks should have the same data length for addition in output.
+        int x = 240;
+        trackBuffer = new byte [source.getBufferSize() * x];     // all tracks should have the same data length for addition in output.
+        //= number of seconds /2 that can be stored. i.e. 240 for an array of length 120 secs
 
         addDataToTrack();
         addProcessing(volume);
