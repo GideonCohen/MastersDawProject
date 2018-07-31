@@ -89,7 +89,7 @@ public class MixerSetUp {
      * Play all tracks together.
      */
 
-    public void playOutput () throws LineUnavailableException{
+    public void playOutput () throws Exception{
 
             output = new OutputTrack("OutPut", playOffset);
             System.out.println("Mixer offset is " + playOffset);

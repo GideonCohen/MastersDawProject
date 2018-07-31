@@ -2,6 +2,7 @@ package Audio;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -78,7 +79,7 @@ public class OutputTrack {
      * Add track to output.
      */
 
-    public void addToOutput(Track track) {
+    public void addToOutput(Track track) throws Exception {
 
         tracks.add(track);
         outputFloatArray = new float [tracks.get(0).getTrackOutput().length];
@@ -119,7 +120,7 @@ public class OutputTrack {
      * Add all data from tracks and normalize output. This will be the result from adding all PCM values.
      */
 
-    public void addDataForOutput1() {
+    public void addDataForOutput1() throws Exception {
 
         for (int i = 0; i < tracks.size(); i++) {
             currentFloatArray = tracks.get(i).getTrackOutput();
@@ -130,6 +131,15 @@ public class OutputTrack {
         outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);
         outputStream = new ByteArrayInputStream(outputBytes);
 
+        exportToWAV(outputBytes);
+
+    }
+
+    public void exportToWAV(byte[] outputBytes) throws Exception {
+
+        AudioFormat frmt= new AudioFormat(44100,16,2,true,false);
+        AudioInputStream ais = new AudioInputStream(new ByteArrayInputStream(outputBytes), frmt, outputBytes.length);
+        AudioSystem.write(ais, AudioFileFormat.Type.WAVE, new File("test.wav"));
     }
 
 
