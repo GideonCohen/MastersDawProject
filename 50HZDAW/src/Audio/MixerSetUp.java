@@ -33,13 +33,13 @@ public class MixerSetUp {
     private long playOffset;
 
 
-/*
+
     public static void main (String [] args) {
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
     }
-    */
+
 
 
     /**
@@ -74,13 +74,13 @@ public class MixerSetUp {
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
 */
 
-        /*
+/*
         try {
             testOutput();
         } catch (LineUnavailableException e) {
 
         }
-        */
+*/
 
     }
 
@@ -94,10 +94,11 @@ public class MixerSetUp {
         File file = new File(filepath_16bit);
         File file1 = new File(filepath_24bit);
         File file2 = new File(filepath1_24bit);
+        File file3 = new File(hello16bit);
 
         // For testing without the GUI
-        addTrack("Track1", file1, 0.8f, 0);     // create mixer with one track as default.
-        addTrack("Track1", file2, 0.8f, 10000);     // create mixer with one track as default.
+        //addTrack("Track1", file3, 0.8f, 0);     // create mixer with one track as default.
+        //addTrack("Track1", file2, 0.8f, 10000);     // create mixer with one track as default.
         System.out.println("tracks: " + tracks.size());
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
         playOutput();
