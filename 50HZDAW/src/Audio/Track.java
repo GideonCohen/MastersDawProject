@@ -265,6 +265,7 @@ public class Track {
 
     public void addProcessing (float volume) {
 
+<<<<<<< HEAD
         stereoSplit = new StereoSplit(getTrackData());         // split byte array into right and left for panning controls.
         stereoSplit.split();
         trackBuffer = stereoSplit.convergeMonoArrays();
@@ -280,6 +281,14 @@ public class Track {
     public AudioData getTrackDataObject () {
 
         return audioData.get(0);
+=======
+        //stereoSplit = new StereoSplit(getTrackOutput());         // split byte array into right and left for panning controls.
+        //stereoSplit.split();
+        trackBuffer = byteToFloat.floatToByteArray(getTrackOutput(), minValue, maxValue);
+        audioProcessing = new AudioProcessing(trackBuffer, minValue, maxValue, volume);
+        trackBuffer = audioProcessing.getProcessedByteAudio();
+        inputPostStream = new ByteArrayInputStream(trackBuffer);
+>>>>>>> 59e134315fd9698e8b124c044c2b15229950e632
 
     }
 
