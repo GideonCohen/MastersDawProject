@@ -140,6 +140,7 @@ public class WaveformEditor {
 
     }
 
+    /*
     public void addPaddingToStart(MixerSetUp mixerSetUp, HBox waveformSplit, int index, int durationInSeconds, File f) {
 
         HashMap<Integer, Track> map = mixerSetUp.getFileToTrackMap();
