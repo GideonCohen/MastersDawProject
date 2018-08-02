@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,7 +31,7 @@ public class WaveformEditor {
 
     private int padding = 0;
 
-    public WaveformEditor(int durationInSeconds, int index, File f, MixerSetUp mixerSetUp, HBox waveformSplit) {
+    public WaveformEditor(int durationInSeconds, int index, File f, MixerSetUp mixerSetUp, StackPane waveformStack) {
 
         int width = Math.round(durationInSeconds);
         Canvas canvas = new Canvas(width * 10, 100);
@@ -206,7 +207,7 @@ public class WaveformEditor {
     */
 
 
-    public void addMouseListeners(Canvas canvas, int width, int index, File file, MixerSetUp mixer, HBox waveformSplit) {
+    public void addMouseListeners(Canvas canvas, int width, int index, File file, MixerSetUp mixer, StackPane waveformStack) {
 
         canvas.setCursor(Cursor.HAND);
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -214,7 +215,7 @@ public class WaveformEditor {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(width, index, file, mixer, waveformSplit);
+                    WaveformEditor w = new WaveformEditor(width, index, file, mixer, waveformStack);
                 }
             }
         });

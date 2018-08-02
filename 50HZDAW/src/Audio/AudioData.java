@@ -96,7 +96,7 @@ public class AudioData {
 
     public void setStereoByteArray () throws IOException {
 
-        stereoByteArray = new byte [(int)audioFileLength + 44000];
+        stereoByteArray = new byte [(int)audioFileLength + 44100];
         inputStream.read(stereoByteArray);  // sets a stereo byte array to bit split for processing.    // fill byte array with pre-processed audio.
         setFinish();
         // reverse = true; // set audio file in reverse.

@@ -229,7 +229,7 @@ public class WaveformGenerator
 	 */
 	public int getInnerY()
 	{
-		return paddingRight;
+		return paddingTop;
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class WaveformGenerator
 	 */
 	public int getInnerWidth()
 	{
-		return getWidth()-paddingLeft-paddingRight;
+		return getWidth();
 	}
 
 	/**
@@ -320,16 +320,14 @@ public class WaveformGenerator
 		this.pointColor = pointColor;
 	}
 
-	/**
-	 * @param zoom the zoom to set
-	 */
+
 	public void zoomToFull()
 	{
 		zoomTo(100);
 	}
 
 	/**
-	 * @param zoom to view
+	 * @param percent the zoom to set
 	 */
 	public void zoom(int percent) {
 
@@ -339,6 +337,9 @@ public class WaveformGenerator
 		setResolution(res);
 	}
 
+	/**
+	 * @param percent to view
+	 */
 	private void zoomTo(double percent)
 	{
 		// Find the new resolution
@@ -362,7 +363,7 @@ public class WaveformGenerator
 	}
 
 	/**
-	 * @param resolution the resolution to set
+	 * @param newResolution the resolution to set
 	 */
 	public void setResolution(double newResolution) {
 		this.resolution = newResolution;

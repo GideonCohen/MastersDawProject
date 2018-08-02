@@ -24,12 +24,12 @@ public class Track {
     private byte [] playbackBuffer;
     private byte [] processedByteArray;
     private ArrayList<AudioData> audioData;
+    private ArrayList<File> files;
     private AudioProcessing audioProcessing;
     private ByteToFloat byteToFloat;
     private StereoSplit stereoSplit;
     private int minValue;
     private int maxValue;
-
 
     private int trackSizeSeconds;
     private float [] trackBuffer;   // fill track buffer with 0's for silence.
@@ -64,6 +64,7 @@ public class Track {
         source.open(audioFormat, source.getBufferSize()); // line must be open to appear in mixer
         // still data to be written before any playback!!!  also need to call start before write.
         audioData = new ArrayList<>();
+        files = new ArrayList<>();
 
         /*
         String filepath_24bit = "50HZDAW/Samples/emotionalpads.wav";
@@ -128,6 +129,11 @@ public class Track {
         addDataToTrack();
     }
 
+    public void moveAudioFromFile(File file, int startPoistion) {
+        int index = files.indexOf(file);
+        moveAudioFile(index, startPoistion);
+    }
+
 
     /**
      * Obtain the name of a given track.
@@ -187,6 +193,7 @@ public class Track {
             AudioData audio = new AudioData(file, start);
             //if(checkForOverLap(audio) == true) {
             audioData.add(audio);
+            files.add(file);
            // }
             //else {
            //     System.out.println("AUDIO FILE OVERLAP: PLACE FILE IN ANOTHER POSITION");     // CHECK TO SEE IF AUDIO FILES OVERLAP - USER SHOULD AVOID!
@@ -353,7 +360,6 @@ public class Track {
 
         return dataFinish;
     }
-
 
 
 
