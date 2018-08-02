@@ -1,6 +1,9 @@
 package Audio;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Line;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Mixer;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -10,7 +13,9 @@ import java.util.ArrayList;
  *  may be added to the audio system.
  */
 
+
 public class MixerSetUp {
+
 
     // The Mixer
     private Mixer mixer;
@@ -28,12 +33,13 @@ public class MixerSetUp {
     private long playOffset;
 
 
-
-/*   public static void main (String [] args) throws LineUnavailableException{
+/*
+    public static void main (String [] args) {
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
-    }*/
+    }
+    */
 
 
     /**
@@ -41,23 +47,40 @@ public class MixerSetUp {
      * @param audioPreferences - I/O preferences
      * @throws LineUnavailableException
      */
-    public MixerSetUp(int audioPreferences) throws LineUnavailableException{
+    public MixerSetUp(int audioPreferences) {
 
-        // get the list of available i/o (built-in/soundcard etc).
-        mixInfos = AudioSystem.getMixerInfo();
+        mixInfos = AudioSystem.getMixerInfo();   // get the list of available i/o (built-in/soundcard etc).
 
-        // assign our mixer to a chosen i/o system.
-        mixer = AudioSystem.getMixer(mixInfos[audioPreferences]);
+        mixer = AudioSystem.getMixer(mixInfos[audioPreferences]);  // assign our mixer to a chosen i/o system.
 
-        // Instantiate track count and track array
         trackCount = 0;
+
         tracks = new ArrayList<>();
 
-        //Default offset is 0
-        playOffset = 0;
 
-        //testOutput();
+/*        addTrack("Track1",-0.5f);     // create mixer with one track as default.
+        addTrack("Track1", 0.1f);     // create mixer with one track as default.
+        addTrack("Track1", 0.1f);     // create mixer with one track as default.
 
+        System.out.println("tracks: " + tracks.size());
+
+        output.setMute(0);   // mute a track.
+        output.setMute(1);
+        output.setMute(2);
+        output.setSolo(0);
+        output.setSolo(1);
+        output.setSolo(2);
+
+        System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
+*/
+
+        /*
+        try {
+            testOutput();
+        } catch (LineUnavailableException e) {
+
+        }
+        */
 
     }
 
@@ -73,8 +96,8 @@ public class MixerSetUp {
         File file2 = new File(filepath1_24bit);
 
         // For testing without the GUI
-        addTrack("Track1", file1, 0.8f);     // create mixer with one track as default.
-        addTrack("Track1", file2, 0.8f);     // create mixer with one track as default.
+        addTrack("Track1", file1, 0.8f, 0);     // create mixer with one track as default.
+        addTrack("Track1", file2, 0.8f, 10000);     // create mixer with one track as default.
         System.out.println("tracks: " + tracks.size());
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
         playOutput();
@@ -87,13 +110,14 @@ public class MixerSetUp {
      * @param volume - volume modifier (>1 increase volume, <1 decrease volume).
      * @return - The Track created
      */
-    public Track addTrack (String name, File file, float volume) {
+    public Track addTrack (String name, File file, float volume, long start) {
 
-        Track newTrack = null;
+        Track track = null;
 
         try {
-            newTrack = new Track(name, file, volume);
-            tracks.add(newTrack);
+            track = new Track(name,  volume);
+            tracks.add(track);
+            track.addAudioTrackData(file, start);
         }
         catch (LineUnavailableException lue) {
             System.out.println(lue.getMessage());
@@ -103,12 +127,10 @@ public class MixerSetUp {
         System.out.println("Tracks in output: " + tracks.size());
         lines = mixer.getSourceLines();  // refresh amount of lines in mixer.
 
-        return newTrack;
+        return track;
+
     }
 
-    public void addToTrack (Track track, File file, long start) throws LineUnavailableException{
-        track.addAudioTrackData(file, start);
-    }
 
     /**
      * Remove a given Track
@@ -122,10 +144,12 @@ public class MixerSetUp {
         lines = mixer.getSourceLines();
     }
 
+
     /**
      * Keep a count of the tracks in the form of an array of lines.
-     * @return - the number of open lines in a mixer.
+     * @return the number of open lines in a mixer.
      */
+
     public int trackCount () {
 
         lines = mixer.getSourceLines();
@@ -133,27 +157,28 @@ public class MixerSetUp {
         return lines.length;
     }
 
+
     /**
-     * Plays the output of all Tracks
-     * @throws LineUnavailableException
+     * Play all tracks together.
      */
+
     public void playOutput () throws LineUnavailableException{
 
-            //Create a fresh track for each output
-            output = new OutputTrack("OutPut", playOffset);
-            System.out.println("Mixer offset is " + playOffset);
+        output = new OutputTrack("OutPut", playOffset);
+        System.out.println("Mixer offset is " + playOffset);
 
-            //Add each track to the combined output
-            for (Track track: tracks) {
-                output.addToOutput(track);
-            }
+        //Add each track to the combined output
+        for (Track track: tracks) {
+            output.addToOutput(track);
+        }
 
-            //Play the output
-            try {
-                output.playTrack();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            output.playTrack();
+            //tracks.get(0).playTrack();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -171,6 +196,8 @@ public class MixerSetUp {
     public void stopOutput (){
         playOffset = output.stop();
     }
+
+
 
 
 

@@ -11,23 +11,17 @@ package Audio;
 public class AudioProcessing {
 
     private float [] stereoFloatArray;
-    private byte [] stereoPreByteArray;
     private byte [] stereoPostByteArray;
-    private int minValue;   // min integer value for audio file.
-    private int maxValue;   // max integer value for audio file.
     private ByteToFloat byteToFloat;
     private float volume;
 
-    public AudioProcessing (byte [] stereoPreByteArray, int minValue, int maxValue, float volume) {
+    public AudioProcessing (float [] stereoFloatArray,float volume) {
 
-        this.stereoPreByteArray = stereoPreByteArray;
-        this.minValue = minValue;
-        this.maxValue = maxValue;
+        this.stereoFloatArray = stereoFloatArray;
         byteToFloat = new ByteToFloat();
         this.volume = volume;
 
         adjustVolume();
-
 
     }
 
@@ -39,32 +33,13 @@ public class AudioProcessing {
 
     public void adjustVolume () {   // implement volume control param.
 
-        stereoFloatArray = byteToFloat.byteToFloatArray(stereoPreByteArray, maxValue);
-
-        System.out.println("Pre Volume : " + stereoFloatArray[100]);
-
 
         for(int i = 0; i < stereoFloatArray.length; i++) {
             stereoFloatArray[i] = (stereoFloatArray [i] * volume);      // increase volume by factor of x.
         }
 
-        System.out.println("Post Volume : " + stereoFloatArray[100]);
-
-        stereoPostByteArray = byteToFloat.floatToByteArray(stereoFloatArray, minValue, maxValue);
-
     }
 
-
-
-    /**
-     * Get stereo array of processed audio to be sent to audio track data. This will be the final product for playback.
-     * @return
-     */
-
-    public byte [] getProcessedByteAudio () {
-
-        return stereoPostByteArray;
-    }
 
     /**
      * Get stereo array of processed audio to be sent to audio track data. This will be the final product for playback.

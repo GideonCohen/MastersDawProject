@@ -1,14 +1,16 @@
 package Audio;
 
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 
-public class AudioTrackData {
+public class AudioData {
 
     private AudioInputStream inputStream;
     private AudioFormat audioFormat;
@@ -24,12 +26,17 @@ public class AudioTrackData {
 
     private long start;
     private long finish;
+    private int bitDepth;
+    private long bytesPerSecond;
+    private long floatsPerSecond;
+    private InputStream is;
+    private byte [] mp3TempArray;
 
 
 
-    public AudioTrackData (File file, long start) throws UnsupportedAudioFileException, IOException {
+    public AudioData (File file, long startMillis) throws UnsupportedAudioFileException, IOException {
 
-        this.start = setStart(start);
+        this.start = startMillis;
         byteToFloat = new ByteToFloat();
         setUpStream(file);
         setStereoByteArray();
@@ -43,20 +50,42 @@ public class AudioTrackData {
 
     public void setUpStream(File file) throws UnsupportedAudioFileException, IOException {
 
+        //
+        // MP3AudioDecoder mp3Decoder = new MP3AudioDecoder();
+        //inputStream = mp3Decoder.decode(file);               // ONLY DECODE IF MP3 IS DETECTED AND CAN'T ASSIGN NORMAL INPUT STREAM.
+
         inputStream = AudioSystem.getAudioInputStream(file);
+
+       // mp3TempArray = new byte [(int)file.length()];
+
+
+
+        //  is = new FileInputStream(file);
+       // is.read(mp3TempArray);           // set a basic wav file format for an mp3 file.
+       // audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
+      //  inputStream = AudioSystem.getAudioInputStream(is);
+       // inputStream = new AudioInputStream(is, audioFormat, file.length());
+       // inputStream = AudioSystem.getAudioInputStream(file);
+
         audioFormat = inputStream.getFormat();
+
+
         audioFileLength = file.length();
         frameSize = audioFormat.getFrameSize();
         frameRate = audioFormat.getFrameRate();
         durationInSeconds = (audioFileLength / (frameSize * frameRate));
-        finish = audioFileLength + start;
-
-        minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
-        maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
+        bitDepth = audioFormat.getSampleSizeInBits();
+        bytesPerSecond = (long)(frameRate * frameSize);
+        floatsPerSecond = (long)(2 * frameRate);
+        // add file in this position
+        setStart(start);
+        minValue = - ((int)Math.pow(2, bitDepth-1));    // calculate min & max representable int value for n-bit number.
+        maxValue = ((int)Math.pow(2, bitDepth-1)) - 1;
 
         System.out.println("Audio Format of File " + audioFileLength + " bytes " + (float)audioFileLength/1000000 + " mb" +  "  " + audioFormat + "  " + frameSize + "  "  + frameRate + "  "  + durationInSeconds);
 
-        System.out.println("Representation limits for " + audioFormat.getSampleSizeInBits() + "-bit integer: " + minValue + " to " + maxValue + "\n");
+
+        // System.out.println("Representation limits for " + audioFormat.getSampleSizeInBits() + "-bit integer: " + minValue + " to " + maxValue + "\n");
 
 
     }
@@ -69,9 +98,9 @@ public class AudioTrackData {
 
         stereoByteArray = new byte [(int)audioFileLength];
         inputStream.read(stereoByteArray);  // sets a stereo byte array to bit split for processing.    // fill byte array with pre-processed audio.
-
-       // reverse = true; // set audio file in reverse.
-      //  reverseAudio();
+        setFinish();
+        // reverse = true; // set audio file in reverse.
+        //  reverseAudio();
 
 
     }
@@ -149,13 +178,14 @@ public class AudioTrackData {
 
 
     /**
-     * Set start time of audio file in track stream.
+     * Set start time of audio file in track stream.    // 88200 float values per second for 16bit & 24bit!
      */
 
-    public long setStart(long start) {
+    public long setStart(long startMillis) {
 
-        long startByte = (start/1000) * 176400;
-        return startByte;
+        long startFloat = (startMillis/1000) * floatsPerSecond;
+        this.start = startFloat;
+        return startFloat;
     }
 
 
@@ -164,9 +194,13 @@ public class AudioTrackData {
      * Set finish time of audio file in track stream.
      */
 
-    public void setFinish(long finish) {
+    public long setFinish() {
 
-        this.finish = finish;
+        long finishFloat = this.start + (getStereoFloatArray().length);
+        this.finish = finishFloat;
+        System.out.println("Finish Byte: " + finish);
+        return finishFloat;
+
 
     }
 
@@ -189,7 +223,6 @@ public class AudioTrackData {
         return finish;
 
     }
-
 
 
 

@@ -30,6 +30,13 @@ public class OutputTrack {
     private int minValue;
     private int maxValue;
     private ByteArrayInputStream outputStream;
+    private Timing timing;
+    private float bpm;
+
+    private long outputLength;
+
+    private BPMConverter bpmConverter;
+
     private boolean pause;
     private long trackOffset;
     private int count;
@@ -46,33 +53,39 @@ public class OutputTrack {
 
     public OutputTrack(String name, long offset) throws LineUnavailableException {
 
-        audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
+        bpm = 100;
+        bpmConverter = new BPMConverter();
+        bpmConverter.setBPM((int)bpm);
+
+        System.out.println(bpmConverter.setBars(4));
+        System.out.println(bpmConverter.setQuarterBeat(16));
+        System.out.println(bpmConverter.setEighthBeat(32));
+
+
+        // OUTPUT TRACK IS AT 24-BIT STEREO.
+        audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 24, 2, 6, 44100, false);
         trackName = name;
         newLine = new DataLine.Info(SourceDataLine.class, audioFormat);
         // set up a data line with given audio format and specify the type of line it will be (source data line).
         source = (SourceDataLine) AudioSystem.getLine(newLine);
         source.open(audioFormat, source.getBufferSize()); //
 
-        bufferSize = 1024;
-        readBufferSize = bufferSize;
-        sdlBufferSize = bufferSize * 2;
+        bufferSize = 1024 * 8;
+        readBufferSize = bufferSize * 2;
+        sdlBufferSize = bufferSize * 4;
 
-        minValue = -32768;
-        maxValue =  32767;
+        minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
+        maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
 
         tracks = new ArrayList<>();
         byteToFloat = new ByteToFloat();
+//        timing.getTimerMillis();
 
-        readBuffer = new byte [readBufferSize];
-
-        pause = false;
         trackOffset = offset;
-        count = 1;
+
+        readBuffer = new byte [source.getBufferSize()];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
 
     }
-
-
-
 
     /**
      * Add track to output.
@@ -81,9 +94,7 @@ public class OutputTrack {
     public void addToOutput(Track track) {
 
         tracks.add(track);
-        outputFloatArray = new float [tracks.get(0).getTrackOutput().length];
-        addDataForOutput1();
-
+        addDataForOutput1();   // updates all data in track (needs to be called if any data from track has been changed)
 
     }
 
@@ -94,44 +105,97 @@ public class OutputTrack {
     public float [] addDataForOutput(float [] normalizedOutput) {
 
 
-        for(int i = 0; i < tracks.size(); i++)
+        for (int i = 0; i < tracks.size(); i++)     // NOT IN USE
 
-            currentFloatArray = byteToFloat.byteToFloatArray(tracks.get(i).getTrackData(), tracks.get(i).getTrackDataObject().getMaxValue());
+            currentFloatArray = tracks.get(i).getTrackData();
 
-            for(int j = 0; j < readBufferSize; j++) {
+        for (int j = 0; j < readBufferSize; j++) {
 
-                normalizedOutput[j] += currentFloatArray[j];
+            normalizedOutput[j] += currentFloatArray[j];
+        }
+
+        for (int j = 0; j < readBufferSize; j++) {
+            if (normalizedOutput[j] > 1) {
+                normalizedOutput[j] = 1;
             }
-
-        for(int j = 0; j < readBufferSize; j++) {
-                if(normalizedOutput[j] > 1) {
-                    normalizedOutput[j] = 1;
-                }
-                if(normalizedOutput[j] < -1) {
-                    normalizedOutput[j] = -1;
-                }
+            if (normalizedOutput[j] < -1) {
+                normalizedOutput[j] = -1;
+            }
         }
         return normalizedOutput;
 
+    }
+
+    /**
+     *
+     * @param track
+     */
+    public void removeTrack(Track track) {
+        tracks.add(track);
+        int indexOf = tracks.indexOf(track);
+        currentFloatArray = tracks.get(indexOf).getTrackData();
+        for (int j = 0; j < currentFloatArray.length; j++) {
+            outputFloatArray[j] -= currentFloatArray[j];
         }
+    }
 
     /**
      * Add all data from tracks and normalize output. This will be the result from adding all PCM values.
+     * Every time processing or change to audio - this method can be used to refresh out output from the changes made.
      */
 
     public void addDataForOutput1() {
 
-        for (int i = 0; i < tracks.size(); i++) {
-            currentFloatArray = tracks.get(i).getTrackOutput();
-            for (int j = 0; j < currentFloatArray.length; j++) {
-                try {
-                    outputFloatArray [j] += currentFloatArray [j];
-                } catch (IndexOutOfBoundsException e) {
-                    //System.out.println("System out of bounds exception at : " + i);
+        outputLength = 0;
+        for(Track track: tracks)
+            if(track.trackLength() > outputLength) {
+            outputLength = track.trackLength();
+        }
+
+        outputFloatArray = new float [(int)outputLength];  // output is length of longest track (or length of first track for now).
+
+        boolean soloMode = false;
+
+        for(int i = 0; i < tracks.size(); i++) {
+            if(tracks.get(i).getSolo() == true) {
+                soloMode = true;
+            }
+        }
+
+
+        if(soloMode == true) {
+
+            //SOLO PLAYBACK
+            for (int i = 0; i < tracks.size(); i++) {
+                if (tracks.get(i).getSolo() == true) {                    // only play tracks with solo on.
+                    currentFloatArray = tracks.get(i).getTrackData();
+                    for (int j = 0; j < currentFloatArray.length; j++) {
+                        outputFloatArray[j] += currentFloatArray[j];
+                    }
+                }
+                else {
+                    currentFloatArray = new float[tracks.get(i).getTrackData().length];   // create an empty array of track size when on mute.
+                }
+
+            }
+        }
+
+        else {
+            //NORMAL PLAYBACK
+            for (int i = 0; i < tracks.size(); i++) {
+                if (tracks.get(i).getMute() == false) {                    // don't play tracks on mute.
+                    currentFloatArray = tracks.get(i).getTrackData();
+                    for (int j = 0; j < currentFloatArray.length; j++) {
+                        outputFloatArray[j] += currentFloatArray[j];
+                    }
+                } else {
+                    currentFloatArray = new float[tracks.get(i).getTrackData().length];   // create an empty array of track size when on mute.
                 }
             }
         }
-        outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);
+
+        outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);     // transform float array to 24-bit byte array
+        System.out.println(outputBytes.length);                                              // (format specified in format of output line).
         outputStream = new ByteArrayInputStream(outputBytes);
 
     }
@@ -143,26 +207,32 @@ public class OutputTrack {
 
     public void playTrack () throws IOException {
 
-
         source.start();
+
+       // timing = new Timing(0, 100000, true);
+      //  timing.getTimerMillis(bpm);
+
 
         int numBytesRead = 0;
 
         try {
+
             System.out.println("Resume at : " + trackOffset);
             outputStream.skip(trackOffset);
             System.out.println("Offset is " + trackOffset);
-            while (((numBytesRead = outputStream.read(readBuffer)) != -1) && pause == false){
-
-                source.write(readBuffer, 0, numBytesRead);
-                //System.out.println(count);
-                count++;
-                //System.out.println(numBytesRead);
+            while ((numBytesRead = outputStream.read(readBuffer)) != -1 && pause == false) {    // 40 iterations of 88200. 88200 = 1 second of playback.
+                source.write(readBuffer, 0, numBytesRead);               //  4 bytes represent a stereo datapoint within a sample.
+               // System.out.println(count);                                   // 44100 sample rate = each stereo sample is 44100 * 4 = 176400
+                count++;                                                    // total bytes = length of audio file * bytespersecond (176400)
 
             }
         } catch (IllegalArgumentException iae) {
-            System.out.println(iae.getMessage());
+            System.out.println(iae.getMessage());          //
         }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());          // SHOULD BE CAUGHT CLIENT SIDE...
+        }
+        System.out.println(count);
 
         if (numBytesRead == -1) {
             count = 0;
@@ -172,47 +242,49 @@ public class OutputTrack {
         source.drain();
         outputStream.reset();
 
-        //   }
-        //  };
+        }
 
-    }
 
 
     /**
-     * Play track. // plays back post-processed audio data.
+     * Set mute.
      */
 
-    public void play2() throws IOException {
+    public void setMute(int trackNumber) {
 
+        tracks.get(trackNumber).setMute();
+        addDataForOutput1();
+    }
 
+    /**
+     * Set solo.
+     */
 
-        source.start();
+    public void setSolo(int trackNumber) {
 
-        //Thread playbackThread = new Thread () {
+        tracks.get(trackNumber).setSolo();
 
-        //   public void run() {
+        addDataForOutput1();
 
-        outputBytes = new byte [sdlBufferSize];
-        int numBytesRead = 0;
-        try {
-            while (numBytesRead < 10) {
+    }
 
-                readFloatBuffer = new float [readBufferSize];
-                readFloatBuffer = addDataForOutput(readFloatBuffer);
-                outputBytes = byteToFloat.floatToByteArray(readFloatBuffer, minValue, maxValue);
-                source.write(outputBytes, 0, sdlBufferSize);
+    /**
+     * Set mute.
+     */
 
-                numBytesRead ++;
+    public boolean getMute(int trackNumber) {
 
-            }
-         } catch (IllegalArgumentException iae) {
-           // System.out.println(iae.getMessage());
-         }
-        source.stop();
-        source.drain();
+        return tracks.get(trackNumber).getMute();
 
+    }
 
-        //  };
+    /**
+     * Set solo.
+     */
+
+    public boolean getSolo(int trackNumber) {
+
+        return tracks.get(trackNumber).getSolo();
 
     }
 

@@ -27,7 +27,6 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
 
-import static java.lang.Math.exp;
 import static java.lang.Math.log10;
 
 public class TrackLineGUI {
@@ -38,7 +37,7 @@ public class TrackLineGUI {
     private Label name;
     private SplitPane parent;
     private Scene mainWindow;
-    // The Track attatched to the track line
+    // The Track attached to the track line
     private Track track;
     // The offset for each file
     private long start;
@@ -60,6 +59,8 @@ public class TrackLineGUI {
     private ArrangementWindowController controller;
 
     private JavaFXController FXController;
+
+    private int index;
     /**
      * Constuctor for the Track Line
      * @param name - Name of Track Line
@@ -73,6 +74,7 @@ public class TrackLineGUI {
         mixerSetUp = FXController.getMixerSetUp();
         controller = FXController.getController();
 
+        index = 0;
         files = new ArrayList<>();
         start = 0;
     }
@@ -125,10 +127,10 @@ public class TrackLineGUI {
         });
 
         // volume volumeSlider
-        Slider volumeSlider = new Slider(-36, 6, 0);
+        Slider volumeSlider = new Slider(10, 110, 110);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(10);
+        volumeSlider.setMajorTickUnit(20);
         volumeSlider.setMinorTickCount(5);
         volumeSlider.setBlockIncrement(1);
 
@@ -138,10 +140,8 @@ public class TrackLineGUI {
 
         // Adjust the volume of the track, currently does not work real time
         volume.addListener((v, oldValue, newValue) -> {
-            double diff = newValue.doubleValue()-oldValue.doubleValue();
-            double adjust = 1/(10*exp(diff));
-            float vol = (float) adjust;
-            System.out.println(vol);
+            float vol = newValue.floatValue()/oldValue.floatValue();
+
             //adjustVolume(vol);
 
             /*
@@ -231,7 +231,7 @@ public class TrackLineGUI {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                addFile(file);
+                                addFile(file, 0);
                             } catch (Exception e) {
 
                             }
@@ -276,7 +276,7 @@ public class TrackLineGUI {
 
         // Popout waveform editor window on click
         canvas.setOnMouseClicked(e -> {
-            WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
+            //WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
         });
 
         //to set starting position for waveform
@@ -293,7 +293,7 @@ public class TrackLineGUI {
      * @param file
      * @throws Exception
      */
-    public void addFile(File file) throws Exception {
+    public void addFile(File file, long delay) throws Exception {
 
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         AudioFormat format = audioInputStream.getFormat();
@@ -302,16 +302,16 @@ public class TrackLineGUI {
 
         if (files.size() == 0) {
             System.out.println("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, (volume.get()/100));
+            track = mixerSetUp.addTrack(file.getName(), file, (volume.getValue()/100), 1000);
             name.textProperty().setValue(file.getName());
         } else {
             System.out.println("I tried to add to a existing track");
-            track.addAudioTrackData(file, 0);
+            track.addAudioTrackData(file, ((start * 1000) + 2000));
         }
 
-        Canvas canvas = createWaveform(durationInSeconds, file);
+        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInSeconds, file, index, mixerSetUp, displayLine);
+        Canvas canvas = waveformCanvas.createWaveform();
 
-        canvas.setTranslateX(0);
 
         files.add(file);
 

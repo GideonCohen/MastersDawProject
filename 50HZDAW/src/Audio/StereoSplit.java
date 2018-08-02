@@ -43,13 +43,16 @@ public class StereoSplit {
                     System.out.println(aioobe.getMessage());           // 16-bit split
 
                 }
+
                 try {
                     rightFloatArray[i + 1] = stereoFloatArray[i + 1];
                 } catch (ArrayIndexOutOfBoundsException aioobe) {
                     System.out.println(aioobe.getMessage());
                 }
 
+
         }
+        
     }
 
     /**
@@ -73,8 +76,8 @@ public class StereoSplit {
 
     public float [] convergeMonoArrays () {
 
-        setPanning(leftFloatArray, 1);   // reduce values of left to emphasise right (vice versa)
-        setPanning(rightFloatArray, 1);
+        setPanning(leftFloatArray, 1.0f);   // reduce values of left to emphasise right (vice versa)
+        setPanning(rightFloatArray, 1.0f);
 
 
         for (int i = 0; i < stereoFloatArray.length; i += 2) {

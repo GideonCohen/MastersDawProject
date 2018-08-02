@@ -303,7 +303,7 @@ public class JavaFXController extends Application implements Serializable {
                             try {
                                 TrackLineGUI trackLine = new TrackLineGUI("New Track", getThis());
                                 pane.getItems().add(trackLine.createTrack());
-                                trackLine.addFile(file);
+                                trackLine.addFile(file, 0);
                             } catch (Exception e) {
 
                             }
@@ -339,7 +339,7 @@ public class JavaFXController extends Application implements Serializable {
             // Make a channel for the player
             TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
             pane.getItems().add(trackLine.createTrack());
-            trackLine.addFile(file);
+            trackLine.addFile(file, 0);
         } catch(Exception e) {
 
         }
