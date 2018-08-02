@@ -167,6 +167,7 @@ public class OutputTrack {
         if (numBytesRead == -1) {
             count = 0;
         }
+        System.out.println("Done");
         source.stop();
         source.drain();
         outputStream.reset();

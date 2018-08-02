@@ -27,6 +27,7 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
 
+import static java.lang.Math.exp;
 import static java.lang.Math.log10;
 
 public class TrackLineGUI {
@@ -56,18 +57,21 @@ public class TrackLineGUI {
     // TranslateTransition object used to move pointer over time
     private TranslateTransition TT;
 
+    private ArrangementWindowController controller;
+
+    private JavaFXController FXController;
     /**
      * Constuctor for the Track Line
      * @param name - Name of Track Line
-     * @param pane - Parent of the Track Line
-     * @param window - Main window
-     * @param mixer - mixer for the tracks
+     * @param control - The parent controller
      */
-    public TrackLineGUI(String name, SplitPane pane, Scene window, MixerSetUp mixer) {
+    public TrackLineGUI(String name, JavaFXController control) {
         lineName = name;
-        parent = pane;
-        mainWindow = window;
-        mixerSetUp = mixer;
+        FXController = control;
+        parent = FXController.getSplitPane();
+        mainWindow = FXController.getMainWindow();
+        mixerSetUp = FXController.getMixerSetUp();
+        controller = FXController.getController();
 
         files = new ArrayList<>();
         start = 0;
@@ -117,13 +121,14 @@ public class TrackLineGUI {
         deleteChannel.setOnAction(event -> {
             // Remove the channel from the scene
             parent.getItems().remove(trackLine);
+            controller.removeTrack(track);
         });
 
         // volume volumeSlider
-        Slider volumeSlider = new Slider(10, 110, 110);
+        Slider volumeSlider = new Slider(-36, 6, 0);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(20);
+        volumeSlider.setMajorTickUnit(10);
         volumeSlider.setMinorTickCount(5);
         volumeSlider.setBlockIncrement(1);
 
@@ -133,8 +138,11 @@ public class TrackLineGUI {
 
         // Adjust the volume of the track, currently does not work real time
         volume.addListener((v, oldValue, newValue) -> {
-            float vol = newValue.floatValue()/oldValue.floatValue();
-            adjustVolume(vol);
+            double diff = newValue.doubleValue()-oldValue.doubleValue();
+            double adjust = 1/(10*exp(diff));
+            float vol = (float) adjust;
+            System.out.println(vol);
+            //adjustVolume(vol);
 
             /*
                 float diff = newValue.floatValue()/oldValue.floatValue();

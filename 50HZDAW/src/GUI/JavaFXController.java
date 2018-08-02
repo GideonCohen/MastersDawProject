@@ -40,18 +40,14 @@ public class JavaFXController extends Application implements Serializable {
     // Primary Scene
     private Scene mainWindow;
 
-    // Pointer shape
-    private Rectangle rect;
-
-    // TranslateTransition object used to move pointer over time
-    private TranslateTransition TT;
-
     // Controller for handling user events
     private ArrangementWindowController controller;
 
     // Audio Player
     private MixerSetUp mixerSetUp;
 
+    // Split pain for the main window
+    private SplitPane splitPane;
 
     public static void main(String[] args) {
         // calls the args method of application
@@ -100,7 +96,7 @@ public class JavaFXController extends Application implements Serializable {
     private void makeMainWindow(){
 
         //Splits the menu and the rest of the window
-        VBox split1 = new VBox(0);
+        VBox mainSplit = new VBox(0);
 
         // Main layout for the window
         BorderPane mainLayout = new BorderPane();
@@ -109,7 +105,7 @@ public class JavaFXController extends Application implements Serializable {
         ScrollPane channels = new ScrollPane();
 
         // add arrangement layout
-        SplitPane splitPane = new SplitPane();
+        splitPane = new SplitPane();
         splitPane.setOrientation(Orientation.VERTICAL);
         splitPane.setMinSize(1,1);
 
@@ -125,11 +121,11 @@ public class JavaFXController extends Application implements Serializable {
         mainLayout.setCenter(channels);
 
         // add children to split
-        split1.getChildren().add(makeMenu(splitPane));
-        split1.getChildren().add(mainLayout);
+        mainSplit.getChildren().add(makeMenu(splitPane));
+        mainSplit.getChildren().add(mainLayout);
 
         // make the scene
-        mainWindow = new Scene(split1, 400, 400);
+        mainWindow = new Scene(mainSplit, 400, 400);
         mainWindow.getStylesheets().add("GUI/Style.css");
 
 
@@ -162,7 +158,7 @@ public class JavaFXController extends Application implements Serializable {
 
         MenuItem newTrack = new MenuItem("New Track");
         newTrack.setOnAction(event -> {
-            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
+            TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
             pane.getItems().add(trackLine.createTrack());
         });
         fileMenu.getItems().add(newTrack);
@@ -305,7 +301,7 @@ public class JavaFXController extends Application implements Serializable {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
+                                TrackLineGUI trackLine = new TrackLineGUI("New Track", getThis());
                                 pane.getItems().add(trackLine.createTrack());
                                 trackLine.addFile(file);
                             } catch (Exception e) {
@@ -341,7 +337,7 @@ public class JavaFXController extends Application implements Serializable {
         // If appropriate file type is chosen
         try {
             // Make a channel for the player
-            TrackLineGUI trackLine = new TrackLineGUI("New Track", pane, mainWindow, mixerSetUp);
+            TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
             pane.getItems().add(trackLine.createTrack());
             trackLine.addFile(file);
         } catch(Exception e) {
@@ -352,5 +348,29 @@ public class JavaFXController extends Application implements Serializable {
 
     public Stage getWindow() {
         return window;
+    }
+
+    /**
+     * Return the gui controller
+     * @return - ArrangementWindowController
+     */
+    public ArrangementWindowController getController() {
+        return controller;
+    }
+
+    public MixerSetUp getMixerSetUp() {
+        return mixerSetUp;
+    }
+
+    public Scene getMainWindow() {
+        return mainWindow;
+    }
+
+    public JavaFXController getThis () {
+        return this;
+    }
+
+    public SplitPane getSplitPane() {
+        return splitPane;
     }
 }
