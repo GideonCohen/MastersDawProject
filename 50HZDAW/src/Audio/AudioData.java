@@ -101,8 +101,6 @@ public class AudioData {
         setFinish();
         // reverse = true; // set audio file in reverse.
         //  reverseAudio();
-
-
     }
 
     /**

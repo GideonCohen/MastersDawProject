@@ -88,7 +88,7 @@ public class TrackLineGUI {
         // Whole Channel - Settings and waveform
         trackLine = new HBox(20);
         trackLine.prefWidthProperty().bind(mainWindow.widthProperty());
-        trackLine.setMinHeight(1);
+        trackLine.setPrefHeight(150);
 
         // Parent for all settings buttons
         VBox optionsBox = new VBox(5);

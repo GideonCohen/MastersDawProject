@@ -125,7 +125,7 @@ public class JavaFXController extends Application implements Serializable {
         mainSplit.getChildren().add(mainLayout);
 
         // make the scene
-        mainWindow = new Scene(mainSplit, 400, 400);
+        mainWindow = new Scene(mainSplit, 1200, 600);
         mainWindow.getStylesheets().add("GUI/Style.css");
 
 
