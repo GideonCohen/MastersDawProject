@@ -27,7 +27,6 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
 
-import static java.lang.Math.exp;
 import static java.lang.Math.log10;
 
 public class TrackLineGUI {
@@ -125,10 +124,10 @@ public class TrackLineGUI {
         });
 
         // volume volumeSlider
-        Slider volumeSlider = new Slider(-36, 6, 0);
+        Slider volumeSlider = new Slider(10, 110, 110);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(10);
+        volumeSlider.setMajorTickUnit(20);
         volumeSlider.setMinorTickCount(5);
         volumeSlider.setBlockIncrement(1);
 
@@ -138,10 +137,8 @@ public class TrackLineGUI {
 
         // Adjust the volume of the track, currently does not work real time
         volume.addListener((v, oldValue, newValue) -> {
-            double diff = newValue.doubleValue()-oldValue.doubleValue();
-            double adjust = 1/(10*exp(diff));
-            float vol = (float) adjust;
-            System.out.println(vol);
+            float vol = newValue.floatValue()/oldValue.floatValue();
+
             //adjustVolume(vol);
 
             /*
