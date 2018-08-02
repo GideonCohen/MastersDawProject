@@ -14,22 +14,22 @@ import java.util.List;
 /**
  * Sample Class
  * Use to load a sample (wav, aif, etc...)
- * 
+ *
  * @author Vincent Buzzano <vincent.buzzano@gmail.com>
  *
  */
-public class Sample {	
+public class Sample {
 
 	/**
 	 * Format
 	 */
 	AudioFormat _format;
-	
+
 	/**
 	 * nombre de canaux. On aura la valeur 1 pour les sons mono, 2 pour les sons stéréo, et éventuellement plus pour les sons moins standards.
 	 */
 	int nChannel;
-	
+
 	/**
 	 * nombre d'échantillons par seconde
 	 */
@@ -37,56 +37,56 @@ public class Sample {
 
 	/**
 	 * nombre d'octets par secondes. Cette valeur fait double emploi avec les autres valeurs enregistrées mais vous devez la compléter correctement pour être certains que votre fichier sera compatible avec tous les programmes de son. Le nombre d'octets par seconde dépend :
-	 * 
+	 *
 	 * •  du nombre d'échantillons pas seconde
 	 * •  du nombre d'octets par échantillon
 	 * •  du nombre de canaux
-	 * 
+	 *
 	 * Il se calcul comme suit :
 	 * nAvgBytesPerSec= nSamplesPerSec* nBitsPerSample/8* nChannels
-	 * 
-	 * (nBitsPerSample est le nombre de BITS par seconde, un octet comporte 8 bits) 
+	 *
+	 * (nBitsPerSample est le nombre de BITS par seconde, un octet comporte 8 bits)
 	 */
 	int nAvgBytesPerSec;
-	
+
 	/**
 	 * contient le nombre de bits par échantillon (voir note concernant l'amplitude)
 	 */
 	int nBitsPerSample;
-	
+
 	/**
 	 * Durée = dataSize / nAvgBytesPerSec
 	 */
 	float time;
-	
+
 	/**
 	 * Wave data
 	 */
 	SampleData data;
-	
+
 	/**
 	 * Sample Point list
 	 */
 	private List<SamplePoint> points;
-	
+
 	/**
 	 * Constructor
 	 * @param file
-	 * @throws IOException 
-	 * @throws UnsupportedAudioFileException 
+	 * @throws IOException
+	 * @throws UnsupportedAudioFileException
 	 */
 	public Sample(File file) throws IOException, UnsupportedAudioFileException {
 		this(new FileInputStream(file));
 	}
-	
+
 	/**
 	 * Constructor
 	 * @param is
 	 * @throws IOException
-	 * @throws UnsupportedAudioFileException 
+	 * @throws UnsupportedAudioFileException
 	 */
 	public Sample(InputStream is) throws IOException, UnsupportedAudioFileException {
-	    this(AudioSystem.getAudioInputStream(new BufferedInputStream(is)));		
+	    this(AudioSystem.getAudioInputStream(new BufferedInputStream(is)));
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Sample {
 		a.close();
 
 	}
-	
+
 	public Sample(AudioInputStream ais) throws IOException {
 
 
@@ -144,7 +144,7 @@ public class Sample {
         data = new SampleData(d);
 
 		points = new ArrayList<SamplePoint>();
-		
+
 		for(int i = 0; i < data.dataSize; i++)
 		{
 			try {
@@ -155,11 +155,11 @@ public class Sample {
 			{
 				break;
 			}
-		
+
 		}
-				
+
 		updateTime();
-		
+
 		ais.close();
 	}
 
@@ -171,8 +171,8 @@ public class Sample {
 	{
 		this.time = (float)data.getDataSize()/(float)this.nAvgBytesPerSec;
 	}
-	
-	
+
+
 	public String toString()
 	{
 		String string = "";
@@ -187,7 +187,7 @@ public class Sample {
 		string += "SAMPLE SIZE IN BITS : " + _format.getSampleSizeInBits() + "\n";
 
 
-		
+
 //		string += "ZONE       : " + this.formatZone + "\n";
 //		string += "LGDEF      : " + this.lgdef + "\n";
 //		string += "FORMAT     : " + this.wFormatTag + "\n";
@@ -232,7 +232,7 @@ public class Sample {
 	public int getNBitsPerSample() {
 		return _format.getSampleSizeInBits();
 	}
-	
+
 
 	/**
 	 * @param bitsPerSample the nBitsPerSample to set
@@ -272,11 +272,11 @@ public class Sample {
 	public SamplePoint getPoint(int offset)
 	{
 		SamplePoint point = null;
-		
+
 		point = new SamplePoint(this, offset);
-		
+
 		return point;
-		
+
 	}
 
 	/**
@@ -284,32 +284,32 @@ public class Sample {
 	 */
 	public static double getYRatio(Sample wave, int maxHeight) {
 		long maxPoint = 1;
-		
+
 		switch (wave.getNBitsPerSample()) {
 			case 8: // 8 bits
-				maxPoint = 128*2;	
+				maxPoint = 128*2;
 				break;
-	
+
 			case 16: // 16 bits
 				maxPoint = 32767*2;
 				break;
-	
+
 			case 24: // 24 bits
 				maxPoint = 8388607*2;
 				break;
-	
+
 			case 32: // 32 bits
 				maxPoint = 2147483647*2;
 				break;
-	
+
 			default:
 				System.err.println("need to define maxPoint for " + (wave.getNBitsPerSample()*8) + " bit");
 				break;
 		}
 		return (double)maxHeight/maxPoint;
 	}
-	
-	/** 
+
+	/**
 	 * Get Number of point in the data
 	 * @return
 	 */
