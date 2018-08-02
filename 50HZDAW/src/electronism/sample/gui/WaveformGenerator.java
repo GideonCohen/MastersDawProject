@@ -8,10 +8,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class WaveformGenerator 
+public class WaveformGenerator
 {
 	Sample wave;
-	
+
 	int width;
 	int height;
 
@@ -20,18 +20,18 @@ public class WaveformGenerator
 	private Color waveColor = new Color(200,200,200);
 	private Color waveAverageColor = new Color(240,240,240);
 	private Color pointColor = new Color(255,255,0);
-	
+
 	/**
 	 * Show center line
 	 */
 	private boolean showCenterLine = true;
-	
-	
+
+
 	/**
 	 * Resolution
 	 */
 	double resolution = 1;
-	
+
 	/**
 	 * X Offset
 	 */
@@ -43,8 +43,8 @@ public class WaveformGenerator
 	int paddingRight = 5;
 	int paddingTop = 5;
 	int paddingBottom = 5;
-	
-	
+
+
 	public WaveformGenerator(Sample wave, int width, int height)
 	{
 		this.width = width;
@@ -52,21 +52,21 @@ public class WaveformGenerator
 		setWave(wave);
 	}
 
-	
+
 	public void setWave(Sample wave)
 	{
 		this.wave = wave;
 	}
-	
+
 	public Sample getWave()
 	{
 		return wave;
 	}
-	
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
@@ -74,13 +74,13 @@ public class WaveformGenerator
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public int getHeight() {
 		return height;
-	}	
-	
+	}
+
 	public void draw(Graphics g) {
-		
+
 		// backup current style
 		Color c = g.getColor();
 		Font f = g.getFont();
@@ -91,19 +91,19 @@ public class WaveformGenerator
 		g.fillRect(0, 0, getWidth(), getHeight());
 
 		// g.setClip(paddingLeft, paddingRight, getWidth()-paddingLeft-paddingRight, getHeight()-paddingTop-paddingBottom);
-		
+
 		// Prepare positioning
 		int defX = getInnerX();
 		int defY = getInnerY();
 		int defWidth = getInnerWidth();
 		int defHeight = getInnerHeight();;
 		int half = defHeight/2;
-		
+
 
 		// Draw Half line
 		g.setColor(centerLineColor);
 		g.drawLine(defX, defY+half, defX+defWidth, defY+half);
-		
+
 
 		int avgY = 0;
 //		int lastAvgY = 0;
@@ -120,46 +120,46 @@ public class WaveformGenerator
 			 * Y Ratio
 			 * 255 = 100
 			 * defHeight   = x
-			 * 
-			 * defHeight * 100 / 255 = Percent Result 
+			 *
+			 * defHeight * 100 / 255 = Percent Result
 			 * Percent Result / 100 to find the multiplicator
 			 */
 			double yRatio = Sample.getYRatio(wave, defHeight);// (double)defHeight / (double)255;		
 
-			
+
 			/*
 			 * Number of point to read
-			 * 
+			 *
 			 *  That depend of the resolution (point per pixel)
 			 */
 			int point2read = 1;
 			if (resolution > 1)
 				point2read = (int)Math.ceil(resolution);
-			
+
 			// Adjust start Display
 			int startOffset = 0;
 			if (xOffset > 0 && point2read > 0)
-				startOffset = (point2read * xOffset); 
+				startOffset = (point2read * xOffset);
 			else if (xOffset > 0)
-				startOffset = xOffset; 
-			
+				startOffset = xOffset;
+
 			ArrayList<SampleRange> ranges = SampleRange.getList(wave, point2read, startOffset, point2read*defWidth);
 			for(int i = 0; i < ranges.size(); i++)
 			{
 				SampleRange range = ranges.get(i);
-				
+
 				// set y, min, max and averageY
 				y = (int) range.getAverage(1);
 				int min = (int) range.getMinimum(1);
 				int max = (int) range.getMaximum(1);
 				avgY = (int) range.getAverage(1);
-				
+
 				// inverse display and resize with yRatio
 				y = (int)((double)(y*-1) * yRatio);
 				max = (int)((double)(max*-1) * yRatio);
 				min = (int)((double)(min*-1) * yRatio);
 				avgY = (int)((double)(avgY*-1) * yRatio);
-				
+
 				// set space between point
 				int xSpace = 1;
 				if (resolution < 1)
@@ -176,7 +176,7 @@ public class WaveformGenerator
 					g.drawLine(defX+x,defY+half+y, defX+x-xSpace, defY+half+lastY);
 				// fill
 				g.drawLine(defX+x,defY+half+min, defX+x, defY+half+max);
-				
+
 				// if resolution is negative, the draw point
 				if (resolution < 1)
 				{
@@ -190,8 +190,8 @@ public class WaveformGenerator
 						if (max < 0 && min > 0)
 						{
 							int avgmin,avgmax;
-							avgmax = avgY-((max-avgY)/2); 
-							avgmin = avgY-((min+avgY)/2); 
+							avgmax = avgY-((max-avgY)/2);
+							avgmin = avgY-((min+avgY)/2);
 							g.drawLine(defX+x, defY+half+avgmin, defX+x, defY+half+avgmax);
 						} else if (max < 1)
 							g.drawLine(defX+x, defY+half+min, defX+x, defY+half+avgY);
@@ -201,15 +201,15 @@ public class WaveformGenerator
 						// save Average
 //						lastAvgY = avgY;
 				}
-				
+
 				// save y
 				lastY = y;
-				
+
 				// add xSpace to x
-				x += xSpace;				
+				x += xSpace;
 			}
 		}
-		
+
 		// restore saved style
 		g.setClip(clip);
 		g.setColor(c);
@@ -223,7 +223,7 @@ public class WaveformGenerator
 	{
 		return paddingLeft;
 	}
-	
+
 	/**
 	 * @return the inner Y
 	 */
@@ -231,7 +231,7 @@ public class WaveformGenerator
 	{
 		return paddingRight;
 	}
-	
+
 	/**
 	 * @return the inner width
 	 */
@@ -239,17 +239,17 @@ public class WaveformGenerator
 	{
 		return getWidth()-paddingLeft-paddingRight;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return the inner Height
 	 */
 	public int getInnerHeight()
 	{
 		return getHeight()-paddingTop-paddingBottom;
 	}
-	
-	
+
+
 	/**
 	 * @return the backgroundColor
 	 */
@@ -329,16 +329,16 @@ public class WaveformGenerator
 	}
 
 	/**
-	 * @param zoom to view 
+	 * @param zoom to view
 	 */
 	public void zoom(int percent) {
 
 		double res = this.resolution;
 		res = resolution + (resolution*((double)percent/100));
-	
+
 		setResolution(res);
 	}
-	
+
 	private void zoomTo(double percent)
 	{
 		// Find the new resolution
@@ -350,7 +350,7 @@ public class WaveformGenerator
 			res -= 2;
 		else
 			res = res / (percent/100);
-		
+
 		setResolution(res);
 	}
 
@@ -459,7 +459,7 @@ public class WaveformGenerator
 
 	public void setSample(Sample sample) {
 		this.wave = sample;
-		
+
 	}
 
 
@@ -472,12 +472,12 @@ public class WaveformGenerator
 
         setWidth(options.getWidth());
         setHeight(options.getHeight());
-        
+
         setPaddingBottom(options.getPaddingBottom());
         setPaddingLeft(options.getPaddingLeft());
         setPaddingRight(options.getPaddingRight());
         setPaddingTop(options.getPaddingTop());
-                
+
         setShowCenterLine(options.isShowCenterLine());
 
         zoomTo(options.getZoom());

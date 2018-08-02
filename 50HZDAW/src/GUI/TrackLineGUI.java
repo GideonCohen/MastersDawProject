@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import static java.lang.Math.log10;
 
 public class TrackLineGUI {
-    
+
     private HBox trackLine;
     private String lineName;
     // Name label for the channel
@@ -91,7 +91,7 @@ public class TrackLineGUI {
 
         // Name label
         name = new Label(lineName);
-        
+
         // Mute and Solo
         HBox muteSolo = new HBox(5);
         Button mute = new Button("Mute");
