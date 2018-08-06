@@ -237,6 +237,7 @@ public class WaveformGenerator
 	 */
 	public int getInnerWidth()
 	{
+	    // changed to be the same
 		return getWidth();
 	}
 

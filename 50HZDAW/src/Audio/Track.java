@@ -121,7 +121,7 @@ public class Track {
      * Move an audio files position within a track.
      */
 
-    public void moveAudioFile(int index, int startPosition) {
+    public void moveAudioFile(int index, long startPosition) {
 
 
         audioData.get(index).setStart(startPosition);
@@ -129,10 +129,6 @@ public class Track {
         addDataToTrack();
     }
 
-    public void moveAudioFromFile(File file, int startPoistion) {
-        int index = files.indexOf(file);
-        moveAudioFile(index, startPoistion);
-    }
 
 
     /**
@@ -263,6 +259,7 @@ public class Track {
                 trackBuffer[(int) dataOffset] = currentFloatArray [j];
                 dataOffset++;
             }
+
         }
     }
 

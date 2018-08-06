@@ -29,7 +29,7 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
 
-import static java.lang.Math.log10;
+
 
 public class TrackLineGUI {
 
@@ -50,7 +50,7 @@ public class TrackLineGUI {
     // Volume modifier
     private IntegerProperty volume;
     // All files contained in the track line
-    private ArrayList<File> files;
+    private ArrayList<Canvas> audioClips;
 
     // Pointer shape
     private Rectangle rect;
@@ -77,7 +77,7 @@ public class TrackLineGUI {
         controller = FXController.getController();
 
         index = 0;
-        files = new ArrayList<>();
+        audioClips = new ArrayList<>();
         start = 0;
     }
 
@@ -259,7 +259,7 @@ public class TrackLineGUI {
     public Canvas createWaveform(Double durationInSeconds, File file) throws Exception {
 
         // Make the canvas 10px per second long
-        int width = (int) Math.round(durationInSeconds);
+        int width = (int) Math.round(durationInSeconds*10);
         Canvas canvas = new Canvas(width * 10, 100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         String filePath = file.getAbsolutePath();
@@ -301,33 +301,35 @@ public class TrackLineGUI {
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         AudioFormat format = audioInputStream.getFormat();
         long frames = audioInputStream.getFrameLength();
-        double durationInSeconds = (frames+0.0)/format.getFrameRate();
+        float durationInMilliSeconds = ((frames)/format.getFrameRate()*1000);
 
-        if (files.size() == 0) {
+        if (audioClips.size() == 0) {
             System.out.println("I tried to add a track");
             track = mixerSetUp.addTrack(file.getName(), file, (volume.getValue()/100), delay);
             name.textProperty().setValue(file.getName());
         } else {
             System.out.println("I tried to add to a existing track");
-            track.addAudioTrackData(file, ((start * 1000) + delay));
+            track.addAudioTrackData(file, (start + delay));
         }
 
-        long position = (start*10) + (delay/100);
+        long position = start + delay;
 
-        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInSeconds, file, index, mixerSetUp, displayLine, position, track);
+        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInMilliSeconds, file, index, mixerSetUp, displayLine, position, track);
         Canvas canvas = waveformCanvas.createWaveform();
 
-        start += durationInSeconds + (delay/1000);
-        System.out.println("Start at :" + start);
+        start += Math.round(durationInMilliSeconds) + delay;
+        System.out.println("Duration is :" + durationInMilliSeconds);
+        System.out.println("Next Start at :" + start);
 
-        files.add(file);
+        audioClips.add(canvas);
 
         displayLine.getChildren().add(canvas);
+        index++;
     }
 
     public HBox createTimeline(HBox box) {
 
-        for (int i = 0; i < 1000; i += 10) {
+        for (int i = 0; i < 1000; i += 1) {
             Label label = new Label(i + "");
             label.setMinWidth(25);
             label.setMinHeight(25);
@@ -363,5 +365,9 @@ public class TrackLineGUI {
 
     public Rectangle getRect() {
         return rect;
+    }
+
+    public int getAudioIndex(Canvas canvas){
+        return audioClips.indexOf(canvas);
     }
 }

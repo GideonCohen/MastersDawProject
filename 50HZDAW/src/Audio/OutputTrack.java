@@ -70,7 +70,7 @@ public class OutputTrack {
         source = (SourceDataLine) AudioSystem.getLine(newLine);
         source.open(audioFormat, source.getBufferSize()); //
 
-        bufferSize = 1024 * 8;
+        bufferSize = 1024 * 6;
         readBufferSize = bufferSize * 2;
         sdlBufferSize = bufferSize * 4;
 
@@ -221,11 +221,11 @@ public class OutputTrack {
             outputStream.skip(trackOffset);
             System.out.println("Offset is " + trackOffset);
             while ((numBytesRead = outputStream.read(readBuffer)) != -1 && pause == false) {    // 40 iterations of 88200. 88200 = 1 second of playback.
-                source.write(readBuffer, 0, numBytesRead);               //  4 bytes represent a stereo datapoint within a sample.
-               // System.out.println(count);                                   // 44100 sample rate = each stereo sample is 44100 * 4 = 176400
+                source.write(readBuffer, 0, readBuffer.length);               //  4 bytes represent a stereo datapoint within a sample.
+                // System.out.println(count);                                   // 44100 sample rate = each stereo sample is 44100 * 4 = 176400
                 count++;                                                    // total bytes = length of audio file * bytespersecond (176400)
-
             }
+            source.write(readBuffer, 0, 44100);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());          //
         }
@@ -311,5 +311,9 @@ public class OutputTrack {
         source.drain();
         outputStream.reset();
         return 0;
+    }
+
+    public boolean isPlaying(){
+        return pause;
     }
 }

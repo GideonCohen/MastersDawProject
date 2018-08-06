@@ -198,6 +198,14 @@ public class MixerSetUp {
         playOffset = output.stop();
     }
 
+    public boolean isPlaying(){
+        try {
+            return output.isPlaying();
+        } catch (NullPointerException e){
+            System.out.println("nothing is playing");
+            return false;
+        }
+    }
 
 
 

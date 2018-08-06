@@ -96,7 +96,7 @@ public class AudioData {
 
     public void setStereoByteArray () throws IOException {
 
-        stereoByteArray = new byte [(int)audioFileLength + 44100];
+        stereoByteArray = new byte [(int)audioFileLength];
         inputStream.read(stereoByteArray);  // sets a stereo byte array to bit split for processing.    // fill byte array with pre-processed audio.
         setFinish();
         // reverse = true; // set audio file in reverse.
@@ -181,7 +181,7 @@ public class AudioData {
 
     public long setStart(long startMillis) {
 
-        long startFloat = (startMillis/1000) * floatsPerSecond;
+        long startFloat = (startMillis * floatsPerSecond)/1000;
         this.start = startFloat;
         return startFloat;
     }

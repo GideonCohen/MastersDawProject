@@ -2,6 +2,7 @@ package GUI;
 
 import Audio.MixerSetUp;
 import Audio.Track;
+import javafx.scene.control.Button;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,8 +27,10 @@ public class ArrangementWindowController {
                         mixerSetUp.playOutput();
                     } catch (Exception e)  {}
                 }
+
             });
             thread.start();
+
         } catch (Exception e) {
             System.out.println("Couldn't play track");
         }
@@ -38,7 +41,11 @@ public class ArrangementWindowController {
     }
 
     public void stop() {
-        mixerSetUp.stopOutput();
+        try {
+            mixerSetUp.stopOutput();
+        } catch (NullPointerException e) {
+            System.out.println("No track playing");
+        }
     }
 
     public void removeTrack(Track track) {
@@ -58,6 +65,9 @@ public class ArrangementWindowController {
         boolean answer = ConfirmationBox.Display("", "Are you sure you want to quit?");
         if (answer) {
             view.getWindow().close();
+            try {
+                stop();
+            } catch (NullPointerException e) {}
         }
     }
 

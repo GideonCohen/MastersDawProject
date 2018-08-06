@@ -16,7 +16,7 @@ public class WaveformEditor extends JPanel
 	Sample wave;
 	Font font = new Font("Arial", 0, 10);
 
-	int rulesOffset = 25;
+	int rulesOffset = 0;
 	int scrollbarOffset = 0;
 	
 	static Color BACKGROUND = new Color(0);

@@ -21,7 +21,7 @@ import java.io.File;
 
 public class WaveformCanvas {
 
-    private double durationInSeconds;
+    private double durationInMilliSeconds;
     private File file;
     private int width;
     private Canvas canvas;
@@ -38,10 +38,10 @@ public class WaveformCanvas {
     private StackPane waveformStack;
 
 
-    public WaveformCanvas(double d, File f, int i, MixerSetUp mixerSetUp, StackPane stack, long delay, Track track) throws Exception {
+    public WaveformCanvas(double duration, File f, int i, MixerSetUp mixerSetUp, StackPane stack, long delay, Track track) throws Exception {
 
         index = i;
-        durationInSeconds = d;
+        durationInMilliSeconds = duration;
         file = f;
         mixer = mixerSetUp;
         waveformStack = stack;
@@ -54,19 +54,20 @@ public class WaveformCanvas {
 
     public Canvas createWaveform() {
 
-        width = (int) Math.round(durationInSeconds);
-        canvas = new Canvas(width * 10, 100);
+        width = (int) Math.round(durationInMilliSeconds/10);
+        canvas = new Canvas(width, 100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         String filePath = file.getAbsolutePath();
         WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
-        wf.setWidth(wf.getWidth()-10);
+        wf.setWidth(width);
+        wf.setShowCenterLine(true);
         System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
 
         //to set starting position for waveform
-        canvas.setTranslateX(position);
+        canvas.setTranslateX(position/10);
         //10 pixels = 1 second or 1000 ms
         //1 pixel = 0.1 second or 100ms
         //if setting position with ms, /100
@@ -83,7 +84,7 @@ public class WaveformCanvas {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(width, index, file, mixer, waveformStack);
+                    WaveformEditor w = new WaveformEditor(width, index, file, track, waveformStack, canvas);
                 }
             }
         });
@@ -103,8 +104,9 @@ public class WaveformCanvas {
                     }
                     ((Canvas) (event.getSource())).setTranslateX(newTranslateX);
 
-                    int delay = (int) newTranslateX * 100;
-                    track.moveAudioFromFile(file, delay);
+                    long delay = (long) newTranslateX * 10;
+                    track.moveAudioFile(index, delay);
+                    System.out.println("Start at " + delay + "ms");
                     //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
 
                 }

@@ -12,12 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -48,6 +48,8 @@ public class JavaFXController extends Application implements Serializable {
 
     // Split pain for the main window
     private SplitPane splitPane;
+
+    private ImageView background;
 
     public static void main(String[] args) {
         // calls the args method of application
@@ -103,6 +105,8 @@ public class JavaFXController extends Application implements Serializable {
 
         // Add the split pane to a scroll pane so able to show many windows
         ScrollPane channels = new ScrollPane();
+        StackPane backPane = new StackPane();
+        backPane.setId("back-pane");
 
         // add arrangement layout
         splitPane = new SplitPane();
@@ -112,9 +116,24 @@ public class JavaFXController extends Application implements Serializable {
         // Bind the channels to be as wide as the alignment window
         splitPane.minWidthProperty().bind(channels.widthProperty());
 
-        channels.setContent(splitPane);
+        channels.setContent(backPane);
 
 
+
+        try {
+        File file = new File("50HZDAW/Samples/TestBackground.jpg");
+        String localUrl = file.toURI().toURL().toString();
+        // don't load in the background
+        Image backgroundImage = new Image(localUrl, false);
+
+        this.background = new ImageView();
+        background.setImage(backgroundImage);
+        background.setCache(true);
+        background.fitHeightProperty();
+        } catch (Exception e) {
+        }
+
+        backPane.getChildren().addAll(background, splitPane);
 
         // Set positions in the layout
         mainLayout.setTop(makeTopLine());
