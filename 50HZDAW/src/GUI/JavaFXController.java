@@ -8,6 +8,7 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -249,28 +250,42 @@ public class JavaFXController extends Application implements Serializable {
 
 
         // Media Player button block
-        HBox playerButtons = new HBox();
+        HBox playerButtons = new HBox(10);
+        playerButtons.setAlignment(Pos.CENTER);
+
+        Region r = new Region();
 
         // Play all added tracks
-        Button play = new Button("play");
+        Button play = new Button();
+        Image playImage = new Image("Resources/play.png");
+        play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> controller.play());
 
 
         // Pause all added tracks
-        Button pause = new Button("Pause");
+        Button pause = new Button();
+        Image pauseImage = new Image("Resources/pause.png");
+        pause.setGraphic(new ImageView(pauseImage));
         pause.setOnAction(event -> controller.pause());
 
 
         // Stop all added tracks
-        Button stop = new Button("Stop");
+        Button stop = new Button();
+        Image stopImage = new Image("Resources/stop.png");
+        stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> controller.stop());
 
 
         // Currently non functional
-        Button skipF = new Button(">>");
-        Button skipB = new Button("<<");
+        Button skipF = new Button();
+        Image FFImage = new Image("Resources/ff.png");
+        skipF.setGraphic(new ImageView(FFImage));
 
-        playerButtons.getChildren().addAll(skipB, play, pause, stop, skipF);
+        Button skipB = new Button();
+        Image RWImage = new Image("Resources/rw.png");
+        skipB.setGraphic(new ImageView(RWImage));
+
+        playerButtons.getChildren().addAll(r, play, pause, stop, skipB, skipF);
 
 
         // Timer

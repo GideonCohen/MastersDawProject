@@ -17,35 +17,46 @@ public class ArrangementWindowController {
 
     private JavaFXController view;
     private MixerSetUp mixerSetUp;
+    private boolean playing;
 
     public ArrangementWindowController(JavaFXController newView, MixerSetUp model) throws Exception {
 
         view = newView;
         mixerSetUp = model;
+        playing = false;
     }
 
     public void play() {
-        try {
-            Thread thread = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        mixerSetUp.playOutput();
-                    } catch (Exception e)  {}
-                }
+        if (!playing) {
+            playing = true;
+            try {
+                Thread thread = new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            mixerSetUp.playOutput();
+                            playing = false;
+                        } catch (Exception e) {
+                        }
+                    }
 
-            });
-            thread.start();
+                });
+                thread.start();
 
-        } catch (Exception e) {
-            System.out.println("Couldn't play track");
+            } catch (Exception e) {
+                System.out.println("Couldn't play track");
+            }
+        } else {
+            // do something
         }
     }
 
     public void pause() {
+        playing = false;
         mixerSetUp.pauseOutput();
     }
 
     public void stop() {
+        playing = false;
         try {
             mixerSetUp.stopOutput();
         } catch (NullPointerException e) {
