@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ExportManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ImportManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/OutputTrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/OutputTrack.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,10 +18,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JavaFXController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JavaFXController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
+            <state relative-caret-position="952">
               <caret line="186" column="30" lean-forward="true" selection-start-line="186" selection-start-column="30" selection-end-line="186" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -49,6 +41,15 @@
                 <element signature="e#10841#10842#0" expanded="true" />
                 <element signature="e#10873#10874#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FadeManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="67" lean-forward="true" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -89,14 +90,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+            <state relative-caret-position="194">
+              <caret line="190" column="67" selection-start-line="190" selection-start-column="67" selection-end-line="190" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#createTrack#0;class#TrackLineGUI#0" />
                 <element signature="method#createPointer#0;class#TrackLineGUI#0" />
                 <element signature="method#addPointer#0;class#TrackLineGUI#0" />
               </folding>
@@ -160,11 +160,11 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
       </list>
     </option>
   </component>
@@ -239,6 +239,7 @@
       <recent name="GUI" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/50HZDAW/src/Audio" />
       <recent name="$PROJECT_DIR$/50HZDAW/src/GUI" />
       <recent name="$PROJECT_DIR$/50HZDAW/Samples" />
     </key>
@@ -393,20 +394,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -427,7 +414,6 @@
           <caret line="283" column="6" selection-start-line="283" selection-start-column="6" selection-end-line="283" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#createTrack#0;class#TrackLineGUI#0" />
             <element signature="method#createPointer#0;class#TrackLineGUI#0" />
             <element signature="method#addPointer#0;class#TrackLineGUI#0" />
           </folding>
@@ -455,7 +441,6 @@
           <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#createTrack#0;class#TrackLineGUI#0" />
             <element signature="method#createPointer#0;class#TrackLineGUI#0" />
             <element signature="method#addPointer#0;class#TrackLineGUI#0" />
           </folding>
@@ -760,22 +745,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#createTrack#0;class#TrackLineGUI#0" />
-            <element signature="method#createPointer#0;class#TrackLineGUI#0" />
-            <element signature="method#addPointer#0;class#TrackLineGUI#0" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="18" column="67" lean-forward="true" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
+        <state relative-caret-position="952">
           <caret line="186" column="30" lean-forward="true" selection-start-line="186" selection-start-column="30" selection-end-line="186" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -794,6 +773,25 @@
             <element signature="e#10802#10803#0" expanded="true" />
             <element signature="e#10841#10842#0" expanded="true" />
             <element signature="e#10873#10874#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/moveablePopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="190" column="67" selection-start-line="190" selection-start-column="67" selection-end-line="190" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#createPointer#0;class#TrackLineGUI#0" />
+            <element signature="method#addPointer#0;class#TrackLineGUI#0" />
           </folding>
         </state>
       </provider>

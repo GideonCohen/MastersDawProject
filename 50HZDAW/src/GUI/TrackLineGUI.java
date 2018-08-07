@@ -5,6 +5,7 @@ import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -93,7 +94,7 @@ public class TrackLineGUI {
         // Whole Channel - Settings and waveform
         trackLine = new HBox(20);
         trackLine.prefWidthProperty().bind(mainWindow.widthProperty());
-        trackLine.setPrefHeight(150);
+        trackLine.setPrefHeight(200);
 
         // Parent for all settings buttons
         VBox optionsBox = new VBox(5);
@@ -174,6 +175,9 @@ public class TrackLineGUI {
             }
         });
 
+        Label volLabel = new Label();
+        volLabel.textProperty().bind(Bindings.format("Volume: %.2f Db", volumeSlider.valueProperty()));
+
         //Panning
         Slider panSlider = new Slider(-100, 100, 0);
         panSlider.setShowTickLabels(true);
@@ -183,12 +187,12 @@ public class TrackLineGUI {
         panSlider.setBlockIncrement(10);
         panSlider.setSnapToTicks(true);
 
-        Tooltip tooltip = new Tooltip();
-        tooltip.textProperty().bind(panSlider.valueProperty().asString());
-        panSlider.setTooltip(tooltip);
+        Label panLabel = new Label();
+        panLabel.textProperty().bind(Bindings.format("Left:%.2f" + " Right: %.2f", panSlider.valueProperty(), panSlider.valueProperty()));
+
 
         // Layout for buttons
-        optionsBox.getChildren().addAll(name, muteSolo, deleteChannel, volumeSlider, panSlider);
+        optionsBox.getChildren().addAll(name, muteSolo, deleteChannel, volumeSlider, volLabel, panSlider, panLabel);
 
         //Timeline
         HBox timelineBox = new HBox(75);
