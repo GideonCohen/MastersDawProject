@@ -208,7 +208,18 @@ public class MixerSetUp {
     }
 
 
+    public OutputTrack prepareOutput() throws LineUnavailableException {
 
+        output = new OutputTrack("OutPut", playOffset);
+        System.out.println("Mixer offset is " + playOffset);
+
+        //Add each track to the combined output
+        for (Track track: tracks) {
+            output.addToOutput(track);
+        }
+
+        return output;
+    }
 
 
 }

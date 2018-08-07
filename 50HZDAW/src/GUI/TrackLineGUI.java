@@ -7,6 +7,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -105,20 +107,36 @@ public class TrackLineGUI {
         HBox muteSolo = new HBox(5);
         Button mute = new Button("Mute");
         mute.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+        mute.setOnAction(event -> {
+            try {
+                track.setMute();
+                if (track.getMute()) {
+                    mute.setTextFill(Color.RED);
+                } else {
+                    mute.setTextFill(Color.BLACK);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("No track");
+            }
+        });
+
         Button solo = new Button("Solo");
         solo.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+        solo.setOnAction(event -> {
+            try {
+                track.setSolo();
+                if (track.getSolo()) {
+                    solo.setTextFill(Color.RED);
+                } else {
+                    solo.setTextFill(Color.BLACK);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("No track");
+            }
+        });
+
         muteSolo.getChildren().addAll(mute, solo);
 
-
-        // Gain control
-        HBox gain = new HBox(5);
-
-        Button gainUp = new Button("Gain +");
-        gainUp.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-        Button gainDown = new Button("Gain -");
-        gainDown.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-
-        gain.getChildren().addAll(gainUp, gainDown);
 
         // Delete Channel
         Button deleteChannel = new Button("Delete channel");
@@ -135,8 +153,8 @@ public class TrackLineGUI {
         Slider volumeSlider = new Slider(-10, 6, 0);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(6);
-        volumeSlider.setMinorTickCount(3);
+        volumeSlider.setMajorTickUnit(4);
+        volumeSlider.setMinorTickCount(2);
         volumeSlider.setBlockIncrement(1);
         volumeSlider.setSnapToTicks(true);
 
@@ -156,13 +174,21 @@ public class TrackLineGUI {
             }
         });
 
-        // Bind volume slider value
+        //Panning
+        Slider panSlider = new Slider(-100, 100, 0);
+        panSlider.setShowTickLabels(true);
+        panSlider.setShowTickMarks(true);
+        panSlider.setMajorTickUnit(40);
+        panSlider.setMinorTickCount(20);
+        panSlider.setBlockIncrement(10);
+        panSlider.setSnapToTicks(true);
 
-
-
+        Tooltip tooltip = new Tooltip();
+        tooltip.textProperty().bind(panSlider.valueProperty().asString());
+        panSlider.setTooltip(tooltip);
 
         // Layout for buttons
-        optionsBox.getChildren().addAll(name, muteSolo, gain, deleteChannel, volumeSlider);
+        optionsBox.getChildren().addAll(name, muteSolo, deleteChannel, volumeSlider, panSlider);
 
         //Timeline
         HBox timelineBox = new HBox(75);
@@ -310,16 +336,20 @@ public class TrackLineGUI {
         long frames = audioInputStream.getFrameLength();
         float durationInMilliSeconds = ((frames)/format.getFrameRate()*1000);
 
-        // test for preadjusted volume
-        double volAdjust = Math.pow(10, (volume - 0));
+
         if (audioClips.size() == 0) {
             System.out.println("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, (float) volAdjust, delay);
+            track = mixerSetUp.addTrack(file.getName(), file, 1, delay);
             name.textProperty().setValue(file.getName());
         } else {
             System.out.println("I tried to add to a existing track");
             track.addAudioTrackData(file, (start + delay));
         }
+
+        // adjust the volume in case the slider has already been moved
+        double volAdjust = Math.pow(10, volume/10);
+        adjustVolume((float) volAdjust);
+
 
         long position = start + delay;
 

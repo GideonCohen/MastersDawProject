@@ -1,10 +1,15 @@
 package GUI;
 
 import Audio.MixerSetUp;
+import Audio.OutputTrack;
 import Audio.Track;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
+import javax.sound.sampled.*;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -68,6 +73,24 @@ public class ArrangementWindowController {
             try {
                 stop();
             } catch (NullPointerException e) {}
+        }
+    }
+
+    public void export(Stage window) throws LineUnavailableException {
+        ExportManager EM = new ExportManager();
+        File file = EM.exportAsWAV(window);
+
+        OutputTrack output = mixerSetUp.prepareOutput();
+
+
+        byte[] outputArray = output.addDataForOutput1Export();
+        AudioFormat frmt= new AudioFormat(44100,24,2,true,false);
+        AudioInputStream ais = new AudioInputStream(new ByteArrayInputStream(outputArray), frmt, outputArray.length);
+        try {
+            AudioSystem.write(ais, AudioFileFormat.Type.WAVE, file);
+        }
+        catch (IOException IOE) {
+
         }
     }
 

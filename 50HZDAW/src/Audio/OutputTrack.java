@@ -291,13 +291,13 @@ public class OutputTrack {
     public long pause() {
 
         pause = true;
-        source.stop();
-        source.drain();
-        outputStream.reset();
         trackOffset = count * readBuffer.length;
         System.out.println("Paused at " + trackOffset);
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
+        source.stop();
+        source.drain();
+        outputStream.reset();
         return trackOffset;
     }
 
@@ -315,5 +315,60 @@ public class OutputTrack {
 
     public boolean isPlaying(){
         return pause;
+    }
+
+    public byte[] addDataForOutput1Export() {
+
+        outputLength = 0;
+        for(Track track: tracks)
+            if(track.trackLength() > outputLength) {
+                outputLength = track.trackLength();
+            }
+
+        outputFloatArray = new float [(int)outputLength];  // output is length of longest track (or length of first track for now).
+
+        boolean soloMode = false;
+
+        for(int i = 0; i < tracks.size(); i++) {
+            if(tracks.get(i).getSolo() == true) {
+                soloMode = true;
+            }
+        }
+
+
+        if(soloMode == true) {
+
+            //SOLO PLAYBACK
+            for (int i = 0; i < tracks.size(); i++) {
+                if (tracks.get(i).getSolo() == true) {                    // only play tracks with solo on.
+                    currentFloatArray = tracks.get(i).getTrackData();
+                    for (int j = 0; j < currentFloatArray.length; j++) {
+                        outputFloatArray[j] += currentFloatArray[j];
+                    }
+                }
+                else {
+                    currentFloatArray = new float[tracks.get(i).getTrackData().length];   // create an empty array of track size when on mute.
+                }
+
+            }
+        }
+
+        else {
+            //NORMAL PLAYBACK
+            for (int i = 0; i < tracks.size(); i++) {
+                if (tracks.get(i).getMute() == false) {                    // don't play tracks on mute.
+                    currentFloatArray = tracks.get(i).getTrackData();
+                    for (int j = 0; j < currentFloatArray.length; j++) {
+                        outputFloatArray[j] += currentFloatArray[j];
+                    }
+                } else {
+                    currentFloatArray = new float[tracks.get(i).getTrackData().length];   // create an empty array of track size when on mute.
+                }
+            }
+        }
+
+        outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);     // transform float array to 24-bit byte array
+
+        return outputBytes;
     }
 }

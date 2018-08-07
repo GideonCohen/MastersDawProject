@@ -25,9 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.*;
 import java.io.File;
 import java.io.Serializable;
 
@@ -181,6 +179,10 @@ public class JavaFXController extends Application implements Serializable {
             pane.getItems().add(trackLine.createTrack());
         });
         fileMenu.getItems().add(newTrack);
+
+        MenuItem exportAsWav = new MenuItem("Export project as WAV");
+        exportAsWav.setOnAction(event -> export());
+        fileMenu.getItems().add(exportAsWav);
 
         // Aesthetic seperator
         fileMenu.getItems().add(new SeparatorMenuItem());
@@ -342,28 +344,17 @@ public class JavaFXController extends Application implements Serializable {
      * @param pane - the pane to add the channel too
      */
     public void importFile(SplitPane pane){
-        // JavaFX prebuilt file chooser
-        FileChooser fileChooser = new FileChooser();
-
-        // Create and add filter for only .wav files
-        FileChooser.ExtensionFilter wavFilter =
-                new FileChooser.ExtensionFilter("Wav Files (*.wav)", "*.wav");
-        fileChooser.getExtensionFilters().add(wavFilter);
-
-        fileChooser.setTitle("Choose a Track");
-        File file = fileChooser.showOpenDialog(window);
-
-        // If appropriate file type is chosen
-        try {
-            // Make a channel for the player
-            TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
-            pane.getItems().add(trackLine.createTrack());
-            trackLine.addFile(file, 0);
-        } catch(Exception e) {
-
-        }
+        ImportManager importManager = new ImportManager();
+        importManager.importFile(pane, this, window);
     }
 
+    public void export() {
+        try {
+            controller.export(window);
+        } catch (LineUnavailableException e) {
+            // do something
+        }
+    }
 
     public Stage getWindow() {
         return window;
