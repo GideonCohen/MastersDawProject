@@ -291,13 +291,13 @@ public class OutputTrack {
     public long pause() {
 
         pause = true;
+        source.stop();
+        source.drain();
+        outputStream.reset();
         trackOffset = count * readBuffer.length;
         System.out.println("Paused at " + trackOffset);
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
-        source.stop();
-        source.drain();
-        outputStream.reset();
         return trackOffset;
     }
 

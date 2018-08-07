@@ -21,15 +21,20 @@ import java.io.File;
 
 public class WaveformCanvas {
 
+    // Duration of track, used to calculate width
     private double durationInMilliSeconds;
+    // Associated wav file
     private File file;
+    // canvas length in pixels
     private int width;
     private Canvas canvas;
-
+    // index of associated file
     private int index;
+    // Starting delay, used to calculate position
     private long position;
-
+    // associated track object
     private Track track;
+    // associayted mixer object
     private MixerSetUp mixer;
 
     private double orgSceneX, orgSceneY;
@@ -40,6 +45,7 @@ public class WaveformCanvas {
 
     public WaveformCanvas(double duration, File f, int i, MixerSetUp mixerSetUp, StackPane stack, long delay, Track track) throws Exception {
 
+        // intialise global variables
         index = i;
         durationInMilliSeconds = duration;
         file = f;
@@ -47,21 +53,24 @@ public class WaveformCanvas {
         waveformStack = stack;
         position = delay;
         this.track = track;
-
     }
 
 
 
     public Canvas createWaveform() {
 
-        width = (int) Math.round(durationInMilliSeconds/10);
+        // set width and create the canvas
+        width = (int) Math.round(durationInMilliSeconds/10) + 5;
         canvas = new Canvas(width, 100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        // get filepath and create waveform generator
         String filePath = file.getAbsolutePath();
         WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
+        //remove padding
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
-        wf.setWidth(width);
+        wf.setWidth(width - 5);
         wf.setShowCenterLine(true);
         System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
@@ -106,7 +115,7 @@ public class WaveformCanvas {
 
                     long delay = (long) newTranslateX * 10;
                     track.moveAudioFile(index, delay);
-                    System.out.println("Start at " + delay + "ms");
+                    //System.out.println("Start at " + delay + "ms");
                     //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
 
                 }

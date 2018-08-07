@@ -30,8 +30,8 @@ public class WaveformGenerator {
     private int width;
     private int height;
 
-    private int paddingLeft = 5;
-    private int paddingRight = 5;
+    private int paddingLeft = 0;
+    private int paddingRight = 0;
     private int paddingTop = 5;
     private int paddingBottom = 5;
 
@@ -250,12 +250,13 @@ public class WaveformGenerator {
 
     public int getInnerY()
     {
-        return paddingRight;
+        return paddingTop;
     }
 
+    // Changed to remo ve padding
     public int getInnerWidth()
     {
-        return getWidth()-paddingLeft-paddingRight;
+        return getWidth();
     }
 
     public int getInnerHeight()

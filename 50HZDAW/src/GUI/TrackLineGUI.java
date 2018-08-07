@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -48,7 +49,7 @@ public class TrackLineGUI {
     // The part of the track line that displays the waveforms
     private StackPane displayLine;
     // Volume modifier
-    private IntegerProperty volume;
+    private double volume;
     // All files contained in the track line
     private ArrayList<Canvas> audioClips;
 
@@ -128,31 +129,37 @@ public class TrackLineGUI {
             controller.removeTrack(track);
         });
 
+
+        volume = 0;
         // volume volumeSlider
-        Slider volumeSlider = new Slider(10, 110, 110);
+        Slider volumeSlider = new Slider(-10, 6, 0);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(20);
-        volumeSlider.setMinorTickCount(5);
+        volumeSlider.setMajorTickUnit(6);
+        volumeSlider.setMinorTickCount(3);
         volumeSlider.setBlockIncrement(1);
+        volumeSlider.setSnapToTicks(true);
+
+        volumeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double newVol = volumeSlider.getValue();
+                double diff = newVol - volume;
+                double deci = Math.pow(10, (diff/10));
+                /*
+                System.out.println("The volume went from " + volume + " to " + newVol);
+                System.out.println("The difference was " + diff);
+                System.out.println("decible change: " + deci);
+                */
+                adjustVolume((float) deci);
+                volume = newVol;
+            }
+        });
 
         // Bind volume slider value
-        volume = new SimpleIntegerProperty();
-        volume.bind(volumeSlider.valueProperty());
 
-        // Adjust the volume of the track, currently does not work real time
-        volume.addListener((v, oldValue, newValue) -> {
-            float vol = newValue.floatValue()/oldValue.floatValue();
 
-            //adjustVolume(vol);
 
-            /*
-                float diff = newValue.floatValue()/oldValue.floatValue();
-                double deci = 10 * log10(diff);
-                float vol = (float) deci;
-                adjustVolume(vol);
-            */
-        });
 
         // Layout for buttons
         optionsBox.getChildren().addAll(name, muteSolo, gain, deleteChannel, volumeSlider);
@@ -197,7 +204,7 @@ public class TrackLineGUI {
             track.addProcessing(vol);
             //System.out.println(vol);
         } catch (NullPointerException e) {
-            //System.out.println("No track);
+            System.out.println("No track");
         }
     }
 
@@ -303,9 +310,11 @@ public class TrackLineGUI {
         long frames = audioInputStream.getFrameLength();
         float durationInMilliSeconds = ((frames)/format.getFrameRate()*1000);
 
+        // test for preadjusted volume
+        double volAdjust = Math.pow(10, (volume - 0));
         if (audioClips.size() == 0) {
             System.out.println("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, (volume.getValue()/100), delay);
+            track = mixerSetUp.addTrack(file.getName(), file, (float) volAdjust, delay);
             name.textProperty().setValue(file.getName());
         } else {
             System.out.println("I tried to add to a existing track");

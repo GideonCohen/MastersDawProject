@@ -66,7 +66,7 @@ public class WaveView extends JPanel
 	 */
 	public int getInnerY()
 	{
-		return generator.getPaddingRight();
+		return generator.getPaddingTop();
 	}
 	
 	/**
