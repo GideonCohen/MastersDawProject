@@ -6,9 +6,11 @@ import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,6 +24,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -30,6 +33,7 @@ import javafx.util.Duration;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class JavaFXController extends Application implements Serializable {
@@ -49,8 +53,16 @@ public class JavaFXController extends Application implements Serializable {
     // Split pane for the main window
     private VBox channels;
 
+    // TrackLine List
+    private ArrayList<TrackLineGUI> trackLines;
+
     // pointer for the timeline
     private Rectangle pointer;
+
+    // The ration of pixels to milliseconds. e.g. a ratio of 0.1 means 1 pixel = 10 milliseconds
+    private double pixelRatio;
+
+    private VBox timeLine;
 
 
 
@@ -69,14 +81,20 @@ public class JavaFXController extends Application implements Serializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // Create the main layout
-        makeMainWindow();
-
         // The mixer for the audio
         mixerSetUp = new MixerSetUp(0);
 
+        // Initial pixel ratio, default is 100 pixels per second.
+        pixelRatio = 0.1;
+
+        // Empty track line array
+        trackLines = new ArrayList<>();
+
         // Controller for the Gui
         controller = new ArrangementWindowController(this, mixerSetUp);
+
+        // Create the main layout
+        makeMainWindow();
 
         // Set window as primary stage and give it a title
         window = primaryStage;
@@ -117,7 +135,8 @@ public class JavaFXController extends Application implements Serializable {
 
         // Bind the channels to be as wide as the alignment window
         channels.minWidthProperty().bind(channelView.widthProperty());
-        channels.getChildren().add(createTimeline());
+        timeLine = createTimeline();
+        channels.getChildren().add(timeLine);
 
         // Import and load background
         String localUrl = "";
@@ -182,6 +201,7 @@ public class JavaFXController extends Application implements Serializable {
         newTrack.setOnAction(event -> {
             TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
             channels.getChildren().add(trackLine.createTrack());
+            trackLines.add(trackLine);
         });
         fileMenu.getItems().add(newTrack);
 
@@ -279,17 +299,14 @@ public class JavaFXController extends Application implements Serializable {
         stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> controller.stop());
 
+        Button zoomIn = new Button("Zoom In");
+        zoomIn.setOnAction(event -> setPixelRatio(pixelRatio*2));
 
-        // Currently non functional
-        Button skipF = new Button();
-        Image FFImage = new Image("Resources/ff.png");
-        skipF.setGraphic(new ImageView(FFImage));
+        Button zoomOut = new Button("Zoom In");
+        zoomOut.setOnAction(event -> setPixelRatio(pixelRatio/2));
 
-        Button skipB = new Button();
-        Image RWImage = new Image("Resources/rw.png");
-        skipB.setGraphic(new ImageView(RWImage));
 
-        playerButtons.getChildren().addAll(r, play, pause, stop, skipB, skipF);
+        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
 
         // Timer
@@ -339,9 +356,10 @@ public class JavaFXController extends Application implements Serializable {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                TrackLineGUI trackLine = new TrackLineGUI("New Track", getThis());
+                                TrackLineGUI trackLine = new TrackLineGUI(file.getName(), getThis());
                                 channels.getChildren().add(trackLine.createTrack());
-                                trackLine.addFile(file, 0);
+                                trackLine.addFile(file);
+                                trackLines.add(trackLine);
                             } catch (Exception e) {
 
                             }
@@ -361,7 +379,8 @@ public class JavaFXController extends Application implements Serializable {
      */
     public void importFile(){
         ImportManager importManager = new ImportManager();
-        importManager.importFile(channels, this, window);
+        TrackLineGUI trackline = importManager.importFile(channels, this, window);
+        trackLines.add(trackline);
     }
 
     public void export() {
@@ -402,20 +421,24 @@ public class JavaFXController extends Application implements Serializable {
 
     public VBox createTimeline() {
 
+        double pixelsPerSec = 1/(pixelRatio*10);
+
         VBox timeSplit = new VBox(0);
-        HBox timeBox = new HBox(75);
-        for (int i = 0; i < 1000; i += 1) {
-            Label label = new Label(i + "");
-            label.setMinWidth(25);
+        HBox timeBox = new HBox(50);
+        for (double i = 0; i < 500*pixelsPerSec; i += pixelsPerSec) {
+            Label label = new Label();
+            label.textProperty().bind(Bindings.format("%.2f", i));
+            label.setMinWidth(50);
             label.setMinHeight(25);
-            label.setMinHeight(25);
-            label.setMinHeight(25);
+            label.setMaxWidth(50);
+            label.setTextAlignment(TextAlignment.LEFT);
 
             timeBox.getChildren().add(label);
         }
-        
-        timeSplit.setTranslateX(170);
 
+        timeSplit.setTranslateX(165);
+
+        System.out.println(pixelsPerSec);
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
         return timeSplit;
@@ -428,6 +451,7 @@ public class JavaFXController extends Application implements Serializable {
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
+        pointer.setTranslateX(5);
         
         /*
         TT = new TranslateTransition(Duration.seconds(width), pointer);
@@ -438,5 +462,41 @@ public class JavaFXController extends Application implements Serializable {
 
     public Rectangle getPointer() {
         return pointer;
+    }
+
+    public double getPixelRatio() {
+        return pixelRatio;
+    }
+
+    public void setPixelRatio(double pixelRatio) {
+
+        try {
+            // 0.003 around about 32seconds per 100 pixels
+            if (pixelRatio <= 0.1 && pixelRatio > 0.003) {
+                System.out.println(pixelRatio);
+                this.pixelRatio = pixelRatio;
+                for (TrackLineGUI trackline : trackLines) {
+                    //System.out.println(trackline.getLineName());
+                    trackline.resize(this.pixelRatio);
+                }
+                channels.getChildren().remove(0);
+                timeLine = createTimeline();
+                channels.getChildren().add(0, timeLine);
+            } else {
+                System.out.println("Pixel ratio mus be between 0 and 1");
+            }
+        } catch(RuntimeException e) {
+            System.out.println("Error canvas too large");
+        }
+
+
+    }
+
+    public ArrayList<TrackLineGUI> getTrackLines() {
+        return trackLines;
+    }
+
+    public VBox getTimeLine() {
+        return timeLine;
     }
 }

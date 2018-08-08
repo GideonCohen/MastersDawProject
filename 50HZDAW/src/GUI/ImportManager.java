@@ -9,7 +9,7 @@ import java.io.File;
 
 public class ImportManager {
 
-    public void importFile(VBox channels, JavaFXController javaFXController, Stage window){
+    public TrackLineGUI importFile(VBox channels, JavaFXController javaFXController, Stage window){
         // JavaFX prebuilt file chooser
         FileChooser fileChooser = new FileChooser();
 
@@ -22,15 +22,17 @@ public class ImportManager {
         File file = fileChooser.showOpenDialog(window);
 
         // If appropriate file type is chosen
+        TrackLineGUI trackLine = new TrackLineGUI(file.getName(), javaFXController);
         try {
             // Make a channel for the player
-            TrackLineGUI trackLine = new TrackLineGUI("New Track", javaFXController);
             channels.getChildren().add(trackLine.createTrack());
-            trackLine.addFile(file, 0);
+            trackLine.addFile(file);
 
         }
         catch(Exception e) {
 
         }
+
+        return trackLine;
     }
 }

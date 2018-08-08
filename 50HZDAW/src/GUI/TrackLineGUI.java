@@ -52,13 +52,13 @@ public class TrackLineGUI {
     // Volume modifier
     private double volume;
     // All files contained in the track line
-    private ArrayList<Canvas> audioClips;
+    private ArrayList<WaveformCanvas> audioClips;
 
     // Pointer shape
     private Rectangle rect;
 
     // The ratio of pixels to milliseconds.
-    private double pixelRate;
+    private double pixelRatio;
 
     // TranslateTransition object used to move pointer over time
     private TranslateTransition TT;
@@ -80,9 +80,9 @@ public class TrackLineGUI {
         mainWindow = FXController.getMainWindow();
         mixerSetUp = FXController.getMixerSetUp();
         controller = FXController.getController();
-
         // pixel rate currently hard coded to be 100 pixels
-        pixelRate = 0.1;
+        pixelRatio = FXController.getPixelRatio();
+
         index = 0;
         audioClips = new ArrayList<>();
         start = 0;
@@ -152,6 +152,8 @@ public class TrackLineGUI {
             // Remove the channel from the scene
             channels.getChildren().remove(trackLine);
             controller.removeTrack(track);
+            // remove trackline object from controller
+            FXController.getTrackLines().remove(this);
         });
 
 
@@ -207,6 +209,8 @@ public class TrackLineGUI {
 
         displayLine = new StackPane();
         displayLine.setAlignment(Pos.CENTER_LEFT);
+        displayLine.minWidthProperty().bind(FXController.getTimeLine().widthProperty());
+        displayLine.getStyleClass().add("grid");
 
         trackLine.getChildren().addAll(optionsBox, displayLine);
 
@@ -263,7 +267,7 @@ public class TrackLineGUI {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                addFile(file, 0);
+                                addFile(file);
                             } catch (Exception e) {
 
                             }
@@ -279,131 +283,80 @@ public class TrackLineGUI {
     }
 
     /**
-     * Create the waveform for the audio from it's file
-     * @param durationInSeconds - the length in seconds of the file
-     * @param file - a .wav file
-     * @return - a canvas with the wavewform draw on it
-     * @throws Exception
-     */
-    public Canvas createWaveform(Double durationInSeconds, File file) throws Exception {
-
-        // Make the canvas 10px per second long
-        int width = (int) Math.round(durationInSeconds*10);
-        Canvas canvas = new Canvas(width * 10, 100);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        String filePath = file.getAbsolutePath();
-
-        /*
-        AudioInputStream a = AudioSystem.getAudioInputStream(file);
-        byte [] stereoByteArray = new byte [(int)file.length()];
-        a.read(stereoByteArray);
-
-        WaveformGenerator test = new WaveformGenerator(stereoByteArray, gc);
-        test.draw();
-        */
-
-        // Draw the waveform from a file
-        WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
-        wf.draw();
-
-        // Popout waveform editor window on click
-        canvas.setOnMouseClicked(e -> {
-            //WaveformEditor w = new WaveformEditor(width, file, durationInSeconds);
-        });
-
-        //to set starting position for waveform
-        canvas.setTranslateX(0);
-        //10 pixels = 1 second or 1000 ms
-        //1 pixel = 0.1 second or 100ms
-        //if setting position with ms, /100
-
-        return canvas;
-    }
-
-    /**
      *
      * @param file
      * @throws Exception
      */
-    public void addFile(File file, long delay) throws Exception {
+    public void addFile(File file) throws Exception {
 
+        // Get file duration
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         AudioFormat format = audioInputStream.getFormat();
         long frames = audioInputStream.getFrameLength();
         float durationInMilliSeconds = ((frames)/format.getFrameRate()*1000);
 
-
+        // if there are no clips create a track and add the file
         if (audioClips.size() == 0) {
             System.out.println("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, 1, delay);
+            track = mixerSetUp.addTrack(file.getName(), file, 1, 0);
             name.textProperty().setValue(file.getName());
+            lineName = file.getName();
         } else {
+            //add the new track
             System.out.println("I tried to add to a existing track");
-            track.addAudioTrackData(file, (start + delay));
+            //at the end of the old one
+            track.addAudioTrackData(file, (start));
         }
 
         // adjust the volume in case the slider has already been moved
         double volAdjust = Math.pow(10, volume/10);
         adjustVolume((float) volAdjust);
 
-
-        long position = start + delay;
-
-        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInMilliSeconds, file, index, mixerSetUp, displayLine, position, track);
+        //create the canvas
+        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInMilliSeconds, file, index, displayLine, start, track, pixelRatio);
         Canvas canvas = waveformCanvas.createWaveform();
 
-        start += Math.round(durationInMilliSeconds) + delay;
+        //update the start position
+        start += Math.round(durationInMilliSeconds);
+        /*
         System.out.println("Duration is :" + durationInMilliSeconds);
         System.out.println("Next Start at :" + start);
+        */
 
-        audioClips.add(canvas);
+        // add new canvas to array
+        audioClips.add(waveformCanvas);
 
+        // add canavs to HBox and increase index
         displayLine.getChildren().add(canvas);
         index++;
     }
 
-    public HBox createTimeline() {
+    public int getAudioIndex(WaveformCanvas wfCanvas){
+        return audioClips.indexOf(wfCanvas);
+    }
 
-        HBox timeBox = new HBox(75);
-        for (int i = 0; i < 1000; i += 1) {
-            Label label = new Label(i + "");
-            label.setMinWidth(25);
-            label.setMinHeight(25);
-            label.setMinHeight(25);
-            label.setMinHeight(25);
+    public String getLineName() {
+        return lineName;
+    }
 
-            timeBox.getChildren().add(label);
+    public void resize(double newPixelRatio) {
+        pixelRatio = newPixelRatio;
+        double change = newPixelRatio/pixelRatio;
+        // for each canvas
+        for (WaveformCanvas wfCanvas: audioClips){
+            // get the old canvas
+            Canvas canvas = wfCanvas.getCanvas();
+            // remove it
+            displayLine.getChildren().remove(canvas);
+            // update the pixel ratio
+            wfCanvas.setPixelRatio(pixelRatio);
+            // redraw it
+            Canvas zoomCanvas = wfCanvas.createWaveform();
+            //update the position
+            wfCanvas.setPosition((long) (wfCanvas.getPosition()*change));
+            // re-add it
+            displayLine.getChildren().add(zoomCanvas);
         }
 
-        return timeBox;
-    }
-
-    public void createPointer(int width) {
-
-        rect = new Rectangle();
-        rect.setStroke(Color.BLACK);
-        rect.setWidth(5);
-        rect.setHeight(15);
-        rect.setFill(Color.BLACK);
-
-        TT = new TranslateTransition(Duration.seconds(width), rect);
-        TT.setToX(width * 10);
-        TT.setInterpolator(Interpolator.LINEAR);
-    }
-
-    public void addPointer() {
-
-    }
-
-    public TranslateTransition getTT() {
-        return TT;
-    }
-
-    public Rectangle getRect() {
-        return rect;
-    }
-
-    public int getAudioIndex(Canvas canvas){
-        return audioClips.indexOf(canvas);
     }
 }

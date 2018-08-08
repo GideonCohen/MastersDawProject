@@ -15,8 +15,10 @@ public class ConfirmationBox {
 
 
     /**
+     * Offers an yes or no option and returns the answer
      * @param title - title of the window
      * @param message - message to the user
+     * @return boolean
      */
     public static boolean Display(String title, String message){
         Stage window = new Stage();

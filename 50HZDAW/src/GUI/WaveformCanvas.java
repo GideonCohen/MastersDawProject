@@ -32,37 +32,38 @@ public class WaveformCanvas {
     private Canvas canvas;
     // index of associated file
     private int index;
-    // Starting delay, used to calculate position
-    private long position;
+    // Starting time, used to calculate position
+    private long start;
     // associated track object
     private Track track;
-    // associayted mixer object
-    private MixerSetUp mixer;
-
+    // pixel to millisecond ration
+    private double pixelRatio;
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
 
     private StackPane waveformStack;
 
 
-    public WaveformCanvas(double duration, File f, int i, MixerSetUp mixerSetUp, StackPane stack, long delay, Track track) throws Exception {
+    public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio) throws Exception {
 
         // intialise global variables
         index = i;
         durationInMilliSeconds = duration;
         file = f;
-        mixer = mixerSetUp;
         waveformStack = stack;
-        position = delay;
+        this.start = start;
         this.track = track;
-    }
+        pixelRatio = pixRatio;
 
+
+    }
 
 
     public Canvas createWaveform() {
 
+        // +5 to help deal with padding issue in waveform generation
+        width = (int) Math.round(durationInMilliSeconds * pixelRatio) + 5;
         // set width and create the canvas
-        width = (int) Math.round(durationInMilliSeconds/10) + 5;
         canvas = new Canvas(width, 150);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -74,11 +75,11 @@ public class WaveformCanvas {
         wf.setPaddingRight(0);
         wf.setWidth(width - 5);
         wf.setShowCenterLine(true);
-        System.out.println("padding is " + wf.getPaddingRight());
+        //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
 
         //to set starting position for waveform
-        canvas.setTranslateX(position/10);
+        canvas.setTranslateX(start * pixelRatio);
         //10 pixels = 1 second or 1000 ms
         //1 pixel = 0.1 second or 100ms
         //if setting position with ms, /100
@@ -88,8 +89,12 @@ public class WaveformCanvas {
     }
 
 
+    /**
+     * Adds interactivity to the canvas
+     */
     public void addMouseListeners() {
 
+        // Open the waveform editor when the canvas is right clicked
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -100,14 +105,16 @@ public class WaveformCanvas {
             }
         });
 
+        // Set cursor to hand when on the canvas
         canvas.setCursor(Cursor.HAND);
+        // Move the canvas and update the delay when dragged
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.PRIMARY) {
                     double offsetX = event.getSceneX() - orgSceneX;
-                    double offsetY = event.getSceneY() - orgSceneY;
+                    //double offsetY = event.getSceneY() - orgSceneY;
                     double newTranslateX = orgTranslateX + offsetX;
 
                     if (newTranslateX < 0) {
@@ -115,15 +122,17 @@ public class WaveformCanvas {
                     }
                     ((Canvas) (event.getSource())).setTranslateX(newTranslateX);
 
-                    long delay = (long) newTranslateX * 10;
+                    long delay = (long) (newTranslateX/pixelRatio);
+                    start = delay;
                     track.moveAudioFile(index, delay);
-                    //System.out.println("Start at " + delay + "ms");
+                    System.out.println("Start at " + delay + "ms");
                     //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
 
                 }
             }
         });
 
+        // get the position of the canvas on click
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -138,5 +147,22 @@ public class WaveformCanvas {
             }
 
         });
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public void setPixelRatio(double pixelRatio) {
+        this.pixelRatio = pixelRatio;
+    }
+
+    public long getPosition() {
+        return start;
+    }
+
+    public void setPosition(long start) {
+        this.start = start;
+        canvas.setTranslateX(start*pixelRatio);
     }
 }

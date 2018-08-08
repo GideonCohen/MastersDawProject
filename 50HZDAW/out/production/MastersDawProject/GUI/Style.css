@@ -13,6 +13,11 @@
     -fx-border-color: black;
 }
 
+.grid {
+    -fx-background-color: #D3D3D333,
+            linear-gradient(from 0px 0px to 50px 0px, repeat, black 1%, transparent 1%);
+}
+
 .options-box{
     -fx-background-color: lightgray;
 }
