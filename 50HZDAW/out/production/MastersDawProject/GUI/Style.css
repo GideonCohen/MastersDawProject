@@ -1,55 +1,18 @@
-.root{
-}
 
-.scroll-pane {
-}
 
 .scroll-pane > .viewport {
-}
-
-.back-pane{
-}
-
-.split-pane{
-}
-
-.hbox{
-}
-
-.vbox{
-}
-
-.stack-pane{
-}
-.button{
-}
-
-.label{
-}
-
-.track-label{
-}
-
-.button-red{
-}
-
-#label-bold{
-}
-
-.scroll-pane > .corner {
-}
-
-.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: transparent;
 }
 
 
-.increment-button, .decrement-button {
+.track-line{
+    -fx-padding: 0;
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-insets: 5;
+    -fx-border-color: black;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-}
-
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
+.options-box{
+    -fx-background-color: lightgray;
 }

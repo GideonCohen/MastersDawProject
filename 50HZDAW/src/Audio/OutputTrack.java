@@ -70,7 +70,7 @@ public class OutputTrack {
         source = (SourceDataLine) AudioSystem.getLine(newLine);
         source.open(audioFormat, source.getBufferSize()); //
 
-        bufferSize = 1024 * 6;
+        bufferSize = 1024*6;
         readBufferSize = bufferSize * 2;
         sdlBufferSize = bufferSize * 4;
 
@@ -79,12 +79,14 @@ public class OutputTrack {
 
         tracks = new ArrayList<>();
         byteToFloat = new ByteToFloat();
-//        timing.getTimerMillis();
+//       timing.getTimerMillis();
 
         trackOffset = offset;
 
         readBuffer = new byte [source.getBufferSize()];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
 
+        // pause fix i think, was reinitialising count each time
+        count = (int) trackOffset/readBuffer.length;
     }
 
     /**
@@ -225,6 +227,7 @@ public class OutputTrack {
                 // System.out.println(count);                                   // 44100 sample rate = each stereo sample is 44100 * 4 = 176400
                 count++;                                                    // total bytes = length of audio file * bytespersecond (176400)
             }
+            // catch last write before source is killed
             source.write(readBuffer, 0, 44100);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());          //
@@ -232,6 +235,7 @@ public class OutputTrack {
         catch (IOException ioe) {
             System.out.println(ioe.getMessage());          // SHOULD BE CAUGHT CLIENT SIDE...
         }
+
         System.out.println(count);
 
         if (numBytesRead == -1) {
@@ -290,11 +294,13 @@ public class OutputTrack {
 
     public long pause() {
 
-        pause = true;
         trackOffset = count * readBuffer.length;
+        pause = true;
+        /*
         System.out.println("Paused at " + trackOffset);
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
+        */
         source.stop();
         source.drain();
         outputStream.reset();
@@ -370,5 +376,9 @@ public class OutputTrack {
         outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);     // transform float array to 24-bit byte array
 
         return outputBytes;
+    }
+
+    public long getCurrentPosition() {
+        return count * readBuffer.length;
     }
 }

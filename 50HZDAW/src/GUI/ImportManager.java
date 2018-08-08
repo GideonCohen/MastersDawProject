@@ -1,6 +1,7 @@
 package GUI;
 
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -8,7 +9,7 @@ import java.io.File;
 
 public class ImportManager {
 
-    public void importFile(SplitPane pane, JavaFXController javaFXController, Stage window){
+    public void importFile(VBox channels, JavaFXController javaFXController, Stage window){
         // JavaFX prebuilt file chooser
         FileChooser fileChooser = new FileChooser();
 
@@ -24,7 +25,7 @@ public class ImportManager {
         try {
             // Make a channel for the player
             TrackLineGUI trackLine = new TrackLineGUI("New Track", javaFXController);
-            pane.getItems().add(trackLine.createTrack());
+            channels.getChildren().add(trackLine.createTrack());
             trackLine.addFile(file, 0);
 
         }

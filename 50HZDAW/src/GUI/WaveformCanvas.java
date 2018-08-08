@@ -3,6 +3,8 @@ package GUI;
 import Audio.MixerSetUp;
 import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
@@ -61,7 +63,7 @@ public class WaveformCanvas {
 
         // set width and create the canvas
         width = (int) Math.round(durationInMilliSeconds/10) + 5;
-        canvas = new Canvas(width, 100);
+        canvas = new Canvas(width, 150);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // get filepath and create waveform generator

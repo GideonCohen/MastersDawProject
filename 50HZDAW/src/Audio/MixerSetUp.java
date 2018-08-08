@@ -221,5 +221,11 @@ public class MixerSetUp {
         return output;
     }
 
+    public long getPlayOffset() {
+        return playOffset;
+    }
 
+    public long getCurrentPosition() {
+        return output.getCurrentPosition();
+    }
 }

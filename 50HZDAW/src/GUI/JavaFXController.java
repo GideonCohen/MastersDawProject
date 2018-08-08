@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -45,10 +46,13 @@ public class JavaFXController extends Application implements Serializable {
     // Audio Player
     private MixerSetUp mixerSetUp;
 
-    // Split pain for the main window
-    private SplitPane splitPane;
+    // Split pane for the main window
+    private VBox channels;
 
-    private ImageView background;
+    // pointer for the timeline
+    private Rectangle pointer;
+
+
 
     public static void main(String[] args) {
         // calls the args method of application
@@ -103,43 +107,44 @@ public class JavaFXController extends Application implements Serializable {
         BorderPane mainLayout = new BorderPane();
 
         // Add the split pane to a scroll pane so able to show many windows
-        ScrollPane channels = new ScrollPane();
+        ScrollPane channelView = new ScrollPane();
         StackPane backPane = new StackPane();
         backPane.setId("back-pane");
 
         // add arrangement layout
-        splitPane = new SplitPane();
-        splitPane.setOrientation(Orientation.VERTICAL);
-        splitPane.setMinSize(1,1);
+        channels = new VBox();
+        channels.setMinHeight(1);
 
         // Bind the channels to be as wide as the alignment window
-        splitPane.minWidthProperty().bind(channels.widthProperty());
+        channels.minWidthProperty().bind(channelView.widthProperty());
+        channels.getChildren().add(createTimeline());
 
-        channels.setContent(backPane);
-
-
+        // Import and load background
+        String localUrl = "";
 
         try {
-        File file = new File("50HZDAW/Samples/TestBackground.jpg");
-        String localUrl = file.toURI().toURL().toString();
-        // don't load in the background
-        Image backgroundImage = new Image(localUrl, false);
-
-        this.background = new ImageView();
-        background.setImage(backgroundImage);
-        background.setCache(true);
-        background.fitHeightProperty();
+            // image location
+            File file = new File("50HZDAW/Samples/WoodGrain.png");
+            localUrl = file.toURI().toURL().toString();
         } catch (Exception e) {
         }
 
-        backPane.getChildren().addAll(background, splitPane);
+        Image backImage = new Image(localUrl, false);
+        // size = change cover to true for repeating images
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(backImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        Background background = new Background(backgroundImage);
+
+        //Set background of scroll pane to show image, uncomment to add
+        channelView.setBackground(background);
+        channelView.setContent(channels);
 
         // Set positions in the layout
         mainLayout.setTop(makeTopLine());
-        mainLayout.setCenter(channels);
+        mainLayout.setCenter(channelView);
 
         // add children to split
-        mainSplit.getChildren().add(makeMenu(splitPane));
+        mainSplit.getChildren().add(makeMenu());
         mainSplit.getChildren().add(mainLayout);
 
         // make the scene
@@ -148,20 +153,19 @@ public class JavaFXController extends Application implements Serializable {
 
 
         // Allow for drag and drop for adding files
-        dragDropTracks(mainWindow, splitPane, channels);
+        dragDropTracks(channelView);
 
         // Bind the arrangemnet window to be just smaller than the app window
-        channels.prefHeightProperty().bind(mainWindow.heightProperty().add(-100));
+        channelView.prefHeightProperty().bind(mainWindow.heightProperty().add(-100));
 
     }
 
     /**
      * Create a Menu Bar for the application
      *
-     * @param pane - Split pane for adding channels
      * @return MenuBar
      */
-    private MenuBar makeMenu(SplitPane pane){
+    private MenuBar makeMenu(){
 
         // file menu
         Menu fileMenu = new Menu("File");
@@ -170,14 +174,14 @@ public class JavaFXController extends Application implements Serializable {
         MenuItem addTrack = new MenuItem("Add Audio");
         // Import file via browser window
         addTrack.setOnAction(event -> {
-            importFile(pane);
+            importFile();
         });
         fileMenu.getItems().add(addTrack);
 
         MenuItem newTrack = new MenuItem("New Track");
         newTrack.setOnAction(event -> {
             TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
-            pane.getItems().add(trackLine.createTrack());
+            channels.getChildren().add(trackLine.createTrack());
         });
         fileMenu.getItems().add(newTrack);
 
@@ -305,10 +309,8 @@ public class JavaFXController extends Application implements Serializable {
 
     /**
      * Allows .wav files to be added to the application. Will create channels as files are added
-     * @param scene - Area that can be dragged into
-     * @param pane - SplitPane to add the channels to
      */
-    private void dragDropTracks(Scene scene, SplitPane pane, ScrollPane scroll){
+    private void dragDropTracks(ScrollPane scroll){
 
         // Handler for drag over
         scroll.setOnDragOver(new EventHandler<DragEvent>() {
@@ -338,7 +340,7 @@ public class JavaFXController extends Application implements Serializable {
                         if (file.getName().endsWith(".wav")) {
                             try {
                                 TrackLineGUI trackLine = new TrackLineGUI("New Track", getThis());
-                                pane.getItems().add(trackLine.createTrack());
+                                channels.getChildren().add(trackLine.createTrack());
                                 trackLine.addFile(file, 0);
                             } catch (Exception e) {
 
@@ -356,11 +358,10 @@ public class JavaFXController extends Application implements Serializable {
 
     /**
      * Import a file from the Menu Bar
-     * @param pane - the pane to add the channel too
      */
-    public void importFile(SplitPane pane){
+    public void importFile(){
         ImportManager importManager = new ImportManager();
-        importManager.importFile(pane, this, window);
+        importManager.importFile(channels, this, window);
     }
 
     public void export() {
@@ -395,7 +396,47 @@ public class JavaFXController extends Application implements Serializable {
         return this;
     }
 
-    public SplitPane getSplitPane() {
-        return splitPane;
+    public VBox getVBox() {
+        return channels;
+    }
+
+    public VBox createTimeline() {
+
+        VBox timeSplit = new VBox(0);
+        HBox timeBox = new HBox(75);
+        for (int i = 0; i < 1000; i += 1) {
+            Label label = new Label(i + "");
+            label.setMinWidth(25);
+            label.setMinHeight(25);
+            label.setMinHeight(25);
+            label.setMinHeight(25);
+
+            timeBox.getChildren().add(label);
+        }
+        
+        timeSplit.setTranslateX(170);
+
+        createPointer();
+        timeSplit.getChildren().addAll(timeBox, pointer);
+        return timeSplit;
+    }
+
+    public void createPointer() {
+
+        pointer = new Rectangle();
+        pointer.setStroke(Color.BLACK);
+        pointer.setWidth(5);
+        pointer.setHeight(5);
+        pointer.setFill(Color.BLACK);
+        
+        /*
+        TT = new TranslateTransition(Duration.seconds(width), pointer);
+        TT.setToX(width * 10);
+        TT.setInterpolator(Interpolator.LINEAR);
+        */
+    }
+
+    public Rectangle getPointer() {
+        return pointer;
     }
 }

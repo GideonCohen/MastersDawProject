@@ -6,10 +6,8 @@ import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,7 +39,7 @@ public class TrackLineGUI {
     private String lineName;
     // Name label for the channel
     private Label name;
-    private SplitPane parent;
+    private VBox channels;
     private Scene mainWindow;
     // The Track attached to the track line
     private Track track;
@@ -59,6 +57,9 @@ public class TrackLineGUI {
     // Pointer shape
     private Rectangle rect;
 
+    // The ratio of pixels to milliseconds.
+    private double pixelRate;
+
     // TranslateTransition object used to move pointer over time
     private TranslateTransition TT;
 
@@ -75,11 +76,13 @@ public class TrackLineGUI {
     public TrackLineGUI(String name, JavaFXController control) {
         lineName = name;
         FXController = control;
-        parent = FXController.getSplitPane();
+        channels = FXController.getVBox();
         mainWindow = FXController.getMainWindow();
         mixerSetUp = FXController.getMixerSetUp();
         controller = FXController.getController();
 
+        // pixel rate currently hard coded to be 100 pixels
+        pixelRate = 0.1;
         index = 0;
         audioClips = new ArrayList<>();
         start = 0;
@@ -95,11 +98,14 @@ public class TrackLineGUI {
         trackLine = new HBox(20);
         trackLine.prefWidthProperty().bind(mainWindow.widthProperty());
         trackLine.setPrefHeight(200);
+        trackLine.getStyleClass().add("track-line");
+
 
         // Parent for all settings buttons
         VBox optionsBox = new VBox(5);
         optionsBox.setMinWidth(150);
         optionsBox.setMaxWidth(150);
+        optionsBox.getStyleClass().add("options-box");
 
         // Name label
         name = new Label(lineName);
@@ -144,17 +150,16 @@ public class TrackLineGUI {
         deleteChannel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
         deleteChannel.setOnAction(event -> {
             // Remove the channel from the scene
-            parent.getItems().remove(trackLine);
+            channels.getChildren().remove(trackLine);
             controller.removeTrack(track);
         });
 
 
         volume = 0;
         // volume volumeSlider
-        Slider volumeSlider = new Slider(-10, 6, 0);
-        volumeSlider.setShowTickLabels(true);
+        Slider volumeSlider = new Slider(-18, 6, 0);
         volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(4);
+        volumeSlider.setMajorTickUnit(3);
         volumeSlider.setMinorTickCount(2);
         volumeSlider.setBlockIncrement(1);
         volumeSlider.setSnapToTicks(true);
@@ -179,44 +184,31 @@ public class TrackLineGUI {
         volLabel.textProperty().bind(Bindings.format("Volume: %.2f Db", volumeSlider.valueProperty()));
 
         //Panning
-        Slider panSlider = new Slider(-100, 100, 0);
-        panSlider.setShowTickLabels(true);
+        Slider panSlider = new Slider(-50, 50, 0);
         panSlider.setShowTickMarks(true);
-        panSlider.setMajorTickUnit(40);
-        panSlider.setMinorTickCount(20);
-        panSlider.setBlockIncrement(10);
+        panSlider.setMajorTickUnit(10);
+        panSlider.setMinorTickCount(9);
+        panSlider.setBlockIncrement(1);
         panSlider.setSnapToTicks(true);
 
         Label panLabel = new Label();
-        panLabel.textProperty().bind(Bindings.format("Left:%.2f" + " Right: %.2f", panSlider.valueProperty(), panSlider.valueProperty()));
+
+        DoubleProperty panLeft = new SimpleDoubleProperty();
+        panLeft.bind(panSlider.valueProperty().multiply(-1).add(50));
+
+        DoubleProperty panRight = new SimpleDoubleProperty();
+        panRight.bind(panSlider.valueProperty().add(50));
+
+        panLabel.textProperty().bind(Bindings.format("Left:%.0f%%" + " Right: %.0f%%", panLeft, panRight));
 
 
         // Layout for buttons
         optionsBox.getChildren().addAll(name, muteSolo, deleteChannel, volumeSlider, volLabel, panSlider, panLabel);
 
-        //Timeline
-        HBox timelineBox = new HBox(75);
-        createTimeline(timelineBox);
-
-        // Box that creates a split between timeline and waveform display
-        VBox timelineSplit = new VBox();
         displayLine = new StackPane();
         displayLine.setAlignment(Pos.CENTER_LEFT);
-        timelineSplit.getChildren().addAll(timelineBox, displayLine);
 
-        // Final waveform box with pointer, timeline and waveform display
-        VBox finalBox = new VBox();
-
-        // Timeline marker
-        rect = new Rectangle();
-        rect.setStroke(Color.BLACK);
-        rect.setWidth(5);
-        rect.setHeight(15);
-        rect.setFill(Color.BLACK);
-        finalBox.getChildren().addAll(rect, timelineSplit);
-
-
-        trackLine.getChildren().addAll(optionsBox, finalBox);
+        trackLine.getChildren().addAll(optionsBox, displayLine);
 
         // Allow for files to be dragged and dropped
         acceptDragDrop(trackLine);
@@ -370,8 +362,9 @@ public class TrackLineGUI {
         index++;
     }
 
-    public HBox createTimeline(HBox box) {
+    public HBox createTimeline() {
 
+        HBox timeBox = new HBox(75);
         for (int i = 0; i < 1000; i += 1) {
             Label label = new Label(i + "");
             label.setMinWidth(25);
@@ -379,10 +372,10 @@ public class TrackLineGUI {
             label.setMinHeight(25);
             label.setMinHeight(25);
 
-            box.getChildren().add(label);
+            timeBox.getChildren().add(label);
         }
 
-        return box;
+        return timeBox;
     }
 
     public void createPointer(int width) {
