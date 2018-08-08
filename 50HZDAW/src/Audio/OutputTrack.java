@@ -213,8 +213,6 @@ public class OutputTrack {
 
        // timing = new Timing(0, 100000, true);
       //  timing.getTimerMillis(bpm);
-
-
         int numBytesRead = 0;
 
         try {
@@ -231,17 +229,17 @@ public class OutputTrack {
             source.write(readBuffer, 0, 44100);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());          //
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.out.println(ioe.getMessage());          // SHOULD BE CAUGHT CLIENT SIDE...
         }
 
-        System.out.println(count);
+        System.out.println("Bytes left = " + (outputLength - (count * readBuffer.length)));
 
         if (numBytesRead == -1) {
             count = 0;
         }
         System.out.println("Done");
+
         source.stop();
         source.drain();
         outputStream.reset();

@@ -14,7 +14,7 @@
 }
 
 .grid {
-    -fx-background-color: #D3D3D333,
+    -fx-background-color: transparent,
             linear-gradient(from 0px 0px to 50px 0px, repeat, black 1%, transparent 1%);
 }
 
