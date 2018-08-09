@@ -68,6 +68,7 @@ public class OutputTrack {
         newLine = new DataLine.Info(SourceDataLine.class, audioFormat);
         // set up a data line with given audio format and specify the type of line it will be (source data line).
         source = (SourceDataLine) AudioSystem.getLine(newLine);
+        // Looks like this line was missing for some reason
         source.open(audioFormat, source.getBufferSize()); //
 
         bufferSize = 1024*6;
@@ -85,7 +86,7 @@ public class OutputTrack {
 
         readBuffer = new byte [source.getBufferSize()];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
 
-        // pause fix i think, was reinitialising count each time
+        // pause fix i think, was reinitialising count each time.
         count = (int) trackOffset/readBuffer.length;
     }
 
