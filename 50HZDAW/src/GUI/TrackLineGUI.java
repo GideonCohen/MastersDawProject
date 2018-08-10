@@ -2,8 +2,6 @@ package GUI;
 
 import Audio.MixerSetUp;
 import Audio.Track;
-import electronism.sample.gui.javafx.WaveformGenerator;
-import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -12,8 +10,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -23,14 +22,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
-
 
 
 public class TrackLineGUI {
@@ -51,9 +48,6 @@ public class TrackLineGUI {
     private StackPane displayLine;
     // Volume modifier
     private double volume;
-    // Pan modifier
-    private double pan;
-
     // All files contained in the track line
     private ArrayList<WaveformCanvas> audioClips;
 
@@ -188,7 +182,6 @@ public class TrackLineGUI {
         Label volLabel = new Label();
         volLabel.textProperty().bind(Bindings.format("Volume: %.2f Db", volumeSlider.valueProperty()));
 
-        pan = 0;
         //Panning
         Slider panSlider = new Slider(-50, 50, 0);
         panSlider.setShowTickMarks(true);
@@ -196,23 +189,6 @@ public class TrackLineGUI {
         panSlider.setMinorTickCount(9);
         panSlider.setBlockIncrement(1);
         panSlider.setSnapToTicks(true);
-
-        panSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double newPan = volumeSlider.getValue();
-                double diff = newPan - pan;
-                double deci = Math.pow(10, (diff/10));
-                /*
-                System.out.println("The volume went from " + volume + " to " + newVol);
-                System.out.println("The difference was " + diff);
-                System.out.println("decible change: " + deci);
-                */
-                //setPan((float) deci);
-                pan = newPan;
-            }
-        });
-
 
         Label panLabel = new Label();
 
@@ -249,23 +225,6 @@ public class TrackLineGUI {
     private void adjustVolume(float vol) {
         try {
             track.addVolume(vol);
-            //System.out.println(vol);
-        } catch (NullPointerException e) {
-            System.out.println("No track");
-        }
-    }
-
-
-
-    /**
-     * Adjust the volume of all audio in this track. Values above 1 increase sound, values below decrease sound.
-     * Minimum value is 0 max is TBD
-     * @param vol - float
-     */
-    private void setPan(float vol) {
-
-        try {
-            track.setPan(vol);
             //System.out.println(vol);
         } catch (NullPointerException e) {
             System.out.println("No track");
@@ -379,7 +338,7 @@ public class TrackLineGUI {
 
     public void resize(double newPixelRatio) {
         pixelRatio = newPixelRatio;
-        double change = (newPixelRatio/pixelRatio);
+        double change = newPixelRatio/pixelRatio;
         // for each canvas
         for (WaveformCanvas wfCanvas: audioClips){
             // get the old canvas

@@ -342,7 +342,7 @@ public class JavaFXController extends Application implements Serializable {
         stop.setOnAction(event -> {
                 controller.stop();
                 timing.stopTimer();
-
+                pointer.setTranslateX(0);
                 timer.setText("00:00");
     });
 
