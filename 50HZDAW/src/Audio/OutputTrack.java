@@ -59,8 +59,6 @@ public class OutputTrack {
         source.open(audioFormat, source.getBufferSize()); //
 
         bufferSize = 1024*6;
-        readBufferSize = bufferSize * 2;
-        sdlBufferSize = bufferSize * 4;
 
         minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
         maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
@@ -71,7 +69,7 @@ public class OutputTrack {
 
         trackOffset = offset;
 
-        readBuffer = new byte [source.getBufferSize()];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
+        readBuffer = new byte [bufferSize];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
 
         // pause fix i think, was reinitialising count each time.
         count = (int) trackOffset/readBuffer.length;
@@ -214,7 +212,7 @@ public class OutputTrack {
                 count++;                                                    // total bytes = length of audio file * bytespersecond (176400)
             }
             // catch last write before source is killed
-            source.write(readBuffer, 0, 44100);
+            // source.write(readBuffer, 0, 44100);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());          //
         } catch (IOException ioe) {
@@ -227,6 +225,10 @@ public class OutputTrack {
             count = 0;
         }
         System.out.println("Done");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {}
 
         source.stop();
         source.drain();

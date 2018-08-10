@@ -21,3 +21,7 @@
 .options-box{
     -fx-background-color: lightgray;
 }
+
+.back-pane {
+    -fx-background-color: transparent;
+}

@@ -86,6 +86,8 @@ public class JavaFXController extends Application implements Serializable {
     // length of a bar at given BPM.
     private double barLength;
 
+    private DirectoryViewer directory;
+
 
 
 
@@ -124,6 +126,7 @@ public class JavaFXController extends Application implements Serializable {
         pixelRatio = 0.1/ barLength;
         timelineRatio = 1;
 
+        directory = new DirectoryViewer(this);
 
         // Create the main layout
         makeMainWindow();
@@ -149,7 +152,6 @@ public class JavaFXController extends Application implements Serializable {
      * The Main Layout of the application (Essentially everything except the menu bar)
      */
     private void makeMainWindow(){
-
         //Splits the menu and the rest of the window
         VBox mainSplit = new VBox(0);
 
@@ -342,6 +344,7 @@ public class JavaFXController extends Application implements Serializable {
         stop.setOnAction(event -> {
                 controller.stop();
                 timing.stopTimer();
+                TT.stop();
                 pointer.setTranslateX(0);
                 timer.setText("00:00");
     });
@@ -352,8 +355,13 @@ public class JavaFXController extends Application implements Serializable {
         Button zoomOut = new Button("Zoom Out");
         zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
 
+        Button directoryButton = new Button("Directory");
+        directoryButton.setOnAction(event -> {
+            window.setScene(directory.getScene());
+        });
 
-        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
+
+        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut, directoryButton);
 
 
         // Timer
@@ -592,5 +600,9 @@ public class JavaFXController extends Application implements Serializable {
 
     public VBox getTimeLine() {
         return timeLine;
+    }
+
+    public void setMainScene() {
+        window.setScene(mainWindow);
     }
 }
