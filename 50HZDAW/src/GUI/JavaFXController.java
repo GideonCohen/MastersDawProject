@@ -302,7 +302,7 @@ public class JavaFXController extends Application implements Serializable {
         Button zoomIn = new Button("Zoom In");
         zoomIn.setOnAction(event -> setPixelRatio(pixelRatio*2));
 
-        Button zoomOut = new Button("Zoom In");
+        Button zoomOut = new Button("Zoom Out");
         zoomOut.setOnAction(event -> setPixelRatio(pixelRatio/2));
 
 
@@ -438,7 +438,6 @@ public class JavaFXController extends Application implements Serializable {
 
         timeSplit.setTranslateX(165);
 
-        System.out.println(pixelsPerSec);
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
         return timeSplit;
@@ -473,7 +472,7 @@ public class JavaFXController extends Application implements Serializable {
         try {
             // 0.003 around about 32seconds per 100 pixels
             if (pixelRatio <= 0.1 && pixelRatio > 0.003) {
-                System.out.println(pixelRatio);
+                //System.out.println(pixelRatio);
                 this.pixelRatio = pixelRatio;
                 for (TrackLineGUI trackline : trackLines) {
                     //System.out.println(trackline.getLineName());

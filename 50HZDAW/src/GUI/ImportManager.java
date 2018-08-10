@@ -22,17 +22,19 @@ public class ImportManager {
         File file = fileChooser.showOpenDialog(window);
 
         // If appropriate file type is chosen
-        TrackLineGUI trackLine = new TrackLineGUI(file.getName(), javaFXController);
+
         try {
+            TrackLineGUI trackLine = new TrackLineGUI(file.getName(), javaFXController);
             // Make a channel for the player
             channels.getChildren().add(trackLine.createTrack());
             trackLine.addFile(file);
+            return trackLine;
 
         }
         catch(Exception e) {
 
         }
 
-        return trackLine;
+        return null;
     }
 }

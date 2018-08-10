@@ -57,9 +57,11 @@ public class OutputTrack {
         bpmConverter = new BPMConverter();
         bpmConverter.setBPM((int)bpm);
 
+        /*
         System.out.println(bpmConverter.setBars(4));
         System.out.println(bpmConverter.setQuarterBeat(16));
         System.out.println(bpmConverter.setEighthBeat(32));
+        */
 
 
         // OUTPUT TRACK IS AT 24-BIT STEREO.
@@ -68,7 +70,6 @@ public class OutputTrack {
         newLine = new DataLine.Info(SourceDataLine.class, audioFormat);
         // set up a data line with given audio format and specify the type of line it will be (source data line).
         source = (SourceDataLine) AudioSystem.getLine(newLine);
-        // Looks like this line was missing for some reason
         source.open(audioFormat, source.getBufferSize()); //
 
         bufferSize = 1024*6;
@@ -302,7 +303,11 @@ public class OutputTrack {
         */
         source.stop();
         source.drain();
-        outputStream.reset();
+        try {
+            outputStream.reset();
+        } catch (NullPointerException e) {
+            // No stream to reset
+        }
         return trackOffset;
     }
 
