@@ -94,13 +94,15 @@ public class WaveformCanvas {
      */
     public void addMouseListeners() {
 
+        WaveformCanvas waveform = this;
+
         // Open the waveform editor when the canvas is right clicked
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(width, index, file, track, waveformStack, canvas);
+                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, pixelRatio);
                 }
             }
         });
