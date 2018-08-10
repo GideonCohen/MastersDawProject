@@ -1,5 +1,8 @@
 package Audio;
 
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -9,8 +12,6 @@ import java.util.TimerTask;
 public class Timing {
 
 
-    private long start;
-    private long finish;
     private long timeStart;
     private long timeElapsed;
     private long minutes;
@@ -25,24 +26,23 @@ public class Timing {
     private int beats;
     private int lengthOfBar;
     private int lengthOfBeat;
+    private BPMConverter bpmConverter;
 
 
 
 
 
-    public Timing(long start, long finish, boolean isMetronome) {
+    public Timing() {
 
         //TimeGui timeGui = new TimeGui();
 
-        this.start = start;
-        this.finish = finish;
-        milliseconds = 0 + start;
-        bars = 0;
-        beats = 0;
+        milliseconds = 0;
+        bars = 1;
+        beats = 1;
 
         this.isMetronome = isMetronome;
         try {
-           metronome = new Metronome();
+            metronome = new Metronome();
         }
         catch (UnsupportedAudioFileException uafe) {
             System.out.println(uafe.getMessage());
@@ -52,31 +52,21 @@ public class Timing {
 
         }
         catch (LineUnavailableException lua) {
-           System.out.println(lua.getMessage());
+            System.out.println(lua.getMessage());
 
         }
+        bpmConverter = new BPMConverter();
 
-        timer = new Timer();
 
     }
 
-    public void getTimerMillis(float bpm) {
+    public void getTimerMillis(int bpm, Label barsLabel, Label bpmLabel) {
 
-        if(bpm >= 120) {
-            float offSet = bpm / 60;
-            lengthOfBar = (int) (1000 * (2 + (2 - offSet)));      // convert bars & beats in to millisecond timing.
-            lengthOfBeat = lengthOfBar / 4;                       // calculations for when tempo is increased
-        }
-        if(beats < 60) {
-            float offSet = bpm / 60;
-            lengthOfBeat = (int) (1000 * (1 + (1- offSet)));      // convert bars & beats in to millisecond timing.
-            lengthOfBar = lengthOfBeat * 4;                      // calculation for when tempo is decreased
-        }
+        timer = new Timer();
 
-        System.out.println(lengthOfBar);
-        System.out.println(lengthOfBeat);
+        bpmConverter.setBPM(bpm);
 
-        timerSwitch = true;
+        // timerSwitch = true;
         timerTaskMillis = new TimerTask() {
 
 
@@ -84,87 +74,73 @@ public class Timing {
             public void run() {
 
 
-                    timeStart = System.currentTimeMillis();
+                timeStart = System.currentTimeMillis();
+                if (milliseconds >= 1000) {
+                    seconds = milliseconds / 1000;
+                }
+                if (seconds % 60 == 0) {             // millisecond accuracy
+                    minutes = seconds / 60;
+                }
 
-                    if (milliseconds >= 1000) {
-                        seconds = milliseconds / 1000;
-                    }
-                    if (seconds % 60 == 0) {             // millisecond accuracy
-                        minutes = seconds / 60;
-                    }
-
-                if (milliseconds == 0) {
-                    try {
-                        metronome.play(bpm);
-                    }
-                    catch(LineUnavailableException lue) {
-                        System.out.println(lue.getMessage());
-                    }
-                    catch(IOException io) {
-                        System.out.println(io.getMessage());
-                    }
-                    System.out.println("--------------------------------------------------------------------");
+                if (milliseconds >= bpmConverter.setBars(1, bpm)) {
+                    bars = (int) (milliseconds / bpmConverter.setBars(1, bpm)) + 1;
+                }
+                if (milliseconds >= bpmConverter.setBeat(1)) {
+                    beats = (int) (milliseconds / bpmConverter.setBeat(1)) + 1;
                 }
 
 
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Update UI here.
 
-                if ((milliseconds != 0) && ((milliseconds % lengthOfBar) == 0)) {   // generate bars.
+                        barsLabel.setText(minutes + ":" + seconds);
+                        bpmLabel.setText("bars: " + bars + "  " + "beats: " + +beats + "          ");
 
-                        System.out.println("--------------------------------------------------------------------");
-                        bars ++;
-                        System.out.println("BAR COUNT: " + bars);
-
-
-                }
-
-                    if ((milliseconds != 0) && ((milliseconds % lengthOfBeat) == 0)) {   // generate beats in bar (4/4)
-
-                        try {
-                            metronome.play(bpm);
-                            System.out.println("--------------------------------------------------------------------");
-                            beats ++;
-                            System.out.println("BEAT COUNT: " + beats);
-                        }
-                        catch(LineUnavailableException lue) {
-                            System.out.println(lue.getMessage());
-                        }
-                        catch(IOException io) {
-                            System.out.println(io.getMessage());
-                        }
+                        milliseconds++;
 
                     }
+                });
+            }
 
+        };
+    }
 
-                  //  if (milliseconds == (finish - 1)) {    // finish with locators
-                   //     timer.cancel();
-                   // }
+    /**
+     * Start the timer!!
+     */
 
+    public void startTimer () {
 
-
-                    System.out.println("millis: " + milliseconds + "  secs: " + seconds + "  mins: " + minutes);
-
-
-
-                    milliseconds++;
-
-
-                }
-
-        }
-
-            ;
         timer.scheduleAtFixedRate(timerTaskMillis,0,1);
-
 
     }
 
     /**
-     * Stop the timer when pause or stop is pressed.
+     * Stop the timer when stop is pressed.
      */
 
-    public void stop() throws LineUnavailableException, IOException {
-        metronome.stop();
-        }
+    public void stopTimer()  {
+        timer.cancel();
+        timer.purge();
+        milliseconds = 0;
+        seconds = 0;
+        minutes = 0;
+        bars = 1;
+        beats = 1;
+
+    }
+
+    /**
+     * Stop the timer when pause is pressed.
+     */
+
+    public void pauseTimer()  {
+        timer.cancel();
+        timer.purge();
+
+    }
 
     public long getMillis() { return milliseconds; }
 
@@ -172,13 +148,6 @@ public class Timing {
 
     public long getMinutes() { return minutes; }
 
-    public long getFinish() { return finish; }
-
-
 
 }
-
-
-
-
 

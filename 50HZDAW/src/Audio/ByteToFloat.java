@@ -48,7 +48,7 @@ public class ByteToFloat {
                     if (f < -1) f = -1;
                     floatArray[i / 3] = f;
                 } catch (IndexOutOfBoundsException e) {
-                    //System.out.println("Index out of bounds exception at Float[]:" + i/'3' + " Byte[]: " + i);
+                    System.out.println("Index out of bounds exception at Float[]:" + i/'3' + " Byte[]: " + i);
                 }
             }
 

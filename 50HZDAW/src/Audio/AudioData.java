@@ -196,7 +196,7 @@ public class AudioData {
 
         long finishFloat = this.start + (getStereoFloatArray().length);
         this.finish = finishFloat;
-        //System.out.println("Finish Byte: " + finish);
+        System.out.println("Finish Byte: " + finish);
         return finishFloat;
 
 

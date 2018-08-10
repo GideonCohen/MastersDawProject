@@ -94,7 +94,7 @@ public class Track {
 
        // moveAudioFile(0, 2000);
 
-        addProcessing(volume);  // add processing last (volume set by track).
+        audioProcessing = new AudioProcessing();
 
 
     }
@@ -263,18 +263,40 @@ public class Track {
         }
     }
 
+
     /**
      * Add audio processing to a track.
      */
 
-    public void addProcessing (float volume) {
+    public void addVolume (float volume) {
 
-        stereoSplit = new StereoSplit(getTrackData());         // split byte array into right and left for panning controls.
-        stereoSplit.split();
-        trackBuffer = stereoSplit.convergeMonoArrays();
-        audioProcessing = new AudioProcessing(trackBuffer, volume);
-        trackBuffer = audioProcessing.getProcessedAudio();
+        audioProcessing.setVolume(volume, trackBuffer);
+        trackBuffer = audioProcessing.getProcessedAudio();    // get audio after all processing is done
     }
+
+    /**
+     * Add audio processing to a track.
+     */
+    public void setPan (float pan) {
+
+        audioProcessing.setVolume(pan, trackBuffer);
+        trackBuffer = audioProcessing.getProcessedAudio();    // get audio after all processing is done
+    }
+
+
+    /**
+     *  Add delay to audio.
+     */
+
+    public void setDelay () {
+
+        audioProcessing.setDelay(trackBuffer, 250, 3, 50f);
+        trackBuffer = audioProcessing.getProcessedAudio();
+
+    }
+
+
+
 
 
     /**

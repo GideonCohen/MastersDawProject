@@ -29,29 +29,28 @@ import java.util.HashMap;
 
 public class WaveformEditor {
 
-    private double durationInMilliSeconds;
+    private double durationInSeconds;
     private int index;
     private File file;
     private Track track;
     private StackPane waveformStack;
-    private WaveformCanvas waveform;
-    private double pixelRatio;
+    private Canvas waveform;
+    private int padding = 0;
 
-    public WaveformEditor(double duration, int index, File f, Track track, StackPane waveformStack, WaveformCanvas canvas, double pixelRatio){
-        durationInMilliSeconds = duration;
+    public WaveformEditor(double fileLength, int index, File f, Track track, StackPane waveformStack, Canvas canvas){
+        durationInSeconds = fileLength/100;
         this.index = index;
         file = f;
         this.track = track;
         this.waveformStack = waveformStack;
         waveform = canvas;
-        this.pixelRatio = pixelRatio;
 
         createEditor();
     }
 
     public void createEditor() {
 
-        double width = durationInMilliSeconds*pixelRatio;
+        double width = durationInSeconds*10;
         Canvas canvas = new Canvas(width, 100);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         String filePath = file.getAbsolutePath();
@@ -72,11 +71,11 @@ public class WaveformEditor {
         sp.setContent(canvas);
 
         Button duplicate = new Button("Duplicate sound");
-        //duplicate.setOnAction(e -> duplicateSound(mixerSetUp, waveformSplit, index, durationInMilliSeconds, f));
+        //duplicate.setOnAction(e -> duplicateSound(mixerSetUp, waveformSplit, index, durationInSeconds, f));
 
         Button addPaddingButton = new Button("Set starting position");
         addPaddingButton.setOnAction(e -> {
-            setDelay();
+            setDelay(canvas);
         });
 
 
@@ -89,14 +88,14 @@ public class WaveformEditor {
         Label selectedTime = new Label("Selected time is: ");
 
         Label fileName = new Label("File Name: " + file.getName());
-        Label fileLength = new Label("File Duration: " + durationInMilliSeconds/1000 + " seconds");
+        Label fileLength = new Label("File Duration: " + durationInSeconds + " seconds");
 
         layout.getChildren().addAll(sp, fileName, fileLength, duplicate, addPaddingButton, zoomOutButton, zoomButton, selectedTime);
 
         canvas.setOnMouseClicked(e -> {
             double x = e.getX() / canvas.getWidth();
-            int y = (int) Math.round(x * durationInMilliSeconds);
-            selectedTime.setText("Selected time is: " + y/1000 + " seconds");
+            int y = (int) Math.round(x * durationInSeconds);
+            selectedTime.setText("Selected time is: " + y + " seconds");
 
         });
 
@@ -127,7 +126,7 @@ public class WaveformEditor {
     }
 
     /*
-    public void duplicateSound(MixerSetUp mixerSetUp, HBox waveformSplit, int index, int durationInMilliSeconds, File f) {
+    public void duplicateSound(MixerSetUp mixerSetUp, HBox waveformSplit, int index, int durationInSeconds, File f) {
 
         HashMap<Integer, Track> map = mixerSetUp.getFileToTrackMap();
         Track t = map.get(index);
@@ -148,7 +147,7 @@ public class WaveformEditor {
 
         Canvas canvas = new Canvas(newWidth, 100);
 
-        addMouseListeners(canvas, durationInMilliSeconds, index, f, mixerSetUp, waveformSplit);
+        addMouseListeners(canvas, durationInSeconds, index, f, mixerSetUp, waveformSplit);
 
         GraphicsContext context = canvas.getGraphicsContext2D();
         WaveformGenerator WG = new WaveformGenerator(newArray, context);
@@ -160,16 +159,16 @@ public class WaveformEditor {
 */
 
 
-    public void setDelay() {
+    public void setDelay(Canvas canvas) {
 
 
-       long delay = (long) (DelayBox.Display(waveform.getCanvas().getTranslateX(), pixelRatio) * 1000);
-        System.out.println("Delay = " + (delay) + "ms");
-        System.out.println(delay*pixelRatio + " is position");
-        waveform.setPosition(delay);
+        double position = DelayBox.Display(waveform.getTranslateX()) * 1000;
+        System.out.println("Delay = " + (position*10) + "ms");
+        System.out.println(position + " is position");
+        waveform.setTranslateX(position/10);
+        long delay = (long) position;
         System.out.println(delay);
         track.moveAudioFile(index, delay);
-
     }
 
 /*
@@ -214,7 +213,7 @@ public class WaveformEditor {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, pixelRatio);
+                    WaveformEditor w = new WaveformEditor(width, index, file, track, waveformStack, waveform);
                 }
             }
         });

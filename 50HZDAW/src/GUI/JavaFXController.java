@@ -1,6 +1,8 @@
 package GUI;
 
+import Audio.BPMConverter;
 import Audio.MixerSetUp;
+import Audio.Timing;
 import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
@@ -59,10 +61,32 @@ public class JavaFXController extends Application implements Serializable {
     // pointer for the timeline
     private Rectangle pointer;
 
+    // TranslateTransition object used to move pointer over time
+    private TranslateTransition TT;
+
     // The ration of pixels to milliseconds. e.g. a ratio of 0.1 means 1 pixel = 10 milliseconds
     private double pixelRatio;
+    // The ration of pixels to milliseconds. e.g. a ratio of 0.1 means 1 pixel = 10 milliseconds
+    private double timelineRatio;
 
     private VBox timeLine;
+
+    // Timer
+    private Timing timing;
+
+    // Timer label
+    private Label timer;
+
+    // Beats and bars label
+    private Label beatsAndBarsLabel;
+
+    // Convert pixels to millis to beats & bars
+    private BPMConverter bpmConverter;
+
+    // length of a bar at given BPM.
+    private double barLength;
+
+
 
 
 
@@ -85,13 +109,21 @@ public class JavaFXController extends Application implements Serializable {
         mixerSetUp = new MixerSetUp(0);
 
         // Initial pixel ratio, default is 100 pixels per second.
-        pixelRatio = 0.1;
 
         // Empty track line array
         trackLines = new ArrayList<>();
 
         // Controller for the Gui
         controller = new ArrangementWindowController(this, mixerSetUp);
+
+        bpmConverter = new BPMConverter();
+        barLength = (bpmConverter.setBars(1, mixerSetUp.getBpm()))/(double)1000;
+        System.out.println(barLength);
+
+
+        pixelRatio = 0.1/ barLength;
+        timelineRatio = 1;
+
 
         // Create the main layout
         makeMainWindow();
@@ -140,6 +172,9 @@ public class JavaFXController extends Application implements Serializable {
 
         // Import and load background
         String localUrl = "";
+
+        timing = new Timing ();
+
 
         try {
             // image location
@@ -267,7 +302,7 @@ public class JavaFXController extends Application implements Serializable {
      * The top line with most of the basic player buttons and a timer
      * @return - HBox with basic player buttons and a timer
      */
-    private HBox makeTopLine(){
+    private HBox makeTopLine() {
 
         // The top line
         HBox topLine = new HBox(20);
@@ -283,45 +318,89 @@ public class JavaFXController extends Application implements Serializable {
         Button play = new Button();
         Image playImage = new Image("Resources/play.png");
         play.setGraphic(new ImageView(playImage));
-        play.setOnAction(event -> controller.play());
+        play.setOnAction(event -> {
+            controller.play();
+            timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
+            timing.startTimer();
+        });
 
 
         // Pause all added tracks
         Button pause = new Button();
         Image pauseImage = new Image("Resources/pause.png");
         pause.setGraphic(new ImageView(pauseImage));
-        pause.setOnAction(event -> controller.pause());
+        pause.setOnAction(event -> {
+                timing.pauseTimer();
+                controller.pause();
+    });
 
 
         // Stop all added tracks
         Button stop = new Button();
         Image stopImage = new Image("Resources/stop.png");
         stop.setGraphic(new ImageView(stopImage));
-        stop.setOnAction(event -> controller.stop());
+        stop.setOnAction(event -> {
+                controller.stop();
+                timing.stopTimer();
+
+                timer.setText("00:00");
+    });
 
         Button zoomIn = new Button("Zoom In");
-        zoomIn.setOnAction(event -> setPixelRatio(pixelRatio*2));
+        zoomIn.setOnAction(event -> setPixelRatio((pixelRatio*2), (timelineRatio/2)));
 
         Button zoomOut = new Button("Zoom Out");
-        zoomOut.setOnAction(event -> setPixelRatio(pixelRatio/2));
+        zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
 
 
         playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
 
         // Timer
-        HBox timerLine = new HBox();
+        HBox timerLine = new HBox(20);
 
-        Label timer = new Label("00:00:00");
+        timer = new Label();
+        timer.setText("00:00");
         timer.setFont(new Font(34));
+        timer.setMinWidth(100);
+
+
+
         timerLine.getChildren().add(timer);
+
+        HBox bpmBox = new HBox(50);
+
+        beatsAndBarsLabel = new Label();
+        Label bpmLabel = new Label();
+        beatsAndBarsLabel.setText("bars: " + "1  " + "beats: " + "1");
+        beatsAndBarsLabel.setFont(new Font(24));
+        bpmLabel.setText(mixerSetUp.getBpm() +  " bpm");
+        bpmLabel.setFont(new Font(24));
+
+        ComboBox bpmSelect = new ComboBox();
+        int oneTwenty = 120;
+        int oneThirty = 130;
+        int oneFourty = 140;
+        bpmSelect.setPromptText("120");
+
+        bpmSelect.getItems().addAll(oneTwenty, oneThirty, oneFourty);
+
+        bpmBox.getChildren().add(beatsAndBarsLabel);
+        bpmBox.getChildren().add(bpmLabel);
+
+        bpmBox.getChildren().add(bpmSelect);
+
+        beatsAndBarsLabel.setMinWidth(150);
+        // beatsAndBarsLabel.setPrefSize(beatsAndBarsLabel.USE_PREF_SIZE, beatsAndBarsLabel.USE_PREF_SIZE);
+
+        bpmLabel.setMinWidth(150);
+        // bpmLabel.setPrefSize(bpmLabel.USE_PREF_SIZE, bpmLabel.USE_PREF_SIZE);
 
         // App Button Line
 
-        topLine.getChildren().addAll(playerButtons, timerLine);
+        topLine.getChildren().addAll(playerButtons, timerLine, bpmBox);
 
         return topLine;
-
     }
 
     /**
@@ -421,13 +500,16 @@ public class JavaFXController extends Application implements Serializable {
 
     public VBox createTimeline() {
 
-        double pixelsPerSec = 1/(pixelRatio*10);
+
+        double pixelsPerSec = (1/(pixelRatio * 10));
 
         VBox timeSplit = new VBox(0);
         HBox timeBox = new HBox(50);
-        for (double i = 0; i < 500*pixelsPerSec; i += pixelsPerSec) {
+        for (double i = 1; i < 500; i += timelineRatio) {
+
             Label label = new Label();
-            label.textProperty().bind(Bindings.format("%.2f", i));
+
+            label.textProperty().bind(Bindings.format("%.2f", i ));
             label.setMinWidth(50);
             label.setMinHeight(25);
             label.setMaxWidth(50);
@@ -438,12 +520,13 @@ public class JavaFXController extends Application implements Serializable {
 
         timeSplit.setTranslateX(165);
 
+        System.out.println(pixelsPerSec);
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
         return timeSplit;
     }
 
-    public void createPointer() {
+    public Rectangle createPointer() {
 
         pointer = new Rectangle();
         pointer.setStroke(Color.BLACK);
@@ -451,6 +534,16 @@ public class JavaFXController extends Application implements Serializable {
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
         pointer.setTranslateX(5);
+
+        double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
+
+        TT = new TranslateTransition(Duration.seconds(pointerSpeed), pointer);
+        TT.setToX(1000 * 10);
+        TT.setInterpolator(Interpolator.LINEAR);
+
+        mixerSetUp.setTT(TT);
+
+        return pointer;
         
         /*
         TT = new TranslateTransition(Duration.seconds(width), pointer);
@@ -467,13 +560,15 @@ public class JavaFXController extends Application implements Serializable {
         return pixelRatio;
     }
 
-    public void setPixelRatio(double pixelRatio) {
+    public void setPixelRatio(double pixelRatio, double timelineRatio) {
 
         try {
-            // 0.003 around about 32seconds per 100 pixels
-            if (pixelRatio <= 0.1 && pixelRatio > 0.003) {
-                //System.out.println(pixelRatio);
+            // 0.003 around about 32seconds per 100 pixels      // translated to a zoom in of 32 bars at a time. (NOW 16!)
+            if (pixelRatio <= 0.1 && pixelRatio > 0.003) {        //  (NOW 16!)
+                System.out.println(pixelRatio);
                 this.pixelRatio = pixelRatio;
+                this.timelineRatio = timelineRatio;
+
                 for (TrackLineGUI trackline : trackLines) {
                     //System.out.println(trackline.getLineName());
                     trackline.resize(this.pixelRatio);

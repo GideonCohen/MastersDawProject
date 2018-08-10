@@ -1,5 +1,8 @@
 package Audio;
 
+import javafx.animation.TranslateTransition;
+import javafx.scene.shape.Rectangle;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
@@ -31,6 +34,12 @@ public class MixerSetUp {
     private int trackCount;
     // Starting position of playback
     private long playOffset;
+    // BPM for the project
+    private int bpm;
+    // Timeline TT
+    private TranslateTransition TT;
+
+    private Rectangle r;
 
 
 
@@ -56,6 +65,9 @@ public class MixerSetUp {
         trackCount = 0;
 
         tracks = new ArrayList<>();
+
+        bpm = 128;    // CHANGE BPM HERE FOR TRACK TIMELINE & BEATS AND BAR CHANGES!
+
 
 
 /*        addTrack("Track1",-0.5f);     // create mixer with one track as default.
@@ -174,6 +186,7 @@ public class MixerSetUp {
         }
 
         try {
+            TT.play();
             output.playTrack();
             //tracks.get(0).playTrack();
 
@@ -187,6 +200,7 @@ public class MixerSetUp {
      * Stop the current output and save the current position as the offset
      */
     public void pauseOutput (){
+        TT.pause();
         playOffset = output.pause();
 
     }
@@ -196,6 +210,8 @@ public class MixerSetUp {
      */
     public void stopOutput (){
         playOffset = output.stop();
+        TT.stop();
+        r.setTranslateX(0);
     }
 
     public boolean isPlaying(){
@@ -228,4 +244,33 @@ public class MixerSetUp {
     public long getCurrentPosition() {
         return output.getCurrentPosition();
     }
+    /**
+     * Get the bpm of the project.
+     */
+
+    public int getBpm() {
+
+        return bpm;
+    }
+
+    /**
+     * Set the bpm of the project.
+     */
+
+    public void setBpm(int newBpm) {
+
+        this.bpm = newBpm;
+
+    }
+
+
+
+    public void setTT(TranslateTransition t) {
+        TT = t;
+    }
+
+    public void setRectangle(Rectangle rect) {
+        r = rect;
+    }
+
 }

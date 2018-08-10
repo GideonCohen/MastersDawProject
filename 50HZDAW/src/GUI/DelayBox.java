@@ -16,8 +16,8 @@ public class DelayBox {
     // the result from the box
     static double delay;
 
-    public static double Display(double currentPos, double pixelRatio){
-        delay = (currentPos/pixelRatio)/1000;
+    public static double Display(double currentPos){
+        delay = currentPos;
 
         Stage window = new Stage();
 

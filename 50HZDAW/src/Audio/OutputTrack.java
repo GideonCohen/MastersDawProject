@@ -31,12 +31,7 @@ public class OutputTrack {
     private int maxValue;
     private ByteArrayInputStream outputStream;
     private Timing timing;
-    private float bpm;
-
     private long outputLength;
-
-    private BPMConverter bpmConverter;
-
     private boolean pause;
     private long trackOffset;
     private int count;
@@ -53,16 +48,6 @@ public class OutputTrack {
 
     public OutputTrack(String name, long offset) throws LineUnavailableException {
 
-        bpm = 100;
-        bpmConverter = new BPMConverter();
-        bpmConverter.setBPM((int)bpm);
-
-        /*
-        System.out.println(bpmConverter.setBars(4));
-        System.out.println(bpmConverter.setQuarterBeat(16));
-        System.out.println(bpmConverter.setEighthBeat(32));
-        */
-
 
         // OUTPUT TRACK IS AT 24-BIT STEREO.
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 24, 2, 6, 44100, false);
@@ -70,6 +55,7 @@ public class OutputTrack {
         newLine = new DataLine.Info(SourceDataLine.class, audioFormat);
         // set up a data line with given audio format and specify the type of line it will be (source data line).
         source = (SourceDataLine) AudioSystem.getLine(newLine);
+        // Looks like this line was missing for some reason
         source.open(audioFormat, source.getBufferSize()); //
 
         bufferSize = 1024*6;
@@ -306,7 +292,7 @@ public class OutputTrack {
         try {
             outputStream.reset();
         } catch (NullPointerException e) {
-            // No stream to reset
+            // no track to play
         }
         return trackOffset;
     }
