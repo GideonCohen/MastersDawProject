@@ -19,9 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -180,7 +178,7 @@ public class JavaFXController extends Application implements Serializable {
 
         try {
             // image location
-            File file = new File("50HZDAW/Samples/WoodGrain.png");
+            File file = new File("50HZDAW/Samples/WoodGrain.jpeg");
             localUrl = file.toURI().toURL().toString();
         } catch (Exception e) {
         }
@@ -195,9 +193,13 @@ public class JavaFXController extends Application implements Serializable {
         channelView.setBackground(background);
         channelView.setContent(channels);
 
+        HBox directorySplit = new HBox(0);
+        StackPane directoryGUI = directory.makeDirectory();
+        directorySplit.getChildren().addAll(directoryGUI, channelView);
+
         // Set positions in the layout
         mainLayout.setTop(makeTopLine());
-        mainLayout.setCenter(channelView);
+        mainLayout.setCenter(directorySplit);
 
         // add children to split
         mainSplit.getChildren().add(makeMenu());
@@ -212,7 +214,7 @@ public class JavaFXController extends Application implements Serializable {
         dragDropTracks(channelView);
 
         // Bind the arrangemnet window to be just smaller than the app window
-        channelView.prefHeightProperty().bind(mainWindow.heightProperty().add(-100));
+        channelView.prefHeightProperty().bind(mainWindow.heightProperty());
 
     }
 
@@ -355,13 +357,7 @@ public class JavaFXController extends Application implements Serializable {
         Button zoomOut = new Button("Zoom Out");
         zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
 
-        Button directoryButton = new Button("Directory");
-        directoryButton.setOnAction(event -> {
-            window.setScene(directory.getScene());
-        });
-
-
-        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut, directoryButton);
+        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
 
         // Timer

@@ -9,6 +9,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.io.File;
@@ -16,19 +17,27 @@ import java.io.File;
 public class DirectoryViewer{
 
     private JavaFXController controller;
-    private Scene scene;
+    private StackPane directoryBase;
+    private BorderPane directory;
+    private Button maximise;
 
     public DirectoryViewer(JavaFXController controller) {
         this.controller = controller;
-        makeDirectory();
     }
 
-    public void makeDirectory() {
+    public StackPane makeDirectory() {
+        directoryBase = new StackPane();
         TreeView<File> treeView = new TreeView<>();
-        BorderPane borderPane = new BorderPane();
+        directory = new BorderPane();
+
+        Button minimise = new Button("Minimise");
+        maximise = new Button("Maximise");
+
+        maximise.setOnAction(event -> maximiseView());
+        minimise.setOnAction(event -> minimiseView());
 
         DirectoryPlayer player = new DirectoryPlayer();
-        treeView.setRoot(getNodesForDirectory(new File("./")));
+        treeView.setRoot(getNodesForDirectory(new File("50HZDAW/Samples")));
         treeView.getRoot().setExpanded(true);
         HBox hBox = new HBox();
 
@@ -40,11 +49,10 @@ public class DirectoryViewer{
         play.setOnAction(e -> player.play());
         pause.setOnAction(e -> player.pause());
         stop.setOnAction(e -> player.stop());
-        editor.setOnAction(event -> controller.setMainScene());
 
-        hBox.getChildren().addAll(play, pause, stop, editor);
-        borderPane.setBottom(hBox);
-        borderPane.setCenter(treeView);
+        hBox.getChildren().addAll(play, pause, stop, minimise);
+        directory.setBottom(hBox);
+        directory.setCenter(treeView);
 
 
         // Only display the filename not the entire path.
@@ -70,7 +78,10 @@ public class DirectoryViewer{
                         //player.play();
                     }
                 });
-        scene = new Scene(borderPane, 600, 400);
+
+        directoryBase.getChildren().add(directory);
+        directoryBase.setMinWidth(300);
+        return directoryBase;
     }
 
 
@@ -110,7 +121,16 @@ public class DirectoryViewer{
         return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
     }
 
-    public Scene getScene() {
-        return scene;
+    public void minimiseView() {
+        directoryBase.getChildren().remove(directory);
+        directoryBase.getChildren().add(maximise);
+        directoryBase.setMinWidth(50);
     }
+
+    public void maximiseView() {
+        directoryBase.getChildren().remove(maximise);
+        directoryBase.getChildren().add(directory);
+        directoryBase.setMinWidth(250);
+    }
+
 }

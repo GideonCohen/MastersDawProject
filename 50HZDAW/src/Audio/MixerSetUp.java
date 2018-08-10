@@ -43,12 +43,12 @@ public class MixerSetUp {
 
 
 
+    /*
     public static void main (String [] args) {
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
-    }
-
+    }*/
 
 
     /**

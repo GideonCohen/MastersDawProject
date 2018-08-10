@@ -130,7 +130,7 @@ public class TrackLineGUI {
             try {
                 track.setSolo();
                 if (track.getSolo()) {
-                    solo.setTextFill(Color.RED);
+                    solo.setTextFill(Color.ROYALBLUE);
                 } else {
                     solo.setTextFill(Color.BLACK);
                 }
@@ -146,11 +146,17 @@ public class TrackLineGUI {
         Button deleteChannel = new Button("Delete channel");
         deleteChannel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
         deleteChannel.setOnAction(event -> {
-            // Remove the channel from the scene
-            channels.getChildren().remove(trackLine);
-            controller.removeTrack(track);
-            // remove trackline object from controller
-            FXController.getTrackLines().remove(this);
+
+            if (ConfirmationBox.Display("Delete Channel", "Are you sure you want to delete this channel?")) {
+                // Remove the channel from the scene
+                channels.getChildren().remove(trackLine);
+                controller.removeTrack(track);
+                // remove trackline object from controller
+                FXController.getTrackLines().remove(this);
+            } else {
+                // do nothing
+            }
+
         });
 
 

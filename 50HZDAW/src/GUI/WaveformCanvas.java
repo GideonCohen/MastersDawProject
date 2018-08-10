@@ -9,7 +9,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 
+import java.awt.*;
 import java.io.File;
 
 public class WaveformCanvas {
@@ -65,7 +67,8 @@ public class WaveformCanvas {
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
         wf.setWidth(width - 5);
-        wf.setShowCenterLine(true);
+        wf.setWaveAverageColor(Color.MIDNIGHTBLUE);
+        wf.setBackgroundColor(Color.color(1,1,1, 0.2));
         //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
 
