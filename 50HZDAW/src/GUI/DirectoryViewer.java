@@ -19,7 +19,7 @@ public class DirectoryViewer{
     private JavaFXController controller;
     private StackPane directoryBase;
     private BorderPane directory;
-    private Button maximise;
+    private StackPane minPane;
 
     public DirectoryViewer(JavaFXController controller) {
         this.controller = controller;
@@ -30,11 +30,14 @@ public class DirectoryViewer{
         TreeView<File> treeView = new TreeView<>();
         directory = new BorderPane();
 
-        Button minimise = new Button("Minimise");
-        maximise = new Button("Maximise");
+        Button minimise = new Button("<<");
+        Button maximise = new Button(">>");
 
         maximise.setOnAction(event -> maximiseView());
         minimise.setOnAction(event -> minimiseView());
+
+        minPane = new StackPane();
+        minPane.getChildren().add(maximise);
 
         DirectoryPlayer player = new DirectoryPlayer();
         treeView.setRoot(getNodesForDirectory(new File("50HZDAW/Samples")));
@@ -44,7 +47,6 @@ public class DirectoryViewer{
         Button play = new Button("Play");
         Button pause = new Button("Pause");
         Button stop = new Button("Stop");
-        Button editor = new Button("Editor");
 
         play.setOnAction(e -> player.play());
         pause.setOnAction(e -> player.pause());
@@ -80,7 +82,7 @@ public class DirectoryViewer{
                 });
 
         directoryBase.getChildren().add(directory);
-        directoryBase.setMinWidth(300);
+        directoryBase.setMinWidth(250);
         return directoryBase;
     }
 
@@ -123,14 +125,14 @@ public class DirectoryViewer{
 
     public void minimiseView() {
         directoryBase.getChildren().remove(directory);
-        directoryBase.getChildren().add(maximise);
+        directoryBase.getChildren().add(minPane);
         directoryBase.setMinWidth(50);
     }
 
     public void maximiseView() {
-        directoryBase.getChildren().remove(maximise);
+        directoryBase.getChildren().remove(minPane);
         directoryBase.getChildren().add(directory);
-        directoryBase.setMinWidth(250);
+        directoryBase.setMinWidth(200);
     }
 
 }

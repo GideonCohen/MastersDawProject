@@ -351,10 +351,14 @@ public class JavaFXController extends Application implements Serializable {
                 timer.setText("00:00");
     });
 
-        Button zoomIn = new Button("Zoom In");
+        Button zoomIn = new Button();
+        Image zoomInImage = new Image("Resources/ZoomIN.jpeg");
+        zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> setPixelRatio((pixelRatio*2), (timelineRatio/2)));
 
-        Button zoomOut = new Button("Zoom Out");
+        Button zoomOut = new Button();
+        Image zoomOutImage = new Image("Resources/ZoomOut.jpeg");
+        zoomOut.setGraphic(new ImageView(zoomOutImage));
         zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
 
         playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
