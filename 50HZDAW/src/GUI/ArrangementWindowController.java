@@ -78,13 +78,16 @@ public class ArrangementWindowController {
      */
     public void closeProgram(){
         // returns True or false from a yes no window
-        boolean answer = ConfirmationBox.Display("", "Are you sure you want to quit?");
+        boolean answer = ConfirmationBox.Display("Quit", "Are you sure you want to quit?");
         if (answer) {
             view.getWindow().close();
             try {
                 stop();
+                view.getTT().stop();
+                view.getTiming().stopTimer();
             } catch (NullPointerException e) {}
         }
+
     }
 
     public void export(Stage window) throws LineUnavailableException {

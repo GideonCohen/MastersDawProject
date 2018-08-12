@@ -2,17 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/Samples/Hello16bit.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/Samples/doublebass.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/Samples/emotionalpads.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/Samples/emotionalpads.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/Samples/loopy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/Samples/loopy.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/ArrangementWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/ArrangementWindowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomIN.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomOut.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.jpeg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,50 +41,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JavaFXController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JavaFXController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="358" column="36" selection-start-line="358" selection-start-column="36" selection-end-line="358" selection-end-column="36" />
+            <state relative-caret-position="273">
+              <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="38" />
               <folding>
-                <element signature="method#start#0;class#JavaFXController#0" />
+                <element signature="method#main#0;class#JavaFXController#0" />
                 <element signature="method#makeMainWindow#0;class#JavaFXController#0" />
                 <element signature="method#makeMenu#0;class#JavaFXController#0" />
-                <element signature="e#14753#14754#0" expanded="true" />
-                <element signature="e#14782#14783#0" expanded="true" />
-                <element signature="e#14934#14935#0" expanded="true" />
-                <element signature="e#14967#14968#0" expanded="true" />
-                <element signature="e#15008#15009#0" expanded="true" />
-                <element signature="e#15041#15042#0" expanded="true" />
-                <element signature="e#15077#15078#0" expanded="true" />
-                <element signature="e#15110#15111#0" expanded="true" />
-                <element signature="e#15152#15153#0" expanded="true" />
-                <element signature="e#15179#15180#0" expanded="true" />
-                <element signature="e#15208#15209#0" expanded="true" />
-                <element signature="e#15239#15240#0" expanded="true" />
-                <element signature="e#16773#16774#0" expanded="true" />
-                <element signature="e#16803#16804#0" expanded="true" />
-                <element signature="e#16840#16841#0" expanded="true" />
-                <element signature="e#16873#16874#0" expanded="true" />
-                <element signature="e#17941#17942#0" expanded="true" />
-                <element signature="e#17974#17975#0" expanded="true" />
-                <element signature="e#18007#18008#0" expanded="true" />
-                <element signature="e#18038#18039#0" expanded="true" />
-                <element signature="e#18072#18073#0" expanded="true" />
-                <element signature="e#18115#18116#0" expanded="true" />
+                <element signature="method#dragDropTracks#0;class#JavaFXController#0" />
+                <element signature="method#importFile#0;class#JavaFXController#0" />
+                <element signature="method#export#0;class#JavaFXController#0" />
+                <element signature="method#createTimeline#0;class#JavaFXController#0" />
+                <element signature="method#createPointer#0;class#JavaFXController#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DirectoryViewer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DirectoryViewer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+            <state relative-caret-position="-429">
+              <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
               <folding>
-                <element signature="e#577#578#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2500#2597#0" />
+                <element signature="e#3822#4123#0" expanded="true" />
+                <element signature="e#4122#4123#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DirectoryPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/DirectoryPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/Style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="124" selection-start-line="124" selection-end-line="124" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrangementWindowController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="91" selection-start-line="91" selection-end-line="91" />
+              <folding>
+                <element signature="method#play#0;class#ArrangementWindowController#0" />
+                <element signature="e#1616#1617#0" expanded="true" />
+                <element signature="e#1661#1662#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfirmationBox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3">
+              <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-174">
+              <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
+              <folding>
+                <element signature="method#TrackLineGUI#0;class#TrackLineGUI#0" />
+                <element signature="e#4570#5043#0" />
+                <element signature="class#5413:6029" />
+                <element signature="method#adjustVolume#0;class#TrackLineGUI#0" />
+                <element signature="method#acceptDragDrop#0;class#TrackLineGUI#0" />
+                <element signature="method#addFile#0;class#TrackLineGUI#0" />
+                <element signature="e#11428#11429#0" expanded="true" />
+                <element signature="e#11479#11480#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,7 +211,6 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/ByteToFloat.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ImportManager.java" />
@@ -153,9 +221,10 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/Style.css" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" />
       </list>
     </option>
   </component>
@@ -169,7 +238,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -199,13 +268,20 @@
               <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Audio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,6 +406,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1419" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -340,24 +417,24 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30099502" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30099502" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.869403" visible="true" weight="0.18393235" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.86654806" visible="true" weight="0.18393235" />
       <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.2995067" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
-      <window_info id="Favorites" order="2" sideWeight="0.13059701" side_tool="true" visible="true" weight="0.18393235" />
+      <window_info id="Favorites" order="2" sideWeight="0.13345195" side_tool="true" visible="true" weight="0.18393235" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -373,7 +450,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="29" />
+      <option name="time" value="36" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -410,31 +487,14 @@
         <state relative-caret-position="5265">
           <caret line="380" column="36" lean-forward="true" selection-start-line="380" selection-start-column="36" selection-end-line="380" selection-end-column="36" />
           <folding>
-            <element signature="method#start#0;class#JavaFXController#0" />
+            <element signature="method#main#0;class#JavaFXController#0" />
             <element signature="method#makeMainWindow#0;class#JavaFXController#0" />
             <element signature="method#makeMenu#0;class#JavaFXController#0" />
-            <element signature="e#14753#14754#0" expanded="true" />
-            <element signature="e#14782#14783#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
-            <element signature="e#14967#14968#0" expanded="true" />
-            <element signature="e#15008#15009#0" expanded="true" />
-            <element signature="e#15041#15042#0" expanded="true" />
-            <element signature="e#15077#15078#0" expanded="true" />
-            <element signature="e#15110#15111#0" expanded="true" />
-            <element signature="e#15152#15153#0" expanded="true" />
-            <element signature="e#15179#15180#0" expanded="true" />
-            <element signature="e#15208#15209#0" expanded="true" />
-            <element signature="e#15239#15240#0" expanded="true" />
-            <element signature="e#16773#16774#0" expanded="true" />
-            <element signature="e#16803#16804#0" expanded="true" />
-            <element signature="e#16840#16841#0" expanded="true" />
-            <element signature="e#16873#16874#0" expanded="true" />
-            <element signature="e#17941#17942#0" expanded="true" />
-            <element signature="e#17974#17975#0" expanded="true" />
-            <element signature="e#18007#18008#0" expanded="true" />
-            <element signature="e#18038#18039#0" expanded="true" />
-            <element signature="e#18072#18073#0" expanded="true" />
-            <element signature="e#18115#18116#0" expanded="true" />
+            <element signature="method#dragDropTracks#0;class#JavaFXController#0" />
+            <element signature="method#importFile#0;class#JavaFXController#0" />
+            <element signature="method#export#0;class#JavaFXController#0" />
+            <element signature="method#createTimeline#0;class#JavaFXController#0" />
+            <element signature="method#createPointer#0;class#JavaFXController#0" />
           </folding>
         </state>
       </provider>
@@ -505,9 +565,6 @@
           <caret line="462" selection-start-line="462" selection-end-line="462" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -584,17 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-          <folding>
-            <element signature="e#1616#1617#0" expanded="true" />
-            <element signature="e#1661#1662#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/BPMConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -665,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/DirectoryPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
@@ -679,33 +718,6 @@
           <folding>
             <element signature="method#addToOutput#0;class#OutputTrack#0" />
             <element signature="method#addDataForOutput#0;class#OutputTrack#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="156" column="29" selection-start-line="156" selection-start-column="29" selection-end-line="156" selection-end-column="29" />
-          <folding>
-            <element signature="e#11263#11264#0" expanded="true" />
-            <element signature="e#11314#11315#0" expanded="true" />
-            <element signature="e#11349#11350#0" expanded="true" />
-            <element signature="e#11380#11381#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -724,50 +736,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java">
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+        <state relative-caret-position="171">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-174">
+          <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
           <folding>
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
+            <element signature="method#TrackLineGUI#0;class#TrackLineGUI#0" />
+            <element signature="e#4570#5043#0" />
+            <element signature="class#5413:6029" />
+            <element signature="method#adjustVolume#0;class#TrackLineGUI#0" />
+            <element signature="method#acceptDragDrop#0;class#TrackLineGUI#0" />
+            <element signature="method#addFile#0;class#TrackLineGUI#0" />
+            <element signature="e#11428#11429#0" expanded="true" />
+            <element signature="e#11479#11480#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="358" column="36" selection-start-line="358" selection-start-column="36" selection-end-line="358" selection-end-column="36" />
+        <state relative-caret-position="273">
+          <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="38" />
           <folding>
-            <element signature="method#start#0;class#JavaFXController#0" />
+            <element signature="method#main#0;class#JavaFXController#0" />
             <element signature="method#makeMainWindow#0;class#JavaFXController#0" />
             <element signature="method#makeMenu#0;class#JavaFXController#0" />
-            <element signature="e#14753#14754#0" expanded="true" />
-            <element signature="e#14782#14783#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
-            <element signature="e#14967#14968#0" expanded="true" />
-            <element signature="e#15008#15009#0" expanded="true" />
-            <element signature="e#15041#15042#0" expanded="true" />
-            <element signature="e#15077#15078#0" expanded="true" />
-            <element signature="e#15110#15111#0" expanded="true" />
-            <element signature="e#15152#15153#0" expanded="true" />
-            <element signature="e#15179#15180#0" expanded="true" />
-            <element signature="e#15208#15209#0" expanded="true" />
-            <element signature="e#15239#15240#0" expanded="true" />
-            <element signature="e#16773#16774#0" expanded="true" />
-            <element signature="e#16803#16804#0" expanded="true" />
-            <element signature="e#16840#16841#0" expanded="true" />
-            <element signature="e#16873#16874#0" expanded="true" />
-            <element signature="e#17941#17942#0" expanded="true" />
-            <element signature="e#17974#17975#0" expanded="true" />
-            <element signature="e#18007#18008#0" expanded="true" />
-            <element signature="e#18038#18039#0" expanded="true" />
-            <element signature="e#18072#18073#0" expanded="true" />
-            <element signature="e#18115#18116#0" expanded="true" />
+            <element signature="method#dragDropTracks#0;class#JavaFXController#0" />
+            <element signature="method#importFile#0;class#JavaFXController#0" />
+            <element signature="method#export#0;class#JavaFXController#0" />
+            <element signature="method#createTimeline#0;class#JavaFXController#0" />
+            <element signature="method#createPointer#0;class#JavaFXController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="method#play#0;class#ArrangementWindowController#0" />
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1661#1662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/DirectoryPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-429">
+          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2500#2597#0" />
+            <element signature="e#3822#4123#0" expanded="true" />
+            <element signature="e#4122#4123#0" expanded="true" />
           </folding>
         </state>
       </provider>

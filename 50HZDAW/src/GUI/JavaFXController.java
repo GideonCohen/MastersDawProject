@@ -347,19 +347,25 @@ public class JavaFXController extends Application implements Serializable {
                 controller.stop();
                 timing.stopTimer();
                 TT.stop();
-                pointer.setTranslateX(0);
+                pointer.setTranslateX(10);
                 timer.setText("00:00");
     });
 
         Button zoomIn = new Button();
-        Image zoomInImage = new Image("Resources/ZoomIN.jpeg");
+        Image zoomInImage = new Image("Resources/ZoomIN.png");
         zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> setPixelRatio((pixelRatio*2), (timelineRatio/2)));
 
         Button zoomOut = new Button();
-        Image zoomOutImage = new Image("Resources/ZoomOut.jpeg");
+        Image zoomOutImage = new Image("Resources/ZoomOut.png");
         zoomOut.setGraphic(new ImageView(zoomOutImage));
         zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
+
+        play.setTooltip(new Tooltip("Play"));
+        pause.setTooltip(new Tooltip("Pause"));
+        stop.setTooltip(new Tooltip("Stop"));
+        zoomIn.setTooltip(new Tooltip("Zoom In"));
+        zoomOut.setTooltip(new Tooltip("Zoom Out"));
 
         playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
@@ -443,10 +449,7 @@ public class JavaFXController extends Application implements Serializable {
                     for (File file:db.getFiles()) {
                         if (file.getName().endsWith(".wav")) {
                             try {
-                                TrackLineGUI trackLine = new TrackLineGUI(file.getName(), getThis());
-                                channels.getChildren().add(trackLine.createTrack());
-                                trackLine.addFile(file);
-                                trackLines.add(trackLine);
+                                addFile(file);
                             } catch (Exception e) {
 
                             }
@@ -541,7 +544,7 @@ public class JavaFXController extends Application implements Serializable {
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
-        pointer.setTranslateX(5);
+        pointer.setTranslateX(10);
 
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 
@@ -577,13 +580,15 @@ public class JavaFXController extends Application implements Serializable {
                 this.pixelRatio = pixelRatio;
                 this.timelineRatio = timelineRatio;
 
+                channels.getChildren().remove(0);
+                timeLine = createTimeline();
+                channels.getChildren().add(0, timeLine);
+
                 for (TrackLineGUI trackline : trackLines) {
                     //System.out.println(trackline.getLineName());
                     trackline.resize(this.pixelRatio);
                 }
-                channels.getChildren().remove(0);
-                timeLine = createTimeline();
-                channels.getChildren().add(0, timeLine);
+
             } else {
                 System.out.println("Pixel ratio mus be between 0 and 1");
             }
@@ -604,5 +609,20 @@ public class JavaFXController extends Application implements Serializable {
 
     public void setMainScene() {
         window.setScene(mainWindow);
+    }
+
+    public TranslateTransition getTT() {
+        return TT;
+    }
+
+    public Timing getTiming() {
+        return timing;
+    }
+
+    public void addFile(File file) throws java.lang.Exception{
+        TrackLineGUI trackLine = new TrackLineGUI(file.getName(), getThis());
+        channels.getChildren().add(trackLine.createTrack());
+        trackLine.addFile(file);
+        trackLines.add(trackLine);
     }
 }
