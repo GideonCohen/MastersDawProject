@@ -1,11 +1,8 @@
 package GUI;
 
 import Audio.DirectoryPlayer;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +10,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
 
@@ -22,7 +18,7 @@ import java.io.IOException;
 
 public class DirectoryViewer{
 
-    private JavaFXController controller;
+    private FXGUIBuilder controller;
     private StackPane directoryBase;
     private BorderPane directory;
 
@@ -31,7 +27,7 @@ public class DirectoryViewer{
     private File selected;
 
 
-    public DirectoryViewer(JavaFXController controller) {
+    public DirectoryViewer(FXGUIBuilder controller) {
         this.controller = controller;
     }
 

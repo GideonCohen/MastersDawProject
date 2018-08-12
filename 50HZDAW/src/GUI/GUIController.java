@@ -1,25 +1,22 @@
 package GUI;
 
-import Audio.MixerSetUp;
-import Audio.OutputTrack;
-import Audio.Track;
-import javafx.scene.control.Button;
+import Audio.*;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import javax.sound.sampled.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
-public class ArrangementWindowController {
+public class GUIController {
 
-    private JavaFXController view;
+    private FXGUIBuilder view;
     private MixerSetUp mixerSetUp;
     private boolean playing;
 
-    public ArrangementWindowController(JavaFXController newView, MixerSetUp model) throws Exception {
+    public GUIController(FXGUIBuilder newView, MixerSetUp model) throws Exception {
 
         view = newView;
         mixerSetUp = model;

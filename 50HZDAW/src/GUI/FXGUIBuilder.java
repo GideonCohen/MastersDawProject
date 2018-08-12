@@ -3,19 +3,13 @@ package GUI;
 import Audio.BPMConverter;
 import Audio.MixerSetUp;
 import Audio.Timing;
-import Audio.Track;
-import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,8 +19,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.FileChooser;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -36,66 +28,50 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class JavaFXController extends Application implements Serializable {
+public class FXGUIBuilder extends Application implements Serializable {
 
     // Primary Stage
     private Stage window;
-
     // Primary Scene
     private Scene mainWindow;
-
-    // Controller for handling user events
-    private ArrangementWindowController controller;
-
-    // Audio Player
-    private MixerSetUp mixerSetUp;
-
     // Split pane for the main window
     private VBox channels;
-
-    // TrackLine List
-    private ArrayList<TrackLineGUI> trackLines;
-
     // pointer for the timeline
     private Rectangle pointer;
+    // Wav file directory
+    private DirectoryViewer directory;
+    // Visual representation of the timeline
+    private VBox timeLine;
 
-    // TranslateTransition object used to move pointer over time
-    private TranslateTransition TT;
-
+    // Controller for handling user events
+    private GUIController controller;
+    // Audio Player
+    private MixerSetUp mixerSetUp;
+    // TrackLine List
+    private ArrayList<TrackLineGUI> trackLines;
     // The ration of pixels to milliseconds. e.g. a ratio of 0.1 means 1 pixel = 10 milliseconds
     private double pixelRatio;
     // The ration of pixels to milliseconds. e.g. a ratio of 0.1 means 1 pixel = 10 milliseconds
     private double timelineRatio;
 
-    private VBox timeLine;
-
+    // TranslateTransition object used to move pointer over time
+    private TranslateTransition TT;
     // Timer
     private Timing timing;
-
     // Timer label
     private Label timer;
-
     // Beats and bars label
     private Label beatsAndBarsLabel;
-
     // Convert pixels to millis to beats & bars
     private BPMConverter bpmConverter;
-
     // length of a bar at given BPM.
     private double barLength;
-
-    private DirectoryViewer directory;
-
-
-
-
 
     public static void main(String[] args) {
         // calls the args method of application
         // must override start method
         launch(args);
     }
-
 
     /**
      * Start method from JavaFX application
@@ -114,16 +90,16 @@ public class JavaFXController extends Application implements Serializable {
         trackLines = new ArrayList<>();
 
         // Controller for the Gui
-        controller = new ArrangementWindowController(this, mixerSetUp);
+        controller = new GUIController(this, mixerSetUp);
 
+        // Converter for milliseconds to Beats and bars
         bpmConverter = new BPMConverter();
         barLength = (bpmConverter.setBars(1, mixerSetUp.getBpm()))/(double)1000;
         System.out.println(barLength);
-
-
         pixelRatio = 0.1/ barLength;
         timelineRatio = 1;
 
+        // Directory for storing samples
         directory = new DirectoryViewer(this);
 
         // Create the main layout
@@ -175,7 +151,7 @@ public class JavaFXController extends Application implements Serializable {
 
         timing = new Timing ();
 
-
+        // Find the image location for the background
         try {
             // image location
             File file = new File("50HZDAW/Samples/WoodGrain.jpeg");
@@ -193,6 +169,7 @@ public class JavaFXController extends Application implements Serializable {
         channelView.setBackground(background);
         channelView.setContent(channels);
 
+        // Add split for the directory
         HBox directorySplit = new HBox(0);
         StackPane directoryGUI = directory.makeDirectory();
         directorySplit.getChildren().addAll(directoryGUI, channelView);
@@ -236,6 +213,7 @@ public class JavaFXController extends Application implements Serializable {
         });
         fileMenu.getItems().add(addTrack);
 
+        // Add a new empty track
         MenuItem newTrack = new MenuItem("New Track");
         newTrack.setOnAction(event -> {
             TrackLineGUI trackLine = new TrackLineGUI("New Track", this);
@@ -244,6 +222,7 @@ public class JavaFXController extends Application implements Serializable {
         });
         fileMenu.getItems().add(newTrack);
 
+        // Export the current arrangement as a wav file
         MenuItem exportAsWav = new MenuItem("Export project as WAV");
         exportAsWav.setOnAction(event -> export());
         fileMenu.getItems().add(exportAsWav);
@@ -258,35 +237,6 @@ public class JavaFXController extends Application implements Serializable {
         });
         fileMenu.getItems().add(exit);
 
-        // Edit Menu
-        Menu editMenu = new Menu("Edit");
-
-        // Edit Items
-        MenuItem cut = new MenuItem("Cut");
-        cut.setOnAction(event -> {
-            System.out.println("Cut selected");
-        });
-        editMenu.getItems().add(cut);
-
-        MenuItem copy = new MenuItem("Copy");
-        copy.setOnAction(event -> {
-            System.out.println("Copy selected");
-        });
-        editMenu.getItems().add(copy);
-
-        MenuItem paste = new MenuItem("Paste");
-        paste.setOnAction(event -> {
-            System.out.println("Paste selected");
-        });
-        editMenu.getItems().add(paste);
-
-        // Layout Menu
-        Menu layoutMenu = new Menu("Layout");
-
-        // Layout Menu Items
-        MenuItem changeLayout = new MenuItem("Change Layout");
-        layoutMenu.getItems().add(changeLayout);
-
         // About Menu
         Menu aboutMenu = new Menu("About");
 
@@ -294,10 +244,9 @@ public class JavaFXController extends Application implements Serializable {
         MenuItem aboutUs = new MenuItem("About");
         aboutMenu.getItems().add(aboutUs);
 
-
         // Menu Bar
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(fileMenu, editMenu, layoutMenu, aboutMenu);
+        menuBar.getMenus().addAll(fileMenu, aboutMenu);
         return menuBar;
 
     }
@@ -323,50 +272,58 @@ public class JavaFXController extends Application implements Serializable {
         Image playImage = new Image("Resources/play.png");
         play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> {
+            // play the arrangement
             controller.play();
+            // start the timer
             timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
             timing.startTimer();
         });
-
 
         // Pause all added tracks
         Button pause = new Button();
         Image pauseImage = new Image("Resources/pause.png");
         pause.setGraphic(new ImageView(pauseImage));
         pause.setOnAction(event -> {
+                // pause the timer
                 timing.pauseTimer();
+                // pause the arrangement
                 controller.pause();
     });
-
 
         // Stop all added tracks
         Button stop = new Button();
         Image stopImage = new Image("Resources/stop.png");
         stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> {
+                // stop the arrangement
                 controller.stop();
+                // stop and reset the timer
                 timing.stopTimer();
                 TT.stop();
                 pointer.setTranslateX(10);
                 timer.setText("00:00");
     });
 
+        // Zoom in, shrinks timeline and waveforms
         Button zoomIn = new Button();
         Image zoomInImage = new Image("Resources/ZoomIN.png");
         zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> setPixelRatio((pixelRatio*2), (timelineRatio/2)));
 
+        // Zoom out, expands timeline and waveforms
         Button zoomOut = new Button();
         Image zoomOutImage = new Image("Resources/ZoomOut.png");
         zoomOut.setGraphic(new ImageView(zoomOutImage));
-        zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
+        zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), (timelineRatio*2)));
 
+        // add tootips
         play.setTooltip(new Tooltip("Play"));
         pause.setTooltip(new Tooltip("Pause"));
         stop.setTooltip(new Tooltip("Stop"));
         zoomIn.setTooltip(new Tooltip("Zoom In"));
         zoomOut.setTooltip(new Tooltip("Zoom Out"));
 
+        // add buttons to bar
         playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
 
@@ -378,10 +335,9 @@ public class JavaFXController extends Application implements Serializable {
         timer.setFont(new Font(34));
         timer.setMinWidth(100);
 
-
-
         timerLine.getChildren().add(timer);
 
+        // Bar display
         HBox bpmBox = new HBox(50);
 
         beatsAndBarsLabel = new Label();
@@ -391,6 +347,7 @@ public class JavaFXController extends Application implements Serializable {
         bpmLabel.setText(mixerSetUp.getBpm() +  " bpm");
         bpmLabel.setFont(new Font(24));
 
+        // BPM selector
         ComboBox bpmSelect = new ComboBox();
         int oneTwenty = 120;
         int oneThirty = 130;
@@ -468,77 +425,67 @@ public class JavaFXController extends Application implements Serializable {
      * Import a file from the Menu Bar
      */
     public void importFile(){
+        // Import file
         ImportManager importManager = new ImportManager();
+        // Create trackline
         TrackLineGUI trackline = importManager.importFile(channels, this, window);
+        // Add to list of tracklines
         trackLines.add(trackline);
     }
 
+    /**
+     * Export the current arrangement as a 24 bit .wav
+     */
     public void export() {
         try {
+            // Export the current arrangement
             controller.export(window);
         } catch (LineUnavailableException e) {
             // do something
         }
     }
 
-    public Stage getWindow() {
-        return window;
-    }
-
     /**
-     * Return the gui controller
-     * @return - ArrangementWindowController
+     * Create the timeline
+     * @return VBox with timeline and pointer
      */
-    public ArrangementWindowController getController() {
-        return controller;
-    }
-
-    public MixerSetUp getMixerSetUp() {
-        return mixerSetUp;
-    }
-
-    public Scene getMainWindow() {
-        return mainWindow;
-    }
-
-    public JavaFXController getThis () {
-        return this;
-    }
-
-    public VBox getVBox() {
-        return channels;
-    }
-
     public VBox createTimeline() {
 
-
+        // Convert pixel ratio to seconds
         double pixelsPerSec = (1/(pixelRatio * 10));
 
+        // Split between timer and pointer
         VBox timeSplit = new VBox(0);
         HBox timeBox = new HBox(50);
         for (double i = 1; i < 500; i += timelineRatio) {
-
             Label label = new Label();
-
+            // bind to current valye to 2dp
             label.textProperty().bind(Bindings.format("%.2f", i ));
             label.setMinWidth(50);
             label.setMinHeight(25);
+            // width + padding should always = 100
             label.setMaxWidth(50);
             label.setTextAlignment(TextAlignment.LEFT);
-
+            // add lab el to HBox
             timeBox.getChildren().add(label);
         }
 
+        // Set staring position
         timeSplit.setTranslateX(165);
-
-        System.out.println(pixelsPerSec);
+        //System.out.println(pixelsPerSec);
+        // Add the pointer
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
         return timeSplit;
     }
 
+    /**
+     * Create pointer for tracking current position
+     * @return Rectangle pointer
+     */
     public Rectangle createPointer() {
 
+        // Create pointer
         pointer = new Rectangle();
         pointer.setStroke(Color.BLACK);
         pointer.setWidth(5);
@@ -546,31 +493,23 @@ public class JavaFXController extends Application implements Serializable {
         pointer.setFill(Color.BLACK);
         pointer.setTranslateX(10);
 
+        // Set tranlation speed
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 
+        // Set animation
         TT = new TranslateTransition(Duration.seconds(pointerSpeed), pointer);
         TT.setToX(1000 * 10);
         TT.setInterpolator(Interpolator.LINEAR);
-
         mixerSetUp.setTT(TT);
 
         return pointer;
-        
-        /*
-        TT = new TranslateTransition(Duration.seconds(width), pointer);
-        TT.setToX(width * 10);
-        TT.setInterpolator(Interpolator.LINEAR);
-        */
     }
 
-    public Rectangle getPointer() {
-        return pointer;
-    }
-
-    public double getPixelRatio() {
-        return pixelRatio;
-    }
-
+    /**
+     * Change the pixel ratio and adjust
+     * @param pixelRatio - new pixel to millisecond ratio
+     * @param timelineRatio - new pixel to millisecond ratio adjusted for timeline
+     */
     public void setPixelRatio(double pixelRatio, double timelineRatio) {
 
         try {
@@ -599,30 +538,111 @@ public class JavaFXController extends Application implements Serializable {
 
     }
 
-    public ArrayList<TrackLineGUI> getTrackLines() {
-        return trackLines;
-    }
-
-    public VBox getTimeLine() {
-        return timeLine;
-    }
-
-    public void setMainScene() {
-        window.setScene(mainWindow);
-    }
-
-    public TranslateTransition getTT() {
-        return TT;
-    }
-
-    public Timing getTiming() {
-        return timing;
-    }
-
+    /**
+     * Create a new trackline with a specific file
+     * @param file - .wav file to add
+     * @throws java.lang.Exception
+     */
     public void addFile(File file) throws java.lang.Exception{
         TrackLineGUI trackLine = new TrackLineGUI(file.getName(), getThis());
         channels.getChildren().add(trackLine.createTrack());
         trackLine.addFile(file);
         trackLines.add(trackLine);
+    }
+
+    /**
+     * Get the stage
+     * @return stage window
+     */
+    public Stage getWindow() {
+        return window;
+    }
+
+    /**
+     * get the pointer animation
+     * @return TranslateTransition TT
+     */
+    public TranslateTransition getTT() {
+        return TT;
+    }
+
+    /**
+     * Get the timer controller
+     * @return timing
+     */
+    public Timing getTiming() {
+        return timing;
+    }
+
+    /**
+     * Get the arraylist of all track lines
+     * @return ArrayList<TrackLineGUI>
+     */
+    public ArrayList<TrackLineGUI> getTrackLines() {
+        return trackLines;
+    }
+
+    /**
+     * Get the timeline display
+     * @return VBox timeline
+     */
+    public VBox getTimeLine() {
+        return timeLine;
+    }
+
+    /**
+     * Get the tracking line pointer
+     * @return Rectangle pointer
+     */
+    public Rectangle getPointer() {
+        return pointer;
+    }
+
+    /**
+     * get the pixel to millisecond ration
+     * @return Double pixel ratio
+     */
+    public double getPixelRatio() {
+        return pixelRatio;
+    }
+
+    /**
+     * Return the gui controller
+     * @return - GUIController
+     */
+    public GUIController getController() {
+        return controller;
+    }
+
+    /**
+     * Get the mixer
+     * @return MixerSetUp mixerSetUp
+     */
+    public MixerSetUp getMixerSetUp() {
+        return mixerSetUp;
+    }
+
+    /**
+     * Returns the main scene
+     * @return Scene mainWindow
+     */
+    public Scene getMainWindow() {
+        return mainWindow;
+    }
+
+    /**
+     * Returns this FXBuilder
+     * @return FXGUIBuilder this
+     */
+    public FXGUIBuilder getThis () {
+        return this;
+    }
+
+    /**
+     * Return the parent for all the channel lines
+     * @return VBox channels
+     */
+    public VBox getChannelBox() {
+        return channels;
     }
 }
