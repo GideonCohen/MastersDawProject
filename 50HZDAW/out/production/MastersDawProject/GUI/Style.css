@@ -43,6 +43,9 @@
 .back-pane {
     -fx-background-color: transparent;
 }
+.tree-view{
+     -fx-background-color: transparent;
+}
 
 .saved-effects {
     -fx-effect: dropshadow(gaussian, black, 10, 0, 0, 0);

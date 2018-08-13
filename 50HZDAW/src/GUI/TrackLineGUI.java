@@ -217,6 +217,7 @@ public class TrackLineGUI {
                 System.out.println("The difference was " + diff);
                 System.out.println("decible change: " + deci);
                 */
+                System.out.println(deci);
                 adjustVolume((float) deci);
                 volume = newVol;
             }

@@ -154,7 +154,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         // Find the image location for the background
         try {
             // image location
-            File file = new File("50HZDAW/Samples/WoodGrain.jpeg");
+            File file = new File("50HZDAW/src/Resources/WoodGrain.jpeg");
             localUrl = file.toURI().toURL().toString();
         } catch (Exception e) {
         }

@@ -10,18 +10,29 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Directory view - displays a directory as a tree view on GUI. Wav files in the directory can be added to the editor.
+ * Files may be dragged into the directory or deleted from it and the directory may be changed
+ * Selected files may be previews using the directory player - (Alternative audio player, uses clips)
+ */
 public class DirectoryViewer{
 
+    // Main GUI
     private FXGUIBuilder controller;
+    // Base pane for the directory
     private StackPane directoryBase;
+    //
     private BorderPane directory;
 
+    private File rootFolder;
     private Button maximise;
 
     private File selected;
@@ -29,14 +40,17 @@ public class DirectoryViewer{
 
     public DirectoryViewer(FXGUIBuilder controller) {
         this.controller = controller;
+        rootFolder = new File("Samples");
+
     }
 
     public StackPane makeDirectory() {
         directoryBase = new StackPane();
         directoryBase.getStyleClass().add("directory");
         TreeView<File> treeView = new TreeView<>();
+        treeView.getStyleClass().add("tree-view");
+
         directory = new BorderPane();
-        directory.getStyleClass().add("directory");
 
         Button minimise = new Button();
         Image minImage = new Image("Resources/min.png");
@@ -51,7 +65,7 @@ public class DirectoryViewer{
 
 
         DirectoryPlayer player = new DirectoryPlayer();
-        treeView.setRoot(getNodesForDirectory(new File("50HZDAW/Samples")));
+        treeView.setRoot(getNodesForDirectory(rootFolder));
         treeView.getRoot().setExpanded(true);
         makeDraggable(treeView);
         HBox hBox = new HBox();
@@ -76,6 +90,14 @@ public class DirectoryViewer{
         Image deleteImage = new Image("Resources/delete.png");
         delete.setGraphic(new ImageView(deleteImage));
 
+
+        // Change the root directory for the DAW
+        Button changeRoot = new Button();
+        Image changeImage = new Image("Resources/ChangeDir.png");
+        changeRoot.setGraphic(new ImageView(changeImage));
+        changeRoot.setOnAction(event -> selectRootFolder(treeView));
+
+
         play.setOnAction(e -> player.play());
         pause.setOnAction(e -> player.pause());
         stop.setOnAction(e -> player.stop());
@@ -93,10 +115,11 @@ public class DirectoryViewer{
         stop.setTooltip(new Tooltip("Stop"));
         add.setTooltip(new Tooltip("Add to editor"));
         delete.setTooltip(new Tooltip("Delete File"));
+        changeRoot.setTooltip(new Tooltip("Change root folder"));
         minimise.setTooltip(new Tooltip("Collapse"));
         maximise.setTooltip(new Tooltip("Expand"));
 
-        hBox.getChildren().addAll(play, pause, stop, add, delete, minimise);
+        hBox.getChildren().addAll(play, pause, stop, add, delete, changeRoot, minimise);
         directory.setBottom(hBox);
         directory.setCenter(treeView);
 
@@ -148,11 +171,11 @@ public class DirectoryViewer{
             if (f.isDirectory()) { //Then we call the function recursively
                 //add try catch statement to load complete directory.
                 root.getChildren().add(getNodesForDirectory(f));
-                System.out.println("Loading " + f.getName());
+                //System.out.println("Loading " + f.getName());
             } else if (getFileExtension(f.getName()).equals("wav")) {
                 TreeItem<File> wav = new TreeItem<>(f);
                 root.getChildren().add(wav);
-                System.out.println("Loading " + f.getName());
+                //System.out.println("Loading " + f.getName());
             }
         }
         return root;
@@ -169,6 +192,9 @@ public class DirectoryViewer{
         return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
     }
 
+    /**
+     * Replace the directory view with the maximise button and shrink size
+     */
     public void minimiseView() {
         directoryBase.getChildren().remove(directory);
         directoryBase.getChildren().add(maximise);
@@ -176,12 +202,19 @@ public class DirectoryViewer{
         directoryBase.setMinWidth(30);
     }
 
+    /**
+     * Show the main Directory view
+     */
     public void maximiseView() {
         directoryBase.getChildren().remove(maximise);
         directoryBase.getChildren().add(directory);
         directoryBase.setMinWidth(200);
     }
 
+    /**
+     * Allow users to drag and drop wav files onto the treeview
+     * @param tree - view to accept files
+     */
     private void makeDraggable(TreeView tree){
 
         // Handler for drag over
@@ -226,24 +259,66 @@ public class DirectoryViewer{
         });
     }
 
+    /**
+     * Add file to the path linked by the tree (currently hard coded)
+     * @param file
+     * @param tree
+     * @throws IOException
+     */
     public void addFile(File file, TreeView tree) throws IOException{
         File input = file;
-        File outPut = new File("50HZDAW/Samples");
+        File outPut = rootFolder;
+        // copy file
         FileUtils.copyFileToDirectory(input, outPut);
-        tree.setRoot(getNodesForDirectory(new File("50HZDAW/Samples")));
+        tree.setRoot(getNodesForDirectory(rootFolder));
         tree.getRoot().setExpanded(true);
 
     }
 
+    /**
+     * Delete the currently selected file
+     * @param file - selected file
+     * @param tree - tree view
+     */
     public void deleteFile(File file, TreeView tree) {
         if (selected != null) {
             boolean answer = ConfirmationBox.Display("Delete File", "Are you sure you want to delete this file?");
             if (answer) {
+                //unselect current track
                 selected = null;
                 file.delete();
-                tree.setRoot(getNodesForDirectory(new File("50HZDAW/Samples")));
+                // reset the root to update the contents
+                tree.setRoot(getNodesForDirectory(rootFolder));
                 tree.getRoot().setExpanded(true);
             }
         }
+    }
+
+    /**
+     * Select a new root folder for the directory viewer
+     * @param tree - treeview
+     */
+    public void selectRootFolder(TreeView tree){
+        // alternative to file choose for directories
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Select new root directory");
+        chooser.setInitialDirectory(rootFolder);
+        File newDirectory = chooser.showDialog(controller.getWindow());
+        // set the new directory
+        setRootFolder(newDirectory);
+        // Set the new node
+        tree.setRoot(getNodesForDirectory(rootFolder));
+        tree.getRoot().setExpanded(true);
+
+    }
+
+
+    /**
+     * Set the new root folder for the tree view
+     * @param newFolder - the new root folder
+     */
+    public void setRootFolder(File newFolder) {
+        rootFolder = newFolder;
+
     }
 }
