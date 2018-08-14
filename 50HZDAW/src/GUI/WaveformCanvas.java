@@ -72,7 +72,7 @@ public class WaveformCanvas {
         wf.setBackgroundColor(Color.color(1,1,1, 0.2));
         //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
-        
+
 
         //to set starting position for waveform
         canvas.setTranslateX(start * pixelRatio);
