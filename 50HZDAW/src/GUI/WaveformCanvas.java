@@ -39,8 +39,10 @@ public class WaveformCanvas {
 
     private StackPane waveformStack;
 
+    private TrackLineGUI trackLineGUI;
 
-    public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio){
+
+    public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio, TrackLineGUI trackLine){
 
         // intialise global variables
         index = i;
@@ -50,6 +52,7 @@ public class WaveformCanvas {
         this.start = start;
         this.track = track;
         pixelRatio = pixRatio;
+        trackLineGUI = trackLine;
     }
 
 
@@ -80,7 +83,7 @@ public class WaveformCanvas {
         //1 pixel = 0.1 second or 100ms
         //if setting position with ms, /100
 
-        addMouseListeners();
+        addMouseListeners(canvas);
         return canvas;
     }
 
@@ -88,7 +91,7 @@ public class WaveformCanvas {
     /**
      * Adds interactivity to the canvas
      */
-    public void addMouseListeners() {
+    public void addMouseListeners(Canvas canvas) {
 
         WaveformCanvas waveform = this;
 
@@ -98,7 +101,7 @@ public class WaveformCanvas {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, pixelRatio);
+                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, trackLineGUI);
                 }
             }
         });
@@ -186,5 +189,16 @@ public class WaveformCanvas {
 
     public void setPosition(long start) {
         canvas.setTranslateX(start*pixelRatio);
+    }
+
+    public double getPixelRatio() {
+        return pixelRatio;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        waveformStack.getChildren().remove(this.canvas);
+        this.canvas = canvas;
+        waveformStack.getChildren().add(this.canvas);
+        addMouseListeners(this.canvas);
     }
 }

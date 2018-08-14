@@ -380,6 +380,7 @@ public class Track {
         return dataFinish;
     }
 
-
-
+    public ArrayList<AudioData> getAudioData() {
+        return audioData;
+    }
 }

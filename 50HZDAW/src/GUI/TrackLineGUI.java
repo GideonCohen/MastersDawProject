@@ -350,7 +350,7 @@ public class TrackLineGUI {
         adjustVolume((float) volAdjust);
 
         //create the canvas
-        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInMilliSeconds, file, index, displayLine, start, track, pixelRatio);
+        WaveformCanvas waveformCanvas = new WaveformCanvas(durationInMilliSeconds, file, index, displayLine, start, track, pixelRatio, this);
         Canvas canvas = waveformCanvas.createWaveform();
 
         //update the start position

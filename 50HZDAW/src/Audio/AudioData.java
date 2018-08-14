@@ -32,7 +32,7 @@ public class AudioData {
     private InputStream is;
     private byte [] mp3TempArray;
 
-
+    private float[] stereoFloatArray;
 
     public AudioData (File file, long startMillis) throws UnsupportedAudioFileException, IOException {
 
@@ -40,7 +40,9 @@ public class AudioData {
         byteToFloat = new ByteToFloat();
         setUpStream(file);
         setStereoByteArray();
+        stereoFloatArray = byteToFloat.byteToFloatArray(stereoByteArray, maxValue);
         reverse = false;
+        setFinish();
 
     }
 
@@ -98,9 +100,6 @@ public class AudioData {
 
         stereoByteArray = new byte [(int)audioFileLength];
         inputStream.read(stereoByteArray);  // sets a stereo byte array to bit split for processing.    // fill byte array with pre-processed audio.
-        setFinish();
-        // reverse = true; // set audio file in reverse.
-        //  reverseAudio();
     }
 
     /**
@@ -170,7 +169,7 @@ public class AudioData {
 
     public float [] getStereoFloatArray () {
 
-        return byteToFloat.byteToFloatArray(stereoByteArray, maxValue);
+        return stereoFloatArray;
     }
 
 
@@ -194,7 +193,7 @@ public class AudioData {
 
     public long setFinish() {
 
-        long finishFloat = this.start + (getStereoFloatArray().length);
+        long finishFloat = this.start + stereoFloatArray.length;
         this.finish = finishFloat;
         System.out.println("Finish Byte: " + finish);
         return finishFloat;
@@ -222,12 +221,9 @@ public class AudioData {
 
     }
 
-
-
-
-
-
-
+    public void setStereoFloatArray(float[] stereoFloatArray) {
+        this.stereoFloatArray = stereoFloatArray;
+    }
 }
 
 

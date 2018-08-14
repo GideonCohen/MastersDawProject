@@ -8,47 +8,49 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import static java.lang.Math.abs;
+import java.util.ArrayList;
 
-public class DelayBox {
+public class PedalGUI {
 
-    // the result from the box
-    static double delay;
 
-    public static double Display(double currentPos, double pixelRatio, String str){
-        delay = (currentPos/pixelRatio)/1000;
+
+    static ArrayList<Float> listOfValues;
+
+    public static ArrayList<Float> Display() {
+
+        listOfValues = new ArrayList<>();
 
         Stage window = new Stage();
 
         // You must deal with this window before clicking on any other window in the application
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Delay Box");
         window.setMinWidth(200);
 
-        Label label1 = new Label("Please enter " + str);
+        Label title = new Label("Please enter desired values: ");
+        Label delayLabel = new Label("Delay");
+        Label feedbackLabel = new Label("Feedback");
+        Label fadeOutLabel = new Label("Fade out");
 
 
-        TextField delayInput = new TextField();
+        TextField delayInput = new TextField("250");
+        TextField feedbackInput = new TextField("5");
+        TextField fadeOutInput = new TextField("0.8");
         Button confirm = new Button("Confirm");
         confirm.setOnAction(event -> {
-            if (verifyNum(delayInput, delayInput.getText())) {
-                delay = Double.parseDouble(delayInput.getText());
+            if ((verifyNum(delayInput, delayInput.getText()) && (verifyNum(feedbackInput, delayInput.getText()) &&
+                    (verifyNum(fadeOutInput, delayInput.getText()))))) {
+                listOfValues.add((float) Double.parseDouble(delayInput.getText()));
+                listOfValues.add((float) Double.parseDouble(feedbackInput.getText()));
+                listOfValues.add((float) Double.parseDouble(fadeOutInput.getText()));
                 window.close();
             }
         });
 
 
-        VBox layout = new VBox();
-        layout.getChildren().addAll(label1, delayInput, confirm);
+        VBox layout = new VBox(15);
+        layout.getChildren().addAll(title, delayLabel, delayInput, feedbackLabel,
+                feedbackInput, fadeOutLabel, fadeOutInput, confirm);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
@@ -59,7 +61,7 @@ public class DelayBox {
         window.showAndWait();
 
 
-        return delay;
+        return listOfValues;
     }
 
     /**
@@ -88,6 +90,5 @@ public class DelayBox {
         }
         return isNum;
     }
-
 }
 
