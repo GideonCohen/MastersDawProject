@@ -72,6 +72,7 @@ public class WaveformCanvas {
         wf.setBackgroundColor(Color.color(1,1,1, 0.2));
         //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
+        
 
         //to set starting position for waveform
         canvas.setTranslateX(start * pixelRatio);
@@ -149,17 +150,6 @@ public class WaveformCanvas {
             }
         });
 
-        canvas.setOnMouseDragEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MouseButton button = event.getButton();
-                if (button == MouseButton.PRIMARY) {
-
-                }
-
-
-            }
-        });
 
         // get the position of the canvas on click
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
