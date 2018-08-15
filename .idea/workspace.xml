@@ -446,8 +446,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="324" y="134" width="1116" height="766" extended-state="0" />
-    <editor active="true" />
+    <frame x="255" y="105" width="1116" height="766" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
