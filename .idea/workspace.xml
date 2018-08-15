@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/50HZDAW/Samples/WoodGrain.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/Samples/abstract-art-background-1020317.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/ArrangementWindowController$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/ArrangementWindowController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/JavaFXController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/OutputTrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/OutputTrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/StereoSplit.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/StereoSplit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/StereoSplit.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/StereoSplit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,44 +19,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+      <file leaf-file-name="AudioData.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1681">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="283">
+              <caret line="198" column="10" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveformGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
+      <file leaf-file-name="AudioProcessing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="45" selection-end-column="29" />
+            <state relative-caret-position="15">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+      <file leaf-file-name="AudioTrackData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2265">
-              <caret line="163" column="5" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GhostCanvas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="553">
+              <caret line="191" selection-start-line="191" selection-end-line="191" />
             </state>
           </provider>
         </entry>
@@ -176,11 +126,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="184" />
-    <option name="y" value="45" />
-    <option name="width" value="1116" />
-    <option name="height" value="766" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="19" />
+    <option name="y" value="22" />
+    <option name="width" value="1340" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -215,15 +165,15 @@
               <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Audio" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,86 +294,66 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="20" y="22" width="1340" height="878" extended-state="0" />
+    <frame x="19" y="22" width="1340" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info id="simpleUML" order="7" weight="0.3297568" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32711443" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50074625" side_tool="true" visible="true" weight="0.2835821" />
-      <window_info anchor="right" id="Maven Projects" order="6" weight="0.32980973" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49910393" weight="0.3482659" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49925372" visible="true" weight="0.2835821" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28537735" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8385417" visible="true" weight="0.19701493" />
-      <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.2995067" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721706" visible="true" weight="0.29701492" />
+      <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.29992738" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39925373" />
-      <window_info id="Favorites" order="2" sideWeight="0.16145833" side_tool="true" visible="true" weight="0.19701493" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.08680555" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
-      <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.29992738" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28537735" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49721706" visible="true" weight="0.29722223" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290653" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3277849" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info id="simpleUML" order="7" weight="0.3297568" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721706" visible="true" weight="0.29992738" />
       <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.29992738" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290653" />
+      <window_info id="simpleUML" order="7" weight="0.3297568" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3277849" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info id="simpleUML" order="7" weight="0.3297568" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -443,20 +373,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="283" column="6" selection-start-line="283" selection-start-column="6" selection-end-line="283" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#TrackLineGUI#0;class#TrackLineGUI#0" />
-            <element signature="method#adjustVolume#0;class#TrackLineGUI#0" />
-            <element signature="method#acceptDragDrop#0;class#TrackLineGUI#0" />
-            <element signature="method#addFile#0;class#TrackLineGUI#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" />
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -607,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="45" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/StereoSplit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-823">
@@ -689,27 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="198" column="10" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Track.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -747,18 +635,8 @@
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" />
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1681">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2265">
-          <caret line="163" column="5" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
+        <state relative-caret-position="75">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -773,6 +651,51 @@
             <element signature="method#acceptDragDrop#0;class#TrackLineGUI#0" />
             <element signature="method#addFile#0;class#TrackLineGUI#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="45" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="206" column="5" selection-start-line="206" selection-start-column="5" selection-end-line="206" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="198" column="10" selection-start-line="198" selection-start-column="10" selection-end-line="198" selection-end-column="10" />
         </state>
       </provider>
     </entry>
