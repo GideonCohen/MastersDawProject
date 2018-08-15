@@ -41,6 +41,8 @@ public class WaveformCanvas {
 
     private TrackLineGUI trackLineGUI;
 
+    private WaveformGenerator wf;
+
 
     public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio, TrackLineGUI trackLine){
 
@@ -66,7 +68,7 @@ public class WaveformCanvas {
 
         // get filepath and create waveform generator
         String filePath = file.getAbsolutePath();
-        WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
+        wf = new WaveformGenerator(new File(filePath), gc);
         //remove padding
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
@@ -75,7 +77,6 @@ public class WaveformCanvas {
         wf.setBackgroundColor(Color.color(1,1,1, 0.2));
         //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
-
 
         //to set starting position for waveform
         canvas.setTranslateX(start * pixelRatio);
@@ -200,5 +201,8 @@ public class WaveformCanvas {
         this.canvas = canvas;
         waveformStack.getChildren().add(this.canvas);
         addMouseListeners(this.canvas);
+        start = (long) (canvas.getTranslateX()/pixelRatio);
+        track.moveAudioFile(index, start);
+
     }
 }

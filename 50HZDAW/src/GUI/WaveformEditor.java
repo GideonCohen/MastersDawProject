@@ -161,9 +161,9 @@ public class WaveformEditor {
 
         canvas.setOnMouseClicked(e -> {
             double x = e.getX() / canvas.getWidth();
-            double d = (x * durationInSeconds);
-            double roundedOneDigitX = Math.round(d * 10) / 10.0;
-            selectedTime.setText("Selected time: " + roundedOneDigitX + " seconds");
+            double d = (x * durationInSeconds)/10;
+            String posString = String.format("Selected time: %.2f seconds", d);
+            selectedTime.setText(posString);
 
         });
 
