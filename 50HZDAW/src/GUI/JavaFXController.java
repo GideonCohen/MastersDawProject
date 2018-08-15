@@ -19,9 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -86,6 +84,8 @@ public class JavaFXController extends Application implements Serializable {
     // length of a bar at given BPM.
     private double barLength;
 
+    private DirectoryViewer directory;
+
 
 
 
@@ -118,12 +118,11 @@ public class JavaFXController extends Application implements Serializable {
 
         bpmConverter = new BPMConverter();
         barLength = (bpmConverter.setBars(1, mixerSetUp.getBpm()))/(double)1000;
-        System.out.println(barLength);
-
 
         pixelRatio = 0.1/ barLength;
         timelineRatio = 1;
 
+        directory = new DirectoryViewer(this);
 
         // Create the main layout
         makeMainWindow();
@@ -149,7 +148,6 @@ public class JavaFXController extends Application implements Serializable {
      * The Main Layout of the application (Essentially everything except the menu bar)
      */
     private void makeMainWindow(){
-
         //Splits the menu and the rest of the window
         VBox mainSplit = new VBox(0);
 
@@ -178,7 +176,7 @@ public class JavaFXController extends Application implements Serializable {
 
         try {
             // image location
-            File file = new File("50HZDAW/Samples/WoodGrain.png");
+            File file = new File("50HZDAW/Samples/abstract-art-background-1020317.jpg");
             localUrl = file.toURI().toURL().toString();
         } catch (Exception e) {
         }
@@ -193,9 +191,13 @@ public class JavaFXController extends Application implements Serializable {
         channelView.setBackground(background);
         channelView.setContent(channels);
 
+        HBox directorySplit = new HBox(0);
+        StackPane directoryGUI = directory.makeDirectory();
+        directorySplit.getChildren().addAll(directoryGUI, channelView);
+
         // Set positions in the layout
         mainLayout.setTop(makeTopLine());
-        mainLayout.setCenter(channelView);
+        mainLayout.setCenter(directorySplit);
 
         // add children to split
         mainSplit.getChildren().add(makeMenu());
@@ -210,7 +212,7 @@ public class JavaFXController extends Application implements Serializable {
         dragDropTracks(channelView);
 
         // Bind the arrangemnet window to be just smaller than the app window
-        channelView.prefHeightProperty().bind(mainWindow.heightProperty().add(-100));
+        channelView.prefHeightProperty().bind(mainWindow.heightProperty());
 
     }
 
@@ -319,9 +321,12 @@ public class JavaFXController extends Application implements Serializable {
         Image playImage = new Image("Resources/play.png");
         play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> {
-            controller.play();
+            System.out.println("TRACK POS: " + timing.getMillis());
+            controller.play((int)timing.getMillis());
             timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
             timing.startTimer();
+
+
         });
 
 
@@ -331,8 +336,11 @@ public class JavaFXController extends Application implements Serializable {
         pause.setGraphic(new ImageView(pauseImage));
         pause.setOnAction(event -> {
                 timing.pauseTimer();
-                controller.pause();
-    });
+                System.out.println("TRACK POS: " + timing.getMillis());
+
+            controller.pause((int)timing.getMillis());
+
+        });
 
 
         // Stop all added tracks
@@ -340,18 +348,27 @@ public class JavaFXController extends Application implements Serializable {
         Image stopImage = new Image("Resources/stop.png");
         stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> {
-                controller.stop();
+                controller.stop((int)timing.getMillis());
                 timing.stopTimer();
-
-                timer.setText("00:00");
+                TT.stop();
+                pointer.setTranslateX(0);
+            System.out.println("TRACK POS: " + timing.getMillis());
+            timer.setText("00:00");
     });
 
         Button zoomIn = new Button("Zoom In");
-        zoomIn.setOnAction(event -> setPixelRatio((pixelRatio*2), (timelineRatio/2)));
+        zoomIn.setOnAction(event -> {
+            setPixelRatio((pixelRatio * 2), (timelineRatio / 2));
+            TT.setToX((1000 * 10) * 2);
+
+        });
 
         Button zoomOut = new Button("Zoom Out");
-        zoomOut.setOnAction(event -> setPixelRatio((pixelRatio/2), timelineRatio*2));
+        zoomOut.setOnAction(event -> {
+            setPixelRatio((pixelRatio / 2), timelineRatio * 2);
+            TT.setToX((1000 * 10) /2);
 
+        });
 
         playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
@@ -378,17 +395,30 @@ public class JavaFXController extends Application implements Serializable {
         bpmLabel.setFont(new Font(24));
 
         ComboBox bpmSelect = new ComboBox();
+        int oneHundred = 100;
+        int oneTen = 110;
         int oneTwenty = 120;
         int oneThirty = 130;
         int oneFourty = 140;
+        int oneSeventy = 170;
         bpmSelect.setPromptText("120");
 
-        bpmSelect.getItems().addAll(oneTwenty, oneThirty, oneFourty);
+
+        bpmSelect.getItems().addAll(oneHundred, oneTen, oneTwenty, oneThirty, oneFourty, oneSeventy);
 
         bpmBox.getChildren().add(beatsAndBarsLabel);
         bpmBox.getChildren().add(bpmLabel);
 
         bpmBox.getChildren().add(bpmSelect);
+
+        bpmSelect.setOnAction(doThis -> {
+            System.out.println(bpmSelect.getItems().get(bpmSelect.getSelectionModel().getSelectedIndex()).hashCode());
+            mixerSetUp.setBpm((bpmSelect.getItems().get(bpmSelect.getSelectionModel().getSelectedIndex()).hashCode()));
+            System.out.println(mixerSetUp.getBpm());
+            bpmLabel.setText(mixerSetUp.getBpm() +  " bpm");
+            setPixelBpmChange();
+
+        });
 
         beatsAndBarsLabel.setMinWidth(150);
         // beatsAndBarsLabel.setPrefSize(beatsAndBarsLabel.USE_PREF_SIZE, beatsAndBarsLabel.USE_PREF_SIZE);
@@ -538,10 +568,11 @@ public class JavaFXController extends Application implements Serializable {
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 
         TT = new TranslateTransition(Duration.seconds(pointerSpeed), pointer);
-        TT.setToX(1000 * 10);
+        TT.setToX((1000 * 10) * 1);
         TT.setInterpolator(Interpolator.LINEAR);
 
         mixerSetUp.setTT(TT);
+        mixerSetUp.setRectangle(pointer);
 
         return pointer;
         
@@ -550,6 +581,15 @@ public class JavaFXController extends Application implements Serializable {
         TT.setToX(width * 10);
         TT.setInterpolator(Interpolator.LINEAR);
         */
+    }
+
+    public void setPixelBpmChange () {
+
+        barLength = (bpmConverter.setBars(1, mixerSetUp.getBpm()))/(double)1000;
+        pixelRatio = 0.1/ barLength;
+        timelineRatio = 1;
+        setPixelRatio(pixelRatio, timelineRatio);
+
     }
 
     public Rectangle getPointer() {
@@ -561,6 +601,7 @@ public class JavaFXController extends Application implements Serializable {
     }
 
     public void setPixelRatio(double pixelRatio, double timelineRatio) {
+
 
         try {
             // 0.003 around about 32seconds per 100 pixels      // translated to a zoom in of 32 bars at a time. (NOW 16!)
@@ -585,6 +626,11 @@ public class JavaFXController extends Application implements Serializable {
 
 
     }
+    public void killTimer () {
+        if(mixerSetUp.getTimerStatus() == false) {
+            timing.stopTimer();
+        }
+    }
 
     public ArrayList<TrackLineGUI> getTrackLines() {
         return trackLines;
@@ -592,5 +638,9 @@ public class JavaFXController extends Application implements Serializable {
 
     public VBox getTimeLine() {
         return timeLine;
+    }
+
+    public void setMainScene() {
+        window.setScene(mainWindow);
     }
 }

@@ -1,24 +1,17 @@
 package GUI;
 
-import Audio.MixerSetUp;
 import Audio.Track;
 import electronism.sample.gui.javafx.WaveformGenerator;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.ColorModel;
 import java.io.File;
 
 public class WaveformCanvas {
@@ -74,7 +67,8 @@ public class WaveformCanvas {
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
         wf.setWidth(width - 5);
-        wf.setShowCenterLine(true);
+        wf.setWaveAverageColor(Color.MIDNIGHTBLUE);
+        wf.setBackgroundColor(Color.color(1,1,1, 0.2));
         //System.out.println("padding is " + wf.getPaddingRight());
         wf.draw();
 
@@ -94,13 +88,15 @@ public class WaveformCanvas {
      */
     public void addMouseListeners() {
 
+        WaveformCanvas waveform = this;
+
         // Open the waveform editor when the canvas is right clicked
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(width, index, file, track, waveformStack, canvas);
+                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, pixelRatio);
                 }
             }
         });
@@ -126,6 +122,7 @@ public class WaveformCanvas {
                     start = delay;
                     track.moveAudioFile(index, delay);
                     System.out.println("Start at " + delay + "ms");
+
                     //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
 
                 }

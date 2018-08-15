@@ -12,15 +12,9 @@ public class StereoSplit {
 
     private float [] leftFloatArray;
     private float [] rightFloatArray;
-    private int bitDepth;
 
 
-    public StereoSplit(float [] stereoFloatArray) {
-
-        this.stereoFloatArray = stereoFloatArray;
-        this.bitDepth = bitDepth;
-        leftFloatArray = new float [stereoFloatArray.length];
-        rightFloatArray = new float [stereoFloatArray.length];
+    public StereoSplit() {
 
 
     }
@@ -32,7 +26,11 @@ public class StereoSplit {
      *
      */
 
-    public void split() {
+    public void split(float [] trackBuffer) {
+
+        this.stereoFloatArray = trackBuffer;
+        leftFloatArray = new float [stereoFloatArray.length];
+        rightFloatArray = new float [stereoFloatArray.length];
 
         for (int i = 0; i < stereoFloatArray.length; i += 2) {
 
@@ -62,7 +60,6 @@ public class StereoSplit {
     public void setPanning (float [] monoArray, float gain) {
 
         for(int i = 0; i < monoArray.length; i++) {
-
             monoArray [i] = monoArray [i] * gain;
         }
     }
@@ -74,11 +71,13 @@ public class StereoSplit {
      * This new stereo array will be the result of processed audio (panning/volume/EQ).
      */
 
-    public float [] convergeMonoArrays () {
+    public void convergeMonoArrays (float leftGain, float rightGain) {
 
-        setPanning(leftFloatArray, 1.0f);   // reduce values of left to emphasise right (vice versa)
-        setPanning(rightFloatArray, 1.0f);
+        System.out.println("LEFT: " + leftGain);
+        System.out.println("RIGHT: " + rightGain);
 
+        setPanning(leftFloatArray, leftGain);   // reduce values of left to emphasise right (vice versa)
+        setPanning(rightFloatArray, rightGain);
 
         for (int i = 0; i < stereoFloatArray.length; i += 2) {
 
@@ -91,8 +90,6 @@ public class StereoSplit {
             }
 
         }
-
-        return stereoFloatArray;
 
     }
 
@@ -117,8 +114,6 @@ public class StereoSplit {
         return rightFloatArray;
 
     }
-
-
 
 
 

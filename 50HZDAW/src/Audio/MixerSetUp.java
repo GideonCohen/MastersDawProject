@@ -39,16 +39,21 @@ public class MixerSetUp {
     // Timeline TT
     private TranslateTransition TT;
 
+    // Start in ms.
+    private int startPos;
+
+    private boolean timerOn;
+
     private Rectangle r;
 
 
 
+    /*
     public static void main (String [] args) {
 
         MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
 
-    }
-
+    }*/
 
 
     /**
@@ -64,9 +69,11 @@ public class MixerSetUp {
 
         trackCount = 0;
 
+
         tracks = new ArrayList<>();
 
-        bpm = 128;    // CHANGE BPM HERE FOR TRACK TIMELINE & BEATS AND BAR CHANGES!
+        bpm = 120;    // CHANGE BPM HERE FOR TRACK TIMELINE & BEATS AND BAR CHANGES!
+        timerOn = true;
 
 
 
@@ -92,8 +99,19 @@ public class MixerSetUp {
         } catch (LineUnavailableException e) {
 
         }
+
 */
 
+
+    }
+
+    /**
+     * Set start pos of project.
+     */
+
+    private void setStart(int start) {
+
+        this.startPos = start;
     }
 
     public void testOutput() throws LineUnavailableException{
@@ -113,43 +131,37 @@ public class MixerSetUp {
         //addTrack("Track1", file2, 0.8f, 10000);     // create mixer with one track as default.
         System.out.println("tracks: " + tracks.size());
         System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
-        playOutput();
+        playOutput(startPos);
     }
 
     /**
      * Add a new track to the mixer. Specify parameter for type of track set-up.
      * @param name - The name of the track
      * @param file - File to add to the track
-     * @param volume - volume modifier (>1 increase volume, <1 decrease volume).
      * @return - The Track created
      */
-    public Track addTrack (String name, File file, float volume, long start) {
+
+    public Track addTrack (String name, File file, long start) {
 
         Track track = null;
 
         try {
-            track = new Track(name,  volume);
+            track = new Track(name);
+            System.out.println("nigga");
             tracks.add(track);
             track.addAudioTrackData(file, start);
-        }
-        catch (LineUnavailableException lue) {
+        } catch (LineUnavailableException lue) {
             System.out.println(lue.getMessage());
         }
 
-        trackCount ++;
+        trackCount++;
         System.out.println("Tracks in output: " + tracks.size());
         lines = mixer.getSourceLines();  // refresh amount of lines in mixer.
 
         return track;
-
     }
 
-
-    /**
-     * Remove a given Track
-     * @param track - the Track to be removed
-     */
-    public void removeTrack (Track track) {
+        public void removeTrack (Track track) {
         tracks.remove(track);
         trackCount --;
 
@@ -175,10 +187,12 @@ public class MixerSetUp {
      * Play all tracks together.
      */
 
-    public void playOutput () throws LineUnavailableException{
+    public void playOutput (int start) throws LineUnavailableException{
 
-        output = new OutputTrack("OutPut", playOffset);
-        System.out.println("Mixer offset is " + playOffset);
+         setStart(start);
+
+        output = new OutputTrack("OutPut", startPos);
+        System.out.println("Mixer offset is " + startPos);
 
         //Add each track to the combined output
         for (Track track: tracks) {
@@ -199,17 +213,24 @@ public class MixerSetUp {
     /**
      * Stop the current output and save the current position as the offset
      */
-    public void pauseOutput (){
+    public void pauseOutput (int start){
+        setStart(start);
         TT.pause();
         playOffset = output.pause();
+        System.out.println("Mixer offset is " + startPos);
 
     }
+
+
 
     /**
      *  Stop the current ouput and set the offset as 0
      */
-    public void stopOutput (){
+    public void stopOutput (int start){
+
+        setStart(start);
         playOffset = output.stop();
+        System.out.println("Mixer offset is " + startPos);
         TT.stop();
         r.setTranslateX(0);
     }
@@ -226,8 +247,7 @@ public class MixerSetUp {
 
     public OutputTrack prepareOutput() throws LineUnavailableException {
 
-        output = new OutputTrack("OutPut", playOffset);
-        System.out.println("Mixer offset is " + playOffset);
+        output = new OutputTrack("OutPut", startPos);
 
         //Add each track to the combined output
         for (Track track: tracks) {
@@ -253,14 +273,24 @@ public class MixerSetUp {
         return bpm;
     }
 
+    public void killTimer () {
+
+        timerOn = false;
+    }
+
+    public boolean getTimerStatus() {
+
+        return timerOn;
+    }
+
     /**
      * Set the bpm of the project.
      */
 
-    public void setBpm(int newBpm) {
+    public int setBpm(int newBpm) {
 
         this.bpm = newBpm;
-
+        return this.bpm;
     }
 
 

@@ -37,6 +37,8 @@ public class Track {
 
     private boolean solo;
     private boolean mute;
+    private boolean delay;
+
 
 
 
@@ -49,10 +51,11 @@ public class Track {
      * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
      */
 ;
-    public Track (String name, float volume) throws LineUnavailableException {
+    public Track (String name) throws LineUnavailableException {
 
         solo = false;
         mute = false;
+        delay = false;
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
             // default audio format for data line if no file is added. will change once audio file is added.
@@ -89,20 +92,14 @@ public class Track {
 
         byteToFloat = new ByteToFloat();
 
-
         addDataToTrack();
 
-       // moveAudioFile(0, 2000);
+        // moveAudioFile(0, 2000);
+
 
         audioProcessing = new AudioProcessing();
 
-
-    }
-
-
-    public Track () {
-
-    }
+        }
 
 
     /**
@@ -212,6 +209,7 @@ public class Track {
         source.open(audioFormat, source.getBufferSize()); // line must be open to appear in mixer
         addDataToTrack();
 
+
     }
 
     /**
@@ -271,16 +269,15 @@ public class Track {
     public void addVolume (float volume) {
 
         audioProcessing.setVolume(volume, trackBuffer);
-        trackBuffer = audioProcessing.getProcessedAudio();    // get audio after all processing is done
     }
 
     /**
      * Add audio processing to a track.
      */
-    public void setPan (float pan) {
+    public void setPan (float leftGain, float rightGain) {
 
-        audioProcessing.setVolume(pan, trackBuffer);
-        trackBuffer = audioProcessing.getProcessedAudio();    // get audio after all processing is done
+      audioProcessing.setPan(leftGain, rightGain, trackBuffer);
+
     }
 
 
@@ -290,11 +287,11 @@ public class Track {
 
     public void setDelay () {
 
-        audioProcessing.setDelay(trackBuffer, 250, 3, 50f);
-        trackBuffer = audioProcessing.getProcessedAudio();
+        trackBuffer = audioProcessing.setDelay(trackBuffer, 250, 3, 50f);
+       // trackBuffer = audioProcessing.getProcessedAudio();
+       // addDataToTrack();
 
     }
-
 
 
 
@@ -368,6 +365,30 @@ public class Track {
     public boolean getMute () {
 
         return mute;
+    }
+
+    /**
+     * Set track to mute. Data from this track will not be added to the output.
+     */
+
+    public void setDelaySwitch() {
+
+        if(delay == false) {
+            delay = true;
+        }
+        else {
+            delay = false;
+        }
+    }
+
+
+    /**
+     * Find out whether a track is set to solo or not.
+     */
+
+    public boolean getDelay () {
+
+        return delay;
     }
 
 

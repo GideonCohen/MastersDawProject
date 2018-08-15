@@ -2,8 +2,6 @@ package GUI;
 
 import Audio.MixerSetUp;
 import Audio.Track;
-import electronism.sample.gui.javafx.WaveformGenerator;
-import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -12,8 +10,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -23,14 +22,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.util.ArrayList;
-
 
 
 public class TrackLineGUI {
@@ -51,9 +48,6 @@ public class TrackLineGUI {
     private StackPane displayLine;
     // Volume modifier
     private double volume;
-    // Pan modifier
-    private double pan;
-
     // All files contained in the track line
     private ArrayList<WaveformCanvas> audioClips;
 
@@ -136,7 +130,7 @@ public class TrackLineGUI {
             try {
                 track.setSolo();
                 if (track.getSolo()) {
-                    solo.setTextFill(Color.RED);
+                    solo.setTextFill(Color.BLUE);
                 } else {
                     solo.setTextFill(Color.BLACK);
                 }
@@ -152,12 +146,34 @@ public class TrackLineGUI {
         Button deleteChannel = new Button("Delete channel");
         deleteChannel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
         deleteChannel.setOnAction(event -> {
-            // Remove the channel from the scene
-            channels.getChildren().remove(trackLine);
-            controller.removeTrack(track);
-            // remove trackline object from controller
-            FXController.getTrackLines().remove(this);
+
+            if (ConfirmationBox.Display("Delete Channel", "Are you sure you want to delete this channel?")) {
+                // Remove the channel from the scene
+                channels.getChildren().remove(trackLine);
+                controller.removeTrack(track);
+                // remove trackline object from controller
+                FXController.getTrackLines().remove(this);
+            } else {
+                // do nothing
+            }
+
         });
+
+    /*    Button delay = new Button("Delay");
+        delay.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+        delay.setOnAction(event -> {
+            try {
+                track.setDelaySwitch();
+                if (track.getDelay()) {
+                    track.setDelay();
+                    delay.setTextFill(Color.RED);
+                } else {
+                    delay.setTextFill(Color.BLACK);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("No track");
+            }
+        });*/
 
 
         volume = 0;
@@ -182,47 +198,53 @@ public class TrackLineGUI {
                 */
                 adjustVolume((float) deci);
                 volume = newVol;
+                System.out.println(newVol);
             }
         });
+
+
 
         Label volLabel = new Label();
         volLabel.textProperty().bind(Bindings.format("Volume: %.2f Db", volumeSlider.valueProperty()));
 
-        pan = 0;
         //Panning
-        Slider panSlider = new Slider(-50, 50, 0);
+        Slider panSlider = new Slider(-100, 100, 0);
         panSlider.setShowTickMarks(true);
-        panSlider.setMajorTickUnit(10);
-        panSlider.setMinorTickCount(9);
+        panSlider.setMajorTickUnit(3);
+        panSlider.setMinorTickCount(2);
         panSlider.setBlockIncrement(1);
         panSlider.setSnapToTicks(true);
-
-        panSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                double newPan = volumeSlider.getValue();
-                double diff = newPan - pan;
-                double deci = Math.pow(10, (diff/10));
-                /*
-                System.out.println("The volume went from " + volume + " to " + newVol);
-                System.out.println("The difference was " + diff);
-                System.out.println("decible change: " + deci);
-                */
-                //setPan((float) deci);
-                pan = newPan;
-            }
-        });
 
 
         Label panLabel = new Label();
 
         DoubleProperty panLeft = new SimpleDoubleProperty();
-        panLeft.bind(panSlider.valueProperty().multiply(-1).add(50));
+        panLeft.bind(panSlider.valueProperty().multiply(0).add(0));
 
         DoubleProperty panRight = new SimpleDoubleProperty();
-        panRight.bind(panSlider.valueProperty().add(50));
+        panRight.bind(panSlider.valueProperty().add(00));
 
         panLabel.textProperty().bind(Bindings.format("Left:%.0f%%" + " Right: %.0f%%", panLeft, panRight));
+
+        panSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              //  System.out.println(panSlider.getValue());
+
+                double newPan = panSlider.getValue();
+                double panWeight = (newPan * 0.01);    // 1/50 of the volume. 0.02 * 50 = 1.
+                if(panWeight < 0) {
+                    panWeight = 1 - (-1 * panWeight);
+                    track.setPan(1, (float)panWeight);
+                }
+                else {
+                    panWeight = 1 - panWeight;
+                    track.setPan((float)panWeight, 1);
+                }
+                System.out.println(panWeight);
+
+            }
+        });
 
 
         // Layout for buttons
@@ -249,23 +271,6 @@ public class TrackLineGUI {
     private void adjustVolume(float vol) {
         try {
             track.addVolume(vol);
-            //System.out.println(vol);
-        } catch (NullPointerException e) {
-            System.out.println("No track");
-        }
-    }
-
-
-
-    /**
-     * Adjust the volume of all audio in this track. Values above 1 increase sound, values below decrease sound.
-     * Minimum value is 0 max is TBD
-     * @param vol - float
-     */
-    private void setPan(float vol) {
-
-        try {
-            track.setPan(vol);
             //System.out.println(vol);
         } catch (NullPointerException e) {
             System.out.println("No track");
@@ -336,7 +341,7 @@ public class TrackLineGUI {
         // if there are no clips create a track and add the file
         if (audioClips.size() == 0) {
             System.out.println("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, 1, 0);
+            track = mixerSetUp.addTrack(file.getName(), file, 0);
             name.textProperty().setValue(file.getName());
             lineName = file.getName();
         } else {
@@ -379,7 +384,7 @@ public class TrackLineGUI {
 
     public void resize(double newPixelRatio) {
         pixelRatio = newPixelRatio;
-        double change = (newPixelRatio/pixelRatio);
+        double change = newPixelRatio/pixelRatio;
         // for each canvas
         for (WaveformCanvas wfCanvas: audioClips){
             // get the old canvas

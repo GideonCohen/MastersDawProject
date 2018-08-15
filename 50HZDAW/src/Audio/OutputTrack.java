@@ -46,7 +46,7 @@ public class OutputTrack {
      *
      */
 
-    public OutputTrack(String name, long offset) throws LineUnavailableException {
+    public OutputTrack(String name, int offset) throws LineUnavailableException {
 
 
         // OUTPUT TRACK IS AT 24-BIT STEREO.
@@ -58,9 +58,7 @@ public class OutputTrack {
         // Looks like this line was missing for some reason
         source.open(audioFormat, source.getBufferSize()); //
 
-        bufferSize = 1024*6;
-        readBufferSize = bufferSize * 2;
-        sdlBufferSize = bufferSize * 4;
+        bufferSize = 1024 * 6;
 
         minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
         maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
@@ -69,12 +67,12 @@ public class OutputTrack {
         byteToFloat = new ByteToFloat();
 //       timing.getTimerMillis();
 
-        trackOffset = offset;
+        trackOffset = millisToBytes(offset);
 
-        readBuffer = new byte [source.getBufferSize()];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
+        readBuffer = new byte [bufferSize];    // 1 seconds worth of audio every iteration. 88.2 bytes every ms
 
         // pause fix i think, was reinitialising count each time.
-        count = (int) trackOffset/readBuffer.length;
+       // count = (int) trackOffset/readBuffer.length;
     }
 
     /**
@@ -128,6 +126,16 @@ public class OutputTrack {
             outputFloatArray[j] -= currentFloatArray[j];
         }
     }
+
+
+    private int millisToBytes(int millis) {
+
+        int bytes = 264600; // bytes per second for 24-bit output.
+        int bytesPerMillis = bytes/1000;
+
+        return millis * bytesPerMillis;
+    }
+
 
     /**
      * Add all data from tracks and normalize output. This will be the result from adding all PCM values.
@@ -183,7 +191,6 @@ public class OutputTrack {
                 }
             }
         }
-
         outputBytes = byteToFloat.floatToByteArray(outputFloatArray, minValue, maxValue);     // transform float array to 24-bit byte array
         System.out.println(outputBytes.length);                                              // (format specified in format of output line).
         outputStream = new ByteArrayInputStream(outputBytes);
@@ -197,6 +204,7 @@ public class OutputTrack {
 
     public void playTrack () throws IOException {
 
+        System.out.println("Total Bytes = " + outputStream.available());
         source.start();
 
        // timing = new Timing(0, 100000, true);
@@ -205,27 +213,25 @@ public class OutputTrack {
 
         try {
 
-            System.out.println("Resume at : " + trackOffset);
             outputStream.skip(trackOffset);
-            System.out.println("Offset is " + trackOffset);
             while ((numBytesRead = outputStream.read(readBuffer)) != -1 && pause == false) {    // 40 iterations of 88200. 88200 = 1 second of playback.
                 source.write(readBuffer, 0, readBuffer.length);               //  4 bytes represent a stereo datapoint within a sample.
                 // System.out.println(count);                                   // 44100 sample rate = each stereo sample is 44100 * 4 = 176400
                 count++;                                                    // total bytes = length of audio file * bytespersecond (176400)
             }
-            // catch last write before source is killed
-            source.write(readBuffer, 0, 44100);
+
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());          //
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());          // SHOULD BE CAUGHT CLIENT SIDE...
         }
-
-        System.out.println("Bytes left = " + (outputLength - (count * readBuffer.length)));
-
-        if (numBytesRead == -1) {
-            count = 0;
+        if(pause == false) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
         }
+
         System.out.println("Done");
 
         source.stop();
@@ -282,11 +288,11 @@ public class OutputTrack {
 
         trackOffset = count * readBuffer.length;
         pause = true;
-        /*
+
         System.out.println("Paused at " + trackOffset);
         System.out.println("Pause pressed. playback interrupted");
         System.out.println("Interrupt");
-        */
+
         source.stop();
         source.drain();
         try {
@@ -369,6 +375,6 @@ public class OutputTrack {
     }
 
     public long getCurrentPosition() {
-        return count * readBuffer.length;
+        return count * bufferSize;
     }
 }

@@ -18,6 +18,7 @@ public class ArrangementWindowController {
     private JavaFXController view;
     private MixerSetUp mixerSetUp;
     private boolean playing;
+    private int startPos;
 
     public ArrangementWindowController(JavaFXController newView, MixerSetUp model) throws Exception {
 
@@ -26,14 +27,16 @@ public class ArrangementWindowController {
         playing = false;
     }
 
-    public void play() {
+    public void play(int start) {
+
+        startPos = start;
         if (!playing) {
             playing = true;
             try {
                 Thread thread = new Thread(new Runnable() {
                     public void run() {
                         try {
-                            mixerSetUp.playOutput();
+                            mixerSetUp.playOutput(start);
                             playing = false;
                         } catch (Exception e) {
                         }
@@ -50,15 +53,17 @@ public class ArrangementWindowController {
         }
     }
 
-    public void pause() {
+    public void pause(int start) {
         playing = false;
-        mixerSetUp.pauseOutput();
+        startPos = start;
+        mixerSetUp.pauseOutput(start);
     }
 
-    public void stop() {
+    public void stop(int start) {
+        startPos = start;
         playing = false;
         try {
-            mixerSetUp.stopOutput();
+            mixerSetUp.stopOutput(start);
         } catch (NullPointerException e) {
             System.out.println("No track playing");
         }
@@ -82,7 +87,10 @@ public class ArrangementWindowController {
         if (answer) {
             view.getWindow().close();
             try {
-                stop();
+                stop(startPos);
+                mixerSetUp.killTimer();
+                view.killTimer();
+
             } catch (NullPointerException e) {}
         }
     }

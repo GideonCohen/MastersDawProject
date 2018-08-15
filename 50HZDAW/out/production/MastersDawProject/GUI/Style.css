@@ -4,6 +4,22 @@
     -fx-background-color: transparent;
 }
 
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-radius: 5em;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
 .track-line{
     -fx-padding: 0;
@@ -20,4 +36,19 @@
 
 .options-box{
     -fx-background-color: lightgray;
+
+
+}
+
+.back-pane {
+    -fx-background-color: transparent;
+}
+
+.saved-effects {
+    -fx-effect: dropshadow(gaussian, black, 10, 0, 0, 0);
+}
+
+.button {
+    -fx-fill-color: red;
+    -fx-effect: dropshadow(gaussian, darkgray, 2, 0, 0, 0);
 }

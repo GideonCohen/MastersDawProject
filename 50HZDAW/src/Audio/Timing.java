@@ -124,6 +124,7 @@ public class Timing {
     public void stopTimer()  {
         timer.cancel();
         timer.purge();
+        timerTaskMillis.cancel();
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
@@ -139,6 +140,8 @@ public class Timing {
     public void pauseTimer()  {
         timer.cancel();
         timer.purge();
+        timerTaskMillis.cancel();
+
 
     }
 

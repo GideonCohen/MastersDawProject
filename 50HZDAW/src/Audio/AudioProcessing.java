@@ -14,10 +14,13 @@ public class AudioProcessing {
     private byte [] stereoPostByteArray;
     private ByteToFloat byteToFloat;
     private float volume;
+    private StereoSplit stereoSplit;
 
     public AudioProcessing () {
 
         byteToFloat = new ByteToFloat();
+        stereoSplit = new StereoSplit();
+
 
     }
 
@@ -37,19 +40,18 @@ public class AudioProcessing {
      * Set volume.
      */
 
-    public void setPan (float newVolume, float [] trackBuffer) {
+    public void setPan (float leftGain, float rightGain,  float [] trackBuffer) {
 
-        this.stereoFloatArray = trackBuffer;
-        this.volume = newVolume;
-        adjustVolume();
+        stereoSplit.split(stereoFloatArray);
+        stereoSplit.convergeMonoArrays(leftGain, rightGain);
+
     }
 
     /**
      * Set delay.
      */
 
-    public void setDelay (float [] test, int delay, int feedBack, float fadeOut) {
-
+    public float [] setDelay (float [] test, int delay, int feedBack, float fadeOut) {
 
         System.out.println("PRE DELAY ARRAY LENGTH: " + test.length);
 
@@ -57,7 +59,6 @@ public class AudioProcessing {
 
             int delayFixedValue = delay;
             float[] newTest = new float[test.length + (delay * feedBack)];
-            //this.delayFixedValue = delay;
             for (int i = 0; i < feedBack; i++) {
                 newTest = addOneDelay(test, delay);
                 test = newTest;
@@ -69,7 +70,12 @@ public class AudioProcessing {
                 delay = delayFixedValue + delay;
             }
 
+            System.out.println("POST DELAY ARRAY LENGTH: " + newTest.length);
             this.stereoFloatArray = newTest;
+
+            return newTest;
+
+
     }
 
 

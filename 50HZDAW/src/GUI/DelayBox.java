@@ -9,15 +9,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import static java.lang.Math.abs;
-
 public class DelayBox {
 
     // the result from the box
     static double delay;
 
-    public static double Display(double currentPos){
-        delay = currentPos;
+    public static double Display(double currentPos, double pixelRatio){
+        delay = (currentPos/pixelRatio)/1000;
 
         Stage window = new Stage();
 
