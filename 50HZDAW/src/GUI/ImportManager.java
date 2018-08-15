@@ -1,5 +1,6 @@
 package GUI;
 
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -8,7 +9,7 @@ import java.io.File;
 
 public class ImportManager {
 
-    public TrackLineGUI importFile(VBox channels, FXGUIBuilder javaFXController, Stage window){
+    public TrackLineGUI importFile(VBox channels, JavaFXController javaFXController, Stage window){
         // JavaFX prebuilt file chooser
         FileChooser fileChooser = new FileChooser();
 

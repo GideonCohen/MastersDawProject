@@ -14,10 +14,13 @@ public class AudioProcessing {
     private byte [] stereoPostByteArray;
     private ByteToFloat byteToFloat;
     private float volume;
+    private StereoSplit stereoSplit;
 
     public AudioProcessing () {
 
         byteToFloat = new ByteToFloat();
+        stereoSplit = new StereoSplit();
+
 
     }
 
@@ -37,19 +40,18 @@ public class AudioProcessing {
      * Set volume.
      */
 
-    public void setPan (float newVolume, float [] trackBuffer) {
+    public void setPan (float leftGain, float rightGain,  float [] trackBuffer) {
 
-        this.stereoFloatArray = trackBuffer;
-        this.volume = newVolume;
-        adjustVolume();
+        stereoSplit.split(stereoFloatArray);
+        stereoSplit.convergeMonoArrays(leftGain, rightGain);
+
     }
 
     /**
      * Set delay.
      */
 
-    public void setDelay (float [] test, int delay, int feedBack, float fadeOut) {
-
+    public float [] setDelay (float [] test, int delay, int feedBack, float fadeOut) {
 
         System.out.println("PRE DELAY ARRAY LENGTH: " + test.length);
 
@@ -57,7 +59,6 @@ public class AudioProcessing {
 
             int delayFixedValue = delay;
             float[] newTest = new float[test.length + (delay * feedBack)];
-            //this.delayFixedValue = delay;
             for (int i = 0; i < feedBack; i++) {
                 newTest = addOneDelay(test, delay);
                 test = newTest;
@@ -69,7 +70,11 @@ public class AudioProcessing {
                 delay = delayFixedValue + delay;
             }
 
+            System.out.println("POST DELAY ARRAY LENGTH: " + newTest.length);
             this.stereoFloatArray = newTest;
+
+            return newTest;
+
     }
 
 
@@ -108,17 +113,69 @@ public class AudioProcessing {
 
 
 
+    public float[] delayLoop(float[] test, int delay, int layers, float fadeOut) {
+
+        float[] newTest = new float[test.length + (delay * layers)];    // delay amount must be greater than sample length.
+        int delayFixedValue = delay;
+
+        float[] layer = new float[test.length];
+        for (int i = 0; i< test.length; i++ ) {
+            layer[i] = test[i];
+        }
+
+        for (int i = 0; i < layers; i++) {
+            newTest = add(test, layer, delay,fadeOut);
+            test = newTest;
+            delay = delayFixedValue + delay;
+            fadeOut = 1 * fadeOut;
+        }
+        return newTest;
+    }
+
+
+    public float[] add(float[] originalFloats, float [] layer, int delay, float fadeOut) { ;
+
+        int difference = originalFloats.length - layer.length;
+        float[] newFloats = new float[(originalFloats.length - difference) + delay];
+
+        delay = (88200/1000) * delay;
+
+        for (int i=0; i< layer.length; i++) {
+            layer[i] =+ (layer [i] * fadeOut);
+        }
+
+        int count = 0;
+        for (int i = 0; i < newFloats.length; i++) {
+            if (i < delay) {
+                newFloats[i] = originalFloats[i];
+            } else if (i >= delay && i < originalFloats.length) {
+                newFloats[i] = (originalFloats[i] + layer[count]);
+                count++;
+            } else if (i >= originalFloats.length && count < layer.length) {
+                newFloats[i] = layer[count];
+                count++;
+            }
+        }
+        return newFloats;
+    }
+
+
+
     /**
      * Adjust the volume of an audio float array by multiplying its values by a factor of x.
      */
 
     public void adjustVolume () {   // implement volume control param.
 
-
         for(int i = 0; i < stereoFloatArray.length; i++) {
             stereoFloatArray[i] = (stereoFloatArray [i] * volume);      // increase volume by factor of x.
         }
 
+    }
+
+    public float getVolume () {
+        System.out.println(volume);
+        return volume;
     }
 
 

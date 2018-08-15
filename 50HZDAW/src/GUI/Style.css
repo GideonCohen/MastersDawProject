@@ -43,19 +43,9 @@
 .back-pane {
     -fx-background-color: transparent;
 }
-.tree-view{
-     -fx-background-color: transparent;
-}
 
 .saved-effects {
     -fx-effect: dropshadow(gaussian, black, 10, 0, 0, 0);
-}
-
-.directory {
-    -fx-background-color: darkgray;
-    -fx-border-insets: 0;
-    -fx-border-width: 2px;
-    -fx-border-color: gray lightgray lightgray gray;
 }
 
 .button {

@@ -1,7 +1,9 @@
 package Audio;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Line;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -18,6 +20,7 @@ public class Timing {
     private long seconds;
     private long milliseconds;
     private Timer timer;
+
     private TimerTask timerTaskMillis;
     private Metronome metronome;
     private boolean isMetronome;
@@ -40,21 +43,6 @@ public class Timing {
         bars = 1;
         beats = 1;
 
-        this.isMetronome = isMetronome;
-        try {
-            metronome = new Metronome();
-        }
-        catch (UnsupportedAudioFileException uafe) {
-            System.out.println(uafe.getMessage());
-        }
-        catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-
-        }
-        catch (LineUnavailableException lua) {
-            System.out.println(lua.getMessage());
-
-        }
         bpmConverter = new BPMConverter();
 
 
@@ -62,12 +50,15 @@ public class Timing {
 
     public void getTimerMillis(int bpm, Label barsLabel, Label bpmLabel) {
 
+
         timer = new Timer();
+        this.isMetronome = false;
 
         bpmConverter.setBPM(bpm);
 
         // timerSwitch = true;
         timerTaskMillis = new TimerTask() {
+
 
 
             @Override
@@ -88,7 +79,6 @@ public class Timing {
                 if (milliseconds >= bpmConverter.setBeat(1)) {
                     beats = (int) (milliseconds / bpmConverter.setBeat(1)) + 1;
                 }
-
 
                 Platform.runLater(new Runnable() {
                     @Override
@@ -113,7 +103,7 @@ public class Timing {
 
     public void startTimer () {
 
-        timer.scheduleAtFixedRate(timerTaskMillis,0,1);
+        timer.scheduleAtFixedRate(timerTaskMillis,0, 1);
 
     }
 
@@ -124,6 +114,7 @@ public class Timing {
     public void stopTimer()  {
         timer.cancel();
         timer.purge();
+        timerTaskMillis.cancel();
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
@@ -139,7 +130,36 @@ public class Timing {
     public void pauseTimer()  {
         timer.cancel();
         timer.purge();
+        timerTaskMillis.cancel();
 
+
+    }
+
+    private void setUpMetronome () {
+
+        try {
+            metronome = new Metronome();
+        }
+        catch (UnsupportedAudioFileException uafe) {
+            System.out.println(uafe.getMessage());
+        }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+
+        }
+        catch (LineUnavailableException lua) {
+            System.out.println(lua.getMessage());
+
+        }
+    }
+
+    public void setMetronome () {
+        if(isMetronome == false) {
+            isMetronome = true;
+        }
+        else {
+            isMetronome = false;
+        }
     }
 
     public long getMillis() { return milliseconds; }

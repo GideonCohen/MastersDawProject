@@ -25,7 +25,7 @@ public class Metronome {
         mixInfos = AudioSystem.getMixerInfo();
         mixer = AudioSystem.getMixer(mixInfos[0]);
 
-        filename = "/Users/ivaannagen/Documents/Samples/Samplephonics_-_LofiCuts/TCCLofiCuts_Wav_SP/One Shots/Drums/Clicks and FX/120_RasterClick_SP_02.wav";
+        filename = "/Users/ivaannagen/Documents/Samples/Samplephonics_-_LofiCuts/TCCLofiCuts_Wav_SP/One Shots/Drums/Clicks and FX/120_RasterClick_SP_03.wav";
         sound = new File(filename);
         ais = AudioSystem.getAudioInputStream(sound);
         AudioFormat format = ais.getFormat();
@@ -33,11 +33,12 @@ public class Metronome {
         clip = (Clip)AudioSystem.getLine(info);
         clip.open(ais);
         reset = false;
+
     }
 
-    public void play(float bpm) throws LineUnavailableException, IOException {
+    public void play() throws LineUnavailableException, IOException {
 
-            clip.start();
+        clip.start();
 
     }
 
@@ -46,8 +47,7 @@ public class Metronome {
         clip.stop();
         clip.flush();
         clip.drain();
-        clip.close();
-        clip.open(ais);
+      //  clip.close();
     }
 
 }

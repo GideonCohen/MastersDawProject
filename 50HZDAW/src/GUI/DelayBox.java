@@ -8,23 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import static java.lang.Math.abs;
 
 public class DelayBox {
 
     // the result from the box
     static double delay;
 
-    public static double Display(double currentPos, double pixelRatio, String str){
+    public static double Display(double currentPos, double pixelRatio){
         delay = (currentPos/pixelRatio)/1000;
 
         Stage window = new Stage();
@@ -34,7 +24,7 @@ public class DelayBox {
         window.setTitle("Delay Box");
         window.setMinWidth(200);
 
-        Label label1 = new Label("Please enter " + str);
+        Label label1 = new Label("Please enter a delay in seconds");
 
 
         TextField delayInput = new TextField();
@@ -88,6 +78,4 @@ public class DelayBox {
         }
         return isNum;
     }
-
 }
-
