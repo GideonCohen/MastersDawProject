@@ -188,11 +188,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="21" />
-    <option name="y" value="23" />
-    <option name="width" value="1419" />
-    <option name="height" value="812" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="15" />
+    <option name="y" value="46" />
+    <option name="width" value="1202" />
+    <option name="height" value="795" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
