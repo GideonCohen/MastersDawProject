@@ -119,6 +119,7 @@ public class WaveformGenerator {
 		     * Percent Result / 100 to find the multiplicator
 		     */
             double yRatio = Sample.getYRatio(wave, defHeight);// (double)defHeight / (double)255;
+
             int point2read = 1;
             if (resolution > 1)
                 point2read = (int)Math.ceil(resolution);

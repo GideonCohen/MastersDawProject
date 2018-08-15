@@ -362,9 +362,10 @@ public class WaveformEditor {
 
         track.addDataToTrack();
 
-        AudioFormat audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 24, 2, 6, 44100, false);
+        AudioFormat audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
         int minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
         int maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
+
 
         waveformStack.getChildren().remove(waveform);
         waveform = new Canvas(diff * pixelRatio, 150);

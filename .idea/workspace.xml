@@ -2,21 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioData.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/FadeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/FadeManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DelayBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DelayBox.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/ArrangementHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/ArrangementHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/electronism/sample/Sample.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/electronism/sample/Sample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/electronism/sample/gui/javafx/WaveformGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/electronism/sample/gui/javafx/WaveformGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,46 +18,54 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/MastersDawProject$FXGUIBuilder.ic" NAME="FXGUIBuilder Coverage Results" MODIFIED="1534262918295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>GUI.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="MastersDawProject" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="378" column="41" selection-start-line="378" selection-start-column="41" selection-end-line="378" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="200" column="39" selection-start-line="200" selection-start-column="39" selection-end-line="200" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaveformGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+            <state relative-caret-position="160">
+              <caret line="370" column="54" lean-forward="true" selection-start-line="370" selection-start-column="54" selection-end-line="370" selection-end-column="54" />
               <folding>
-                <element signature="e#2627#6500#0" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ByteHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/helpers/ByteHelper.java">
+      <file leaf-file-name="WaveformOption.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/WaveformOption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="-485">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaveformGenerator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="120" column="97" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
+              <folding>
+                <element signature="e#6535#6536#0" expanded="true" />
+                <element signature="e#6562#6563#0" expanded="true" />
+                <element signature="e#7744#7745#0" expanded="true" />
+                <element signature="e#7772#7773#0" expanded="true" />
+                <element signature="e#7879#7880#0" expanded="true" />
+                <element signature="e#7908#7909#0" expanded="true" />
+                <element signature="e#8115#8116#0" expanded="true" />
+                <element signature="e#8148#8149#0" expanded="true" />
+                <element signature="e#8187#8188#0" expanded="true" />
+                <element signature="e#8246#8247#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,8 +73,28 @@
       <file leaf-file-name="Sample.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+            <state relative-caret-position="15">
+              <caret line="99" column="41" lean-forward="true" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+              <folding>
+                <element signature="e#5190#5191#0" expanded="true" />
+                <element signature="e#5225#5226#0" expanded="true" />
+                <element signature="e#5524#5525#0" expanded="true" />
+                <element signature="e#5567#5568#0" expanded="true" />
+                <element signature="e#5859#5860#0" expanded="true" />
+                <element signature="e#5877#5878#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SampleData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/SampleData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
+              <folding>
+                <element signature="e#916#917#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,8 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SplitPane</find>
-      <find>Double</find>
       <find>+44100</find>
       <find>mixer</find>
       <find>move</find>
@@ -119,6 +138,8 @@
       <find>$PROJECT_DIR$/../../../../ivaannagen</find>
       <find>ivaannagen</find>
       <find>pixel</find>
+      <find>max</find>
+      <find>WaveformGenerator(</find>
     </findStrings>
     <replaceStrings>
       <replace>VBox</replace>
@@ -137,7 +158,6 @@
       <list>
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackGUI.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveformEditor.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveformGenerator.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveView.java" />
@@ -161,9 +181,11 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/SamplePoint.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
       </list>
     </option>
@@ -216,14 +238,6 @@
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="electronism" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
-              <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="electronism" type="462c0819:PsiDirectoryNode" />
-              <item name="helpers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
@@ -463,7 +477,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="878" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -475,17 +488,18 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.32980973" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30099502" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30099502" />
+      <window_info anchor="right" id="Coverage" side_tool="true" visible="true" weight="0.08680555" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8594306" visible="true" weight="0.18333334" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8594527" visible="true" weight="0.18333334" />
       <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.2995067" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="2" sideWeight="0.14056939" side_tool="true" visible="true" weight="0.18333334" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
+      <window_info id="Favorites" order="2" sideWeight="0.14054726" side_tool="true" visible="true" weight="0.18333334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39925373" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -500,113 +514,17 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
-        <breakpoints-dialog />
+        <breakpoints-dialog>
+          <selected-grouping-rules>
+            <grouping-rule id="XBreakpointGroupingByClassRule" />
+            <grouping-rule id="by-file" />
+          </selected-grouping-rules>
+        </breakpoints-dialog>
       </breakpoints-dialog>
-      <default-breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties />
-        </breakpoint>
-      </default-breakpoints>
-      <option name="time" value="43" />
+      <option name="time" value="51" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ByteToFloat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2490">
-          <caret line="168" column="60" selection-start-line="168" selection-start-column="60" selection-end-line="168" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioOutputData.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="380" selection-start-line="380" selection-end-line="380" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="3752" column="38" selection-start-line="3752" selection-start-column="38" selection-end-line="3752" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/MenuItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="462" selection-start-line="462" selection-end-line="462" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="435" selection-start-line="435" selection-end-line="435" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="77" column="23" lean-forward="true" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ExportManager.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/moveablePopup.java" />
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveView.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -843,17 +761,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/SampleData.java">
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="96">
+          <caret line="74" column="9" lean-forward="true" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+        <state relative-caret-position="160">
+          <caret line="535" selection-start-line="535" selection-end-line="535" />
+          <folding>
+            <element signature="e#18578#18579#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="719" selection-start-line="719" selection-end-line="719" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib/rt.jar!/sun/instrument/InstrumentationImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="268" selection-start-line="268" selection-end-line="268" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib/rt.jar!/sun/launcher/LauncherHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="417" selection-start-line="417" selection-end-line="417" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="380" selection-start-line="380" selection-end-line="380" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/PostVMInitHook.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#266#267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/paint/Color.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="220" selection-start-line="220" selection-end-line="220" />
+          <folding>
+            <element signature="e#8189#8190#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -864,27 +833,127 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="857">
+          <caret line="200" column="39" selection-start-line="200" selection-start-column="39" selection-end-line="200" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/canvas/GraphicsContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="1194" selection-start-line="1194" selection-end-line="1194" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="2494" selection-start-line="2494" selection-end-line="2494" />
           <folding>
-            <element signature="e#2627#6500#0" />
+            <element signature="e#66617#66618#0" expanded="true" />
+            <element signature="e#66663#66664#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/SamplePoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="200" column="39" selection-start-line="200" selection-start-column="39" selection-end-line="200" selection-end-column="39" />
+        <state relative-caret-position="342">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/SampleData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#916#917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8413" selection-start-line="8413" selection-end-line="8413" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="99" column="41" lean-forward="true" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+          <folding>
+            <element signature="e#5190#5191#0" expanded="true" />
+            <element signature="e#5225#5226#0" expanded="true" />
+            <element signature="e#5524#5525#0" expanded="true" />
+            <element signature="e#5567#5568#0" expanded="true" />
+            <element signature="e#5859#5860#0" expanded="true" />
+            <element signature="e#5877#5878#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="378" column="41" selection-start-line="378" selection-start-column="41" selection-end-line="378" selection-end-column="41" />
+        <state relative-caret-position="160">
+          <caret line="370" column="54" lean-forward="true" selection-start-line="370" selection-start-column="54" selection-end-line="370" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/WaveformOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-485">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/SampleRange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
+          <folding>
+            <element signature="e#2561#2574#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="120" column="97" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
+          <folding>
+            <element signature="e#6535#6536#0" expanded="true" />
+            <element signature="e#6562#6563#0" expanded="true" />
+            <element signature="e#7744#7745#0" expanded="true" />
+            <element signature="e#7772#7773#0" expanded="true" />
+            <element signature="e#7879#7880#0" expanded="true" />
+            <element signature="e#7908#7909#0" expanded="true" />
+            <element signature="e#8115#8116#0" expanded="true" />
+            <element signature="e#8148#8149#0" expanded="true" />
+            <element signature="e#8187#8188#0" expanded="true" />
+            <element signature="e#8246#8247#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -77,7 +77,11 @@ public class ArrangementHelper {
         int x = 0;
 
         for (int i = start; i < end; i++) {
-            newArray[x] = oldArray[i];
+            try {
+                newArray[x] = oldArray[i];
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("index out of bounds exception at " + i);
+            }
             x++;
         }
 
