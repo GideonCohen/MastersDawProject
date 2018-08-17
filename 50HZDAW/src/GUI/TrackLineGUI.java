@@ -220,7 +220,7 @@ public class TrackLineGUI {
                 System.out.println("The difference was " + diff);
                 System.out.println("decible change: " + deci);
                 */
-                System.out.println(deci);
+                //System.out.ptinln(deci);
                 adjustVolume((float) deci);
                 volume = newVol;
             }
@@ -260,7 +260,7 @@ public class TrackLineGUI {
                 }
                 double leftDiff =  newLeft - panLeft;
                 double leftDeci = Math.pow(10, (leftDiff/ 10));
-                System.out.println("Pan left = " + leftDeci);
+                //System.out.println("Pan left = " + leftDeci);
                 panLeft = newLeft;
 
                 double newRight = panSlider.getValue();
@@ -269,7 +269,7 @@ public class TrackLineGUI {
                 }
                 double rightDiff =  newRight - panRight;
                 double rightDeci = Math.pow(10, (rightDiff/ 10));
-                System.out.println("Pan Right = " + rightDeci);
+                //System.out.println("Pan Right = " + rightDeci);
                 panRight = newRight;
 
                 track.setPan((float) rightDeci, (float) leftDeci);
@@ -370,13 +370,13 @@ public class TrackLineGUI {
 
         // if there are no clips create a track and add the file
         if (audioClips.size() == 0) {
-            System.out.println("I tried to add a track");
+            //System.out.ptinln("I tried to add a track");
             track = mixerSetUp.addTrack(file.getName(), file, 1, 0);
             name.textProperty().setValue(file.getName());
             lineName = file.getName();
         } else {
             //add the new track
-            System.out.println("I tried to add to a existing track");
+            //System.out.ptinln("I tried to add to a existing track");
             //at the end of the old one
             track.addAudioTrackData(file, (start));
         }

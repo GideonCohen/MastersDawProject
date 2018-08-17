@@ -161,7 +161,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         } catch (Exception e) {
         }
 
-        Image backImage = new Image(localUrl, false);
+        Image backImage = new Image("Resources/WoodGrain.jpeg", false);
         // size = change cover to true for repeating images
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, false, false, true, true);
         BackgroundImage backgroundImage = new BackgroundImage(backImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, backgroundSize);

@@ -11,7 +11,6 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
 
@@ -40,7 +39,7 @@ public class DirectoryViewer{
 
     public DirectoryViewer(FXGUIBuilder controller) {
         this.controller = controller;
-        rootFolder = new File("Samples");
+        rootFolder = new File("./");
 
     }
 
