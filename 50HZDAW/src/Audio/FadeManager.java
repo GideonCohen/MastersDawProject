@@ -47,12 +47,13 @@ public class FadeManager {
     /**
      * Add an oscillatory fade pattern to a piece of audio represented as an array of floats
      * @param stereoFloatArray The array of floats to be processed
+     * @param speed The speed of the oscillatory effect
      *
      * @return An updated float array with the applied transformation
      */
-    public float[] fadeInAndOut(float[] stereoFloatArray) {
+    public float[] fadeInAndOut(float[] stereoFloatArray, int speed) {
 
-        float count = 0.00001f;
+        float count = 0.00001f * speed;
         boolean up = true;
 
         for (int i = 0; i < stereoFloatArray.length; i++) {
@@ -65,10 +66,10 @@ public class FadeManager {
             stereoFloatArray[i] = stereoFloatArray[i] * count;
 
             if (up) {
-                count += 0.00001f;
+                count += 0.00001f * speed;
             }
             if (!up) {
-                count -= 0.00001f;
+                count -= 0.00001f * speed;
             }
         }
         return stereoFloatArray;

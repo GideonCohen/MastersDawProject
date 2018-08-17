@@ -36,9 +36,9 @@ public class Metronome {
 
     }
 
-    public void play() throws LineUnavailableException, IOException {
+    public void play(float bpm) throws LineUnavailableException, IOException {
 
-        clip.start();
+            clip.start();
 
     }
 
@@ -47,7 +47,8 @@ public class Metronome {
         clip.stop();
         clip.flush();
         clip.drain();
-      //  clip.close();
+        clip.close();
+        clip.open(ais);
     }
 
 }

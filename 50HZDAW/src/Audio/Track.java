@@ -53,7 +53,7 @@ public class Track {
      * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
      */
 ;
-    public Track (String name) throws LineUnavailableException {
+    public Track (String name, float volume) throws LineUnavailableException {
 
         solo = false;
         mute = false;
@@ -101,7 +101,13 @@ public class Track {
 
         audioProcessing = new AudioProcessing();
 
-        }
+
+    }
+
+
+    public Track () {
+
+    }
 
 
     /**
@@ -210,7 +216,6 @@ public class Track {
         source.close();  // close line at previous audio format and open again once audio file is added.
         source.open(audioFormat, source.getBufferSize()); // line must be open to appear in mixer
         addDataToTrack();
-
 
     }
 
@@ -405,6 +410,7 @@ public class Track {
         return dataFinish;
     }
 
-
-
+    public ArrayList<AudioData> getAudioData() {
+        return audioData;
+    }
 }

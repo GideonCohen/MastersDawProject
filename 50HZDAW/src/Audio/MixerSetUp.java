@@ -69,7 +69,6 @@ public class MixerSetUp {
 
         trackCount = 0;
 
-
         tracks = new ArrayList<>();
 
         bpm = 120;    // CHANGE BPM HERE FOR TRACK TIMELINE & BEATS AND BAR CHANGES!
@@ -99,7 +98,6 @@ public class MixerSetUp {
         } catch (LineUnavailableException e) {
 
         }
-
 */
 
 
@@ -140,14 +138,12 @@ public class MixerSetUp {
      * @param file - File to add to the track
      * @return - The Track created
      */
-
-    public Track addTrack (String name, File file, long start) {
+    public Track addTrack (String name, File file, float volume, long start) {
 
         Track track = null;
 
         try {
-            track = new Track(name);
-            System.out.println("nigga");
+            track = new Track(name,  volume);
             tracks.add(track);
             track.addAudioTrackData(file, start);
         } catch (LineUnavailableException lue) {
@@ -161,7 +157,12 @@ public class MixerSetUp {
         return track;
     }
 
-        public void removeTrack (Track track) {
+
+    /**
+     * Remove a given Track
+     * @param track - the Track to be removed
+     */
+    public void removeTrack (Track track) {
         tracks.remove(track);
         trackCount --;
 
@@ -230,7 +231,7 @@ public class MixerSetUp {
 
         setStart(start);
         playOffset = output.stop();
-        System.out.println("Mixer offset is " + startPos);
+        //System.out.println("Mixer offset is " + startPos);
         TT.stop();
         r.setTranslateX(0);
     }

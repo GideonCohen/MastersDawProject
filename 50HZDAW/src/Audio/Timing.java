@@ -103,7 +103,7 @@ public class Timing {
 
     public void startTimer () {
 
-        timer.scheduleAtFixedRate(timerTaskMillis,0, 1);
+        timer.scheduleAtFixedRate(timerTaskMillis,0,1);
 
     }
 

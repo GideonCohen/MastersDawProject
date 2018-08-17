@@ -34,10 +34,17 @@ public class WaveformCanvas {
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
 
+    private GhostCanvas ghostCanvas;
+    private Canvas ghost;
+
     private StackPane waveformStack;
 
+    private TrackLineGUI trackLineGUI;
 
-    public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio) throws Exception {
+    private WaveformGenerator wf;
+
+
+    public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio, TrackLineGUI trackLine){
 
         // intialise global variables
         index = i;
@@ -47,8 +54,7 @@ public class WaveformCanvas {
         this.start = start;
         this.track = track;
         pixelRatio = pixRatio;
-
-
+        trackLineGUI = trackLine;
     }
 
 
@@ -62,7 +68,7 @@ public class WaveformCanvas {
 
         // get filepath and create waveform generator
         String filePath = file.getAbsolutePath();
-        WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
+        wf = new WaveformGenerator(new File(filePath), gc);
         //remove padding
         wf.setPaddingLeft(0);
         wf.setPaddingRight(0);
@@ -78,7 +84,7 @@ public class WaveformCanvas {
         //1 pixel = 0.1 second or 100ms
         //if setting position with ms, /100
 
-        addMouseListeners();
+        addMouseListeners(canvas);
         return canvas;
     }
 
@@ -86,7 +92,7 @@ public class WaveformCanvas {
     /**
      * Adds interactivity to the canvas
      */
-    public void addMouseListeners() {
+    public void addMouseListeners(Canvas canvas) {
 
         WaveformCanvas waveform = this;
 
@@ -96,7 +102,7 @@ public class WaveformCanvas {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.SECONDARY) {
-                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, pixelRatio);
+                    WaveformEditor w = new WaveformEditor(durationInMilliSeconds, index, file, track, waveformStack, waveform, trackLineGUI);
                 }
             }
         });
@@ -104,7 +110,7 @@ public class WaveformCanvas {
         // Set cursor to hand when on the canvas
         canvas.setCursor(Cursor.HAND);
         // Move the canvas and update the delay when dragged
-        canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
@@ -117,19 +123,37 @@ public class WaveformCanvas {
                         newTranslateX = 0;
                     }
                     ((Canvas) (event.getSource())).setTranslateX(newTranslateX);
+                    orgTranslateX = newTranslateX;
 
                     long delay = (long) (newTranslateX/pixelRatio);
                     start = delay;
                     track.moveAudioFile(index, delay);
-                    float newVol = track.getVolume();
-                    track.addVolume(newVol);
                     System.out.println("Start at " + delay + "ms");
-
                     //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
+                    waveformStack.getChildren().remove(ghost);
 
                 }
             }
         });
+
+        canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if (button == MouseButton.PRIMARY) {
+                    double offsetX = event.getSceneX() - orgSceneX;
+                    //double offsetY = event.getSceneY() - orgSceneY;
+                    double newTranslateX = orgTranslateX + offsetX;
+
+                    if (newTranslateX < 0) {
+                        newTranslateX = 0;
+                    }
+                    ghost.setTranslateX(newTranslateX);
+
+                }
+            }
+        });
+
 
         // get the position of the canvas on click
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -141,7 +165,11 @@ public class WaveformCanvas {
                     //orgSceneY = t.getSceneY();
                     orgTranslateX = ((Canvas) (event.getSource())).getTranslateX();
                     //orgTranslateY = ((Canvas)(t.getSource())).getTranslateY();
-
+                    try {
+                        ghostCanvas = new GhostCanvas(durationInMilliSeconds, file, waveformStack, start, pixelRatio);
+                    } catch (Exception e) {}
+                    ghost = ghostCanvas.createWaveform();
+                    waveformStack.getChildren().add(ghost);
                 }
             }
 
@@ -161,7 +189,20 @@ public class WaveformCanvas {
     }
 
     public void setPosition(long start) {
-        this.start = start;
         canvas.setTranslateX(start*pixelRatio);
+    }
+
+    public double getPixelRatio() {
+        return pixelRatio;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        waveformStack.getChildren().remove(this.canvas);
+        this.canvas = canvas;
+        waveformStack.getChildren().add(this.canvas);
+        addMouseListeners(this.canvas);
+        start = (long) (canvas.getTranslateX()/pixelRatio);
+        track.moveAudioFile(index, start);
+
     }
 }

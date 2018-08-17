@@ -51,7 +51,8 @@ public class AudioProcessing {
      * Set delay.
      */
 
-    public float [] setDelay (float [] test, int delay, int feedBack, float fadeOut) {
+    public void setDelay (float [] test, int delay, int feedBack, float fadeOut) {
+
 
         System.out.println("PRE DELAY ARRAY LENGTH: " + test.length);
 
@@ -59,6 +60,7 @@ public class AudioProcessing {
 
             int delayFixedValue = delay;
             float[] newTest = new float[test.length + (delay * feedBack)];
+            //this.delayFixedValue = delay;
             for (int i = 0; i < feedBack; i++) {
                 newTest = addOneDelay(test, delay);
                 test = newTest;
@@ -70,11 +72,7 @@ public class AudioProcessing {
                 delay = delayFixedValue + delay;
             }
 
-            System.out.println("POST DELAY ARRAY LENGTH: " + newTest.length);
             this.stereoFloatArray = newTest;
-
-            return newTest;
-
     }
 
 
@@ -166,6 +164,7 @@ public class AudioProcessing {
      */
 
     public void adjustVolume () {   // implement volume control param.
+
 
         for(int i = 0; i < stereoFloatArray.length; i++) {
             stereoFloatArray[i] = (stereoFloatArray [i] * volume);      // increase volume by factor of x.
