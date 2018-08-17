@@ -275,7 +275,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> {
             // play the arrangement
-            System.out.println("TRACK POS: " + timing.getMillis());
+            //System.out.println("TRACK POS: " + timing.getMillis());
             controller.play((int)timing.getMillis());
             // start the timer
             timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
@@ -287,11 +287,15 @@ public class FXGUIBuilder extends Application implements Serializable {
         Image pauseImage = new Image("Resources/pause.png");
         pause.setGraphic(new ImageView(pauseImage));
         pause.setOnAction(event -> {
-                // pause the timer
+            // pause the timer
+            try {
                 timing.pauseTimer();
-                System.out.println("TRACK POS: " + timing.getMillis());
+                //System.out.println("TRACK POS: " + timing.getMillis());
                 // pause the arrangement
-                controller.pause((int)timing.getMillis());
+                controller.pause((int) timing.getMillis());
+            } catch (NullPointerException e) {
+                // nothing to pause
+            }
         });
 
         // Stop all added tracks
@@ -299,13 +303,17 @@ public class FXGUIBuilder extends Application implements Serializable {
         Image stopImage = new Image("Resources/stop.png");
         stop.setGraphic(new ImageView(stopImage));
         stop.setOnAction(event -> {
-                 // stop the arrangement
-                controller.stop((int)timing.getMillis());
-                // stop and reset the timer
+             // stop the arrangement
+            controller.stop((int)timing.getMillis());
+            // stop and reset the timer
+            try {
                 timing.stopTimer();
                 TT.stop();
-                pointer.setTranslateX(10);
-            System.out.println("TRACK POS: " + timing.getMillis());
+            } catch (NullPointerException npe) {
+                // nothing to stop
+            }
+            pointer.setTranslateX(10);
+            //System.out.println("TRACK POS: " + timing.getMillis());
             timer.setText("00:00");
     });
 
@@ -691,7 +699,11 @@ public class FXGUIBuilder extends Application implements Serializable {
 
     public void killTimer () {
         if(mixerSetUp.getTimerStatus() == false) {
-            timing.stopTimer();
+            try {
+                timing.stopTimer();
+            } catch (NullPointerException npe) {
+                System.out.println(npe.getMessage());
+            }
         }
     }
 }
