@@ -320,7 +320,9 @@ public class FXGUIBuilder extends Application implements Serializable {
             timer.setText("00:00");
     });
 
-        Button zoomIn = new Button("Zoom In");
+        Button zoomIn = new Button();
+        Image zoomInImage = new Image("resources/ZoomIN.png");
+        zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> {
             setPixelRatio((pixelRatio * 2), (timelineRatio / 2));
             double minZoom = 2.0;
@@ -336,7 +338,9 @@ public class FXGUIBuilder extends Application implements Serializable {
 
         });
 
-        Button zoomOut = new Button("Zoom Out");
+        Button zoomOut = new Button();
+        Image zoomOutImage = new Image("resources/ZoomOut.png");
+        zoomOut.setGraphic(new ImageView(zoomOutImage));
         zoomOut.setOnAction(event -> {
             setPixelRatio((pixelRatio / 2), timelineRatio * 2);
             double maxZoom = 0.0625;

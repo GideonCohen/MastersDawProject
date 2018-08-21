@@ -130,11 +130,6 @@ public class WaveformEditor {
             setStartTime();
         });
 
-        Button cutButton = new Button("Cut");
-        cutButton.setOnAction(e -> {
-            cut();
-        });
-
         Button trimButton = new Button("Trim");
         trimButton.setOnAction(e -> {
             trim();
@@ -160,7 +155,7 @@ public class WaveformEditor {
         Label fileLength = new Label(lengthString);
 
         fileInformation.getChildren().addAll(fileName, fileLength, zoomOutButton, zoomButton, selectedTime);
-        fileArrangement.getChildren().addAll(addPaddingButton, cutButton, trimButton, duplicateButton);
+        fileArrangement.getChildren().addAll(addPaddingButton, trimButton, duplicateButton);
         fileEffects.getChildren().addAll(addFadeIn, addFadeOut, addNoiseGate, addDistortion, addFaze, addDelayEffect);
 
         HBox buttonDivider = new HBox(20);
@@ -347,23 +342,6 @@ public class WaveformEditor {
 
         track.addDataToTrack();
 
-
-    }
-
-    public void cut(){
-
-        ArrangementHelper AH = new ArrangementHelper();
-        AudioData data = track.getAudioData().get(index);
-
-        double split = DelayBox.Display(0, pixelRatio, "time for split");
-        split = split * 88.2;
-
-        ArrayList<float[]> list = AH.cutArray(data.getStereoFloatArray(), (int) split);
-        float[] firstArray = list.get(0);
-        float[] secondArray = list.get(1);
-
-        data.setStereoFloatArray(firstArray);
-        //TODO finish
 
     }
 

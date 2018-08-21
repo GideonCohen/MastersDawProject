@@ -8,8 +8,23 @@
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioTrackData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Metronome.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Metronome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,44 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DirectoryViewer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3450">
-              <caret line="262" column="64" selection-start-line="262" selection-start-column="64" selection-end-line="262" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
+            <state relative-caret-position="520">
               <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NoiseGateGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/NoiseGateGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -73,17 +55,17 @@
       <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-287">
-              <caret line="257" column="134" selection-start-line="257" selection-start-column="134" selection-end-line="257" selection-end-column="134" />
+            <state relative-caret-position="1950">
+              <caret line="353" column="40" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java">
+      <file leaf-file-name="Timing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1122">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="266">
+              <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -91,17 +73,50 @@
       <file leaf-file-name="FXGUIBuilder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="588" column="31" selection-start-line="588" selection-start-column="31" selection-end-line="588" selection-end-column="31" />
+            <state relative-caret-position="93">
+              <caret line="322" column="35" selection-start-line="322" selection-start-column="35" selection-end-line="322" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DelayBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
+      <file leaf-file-name="MastersDawProject.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/MastersDawProject.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="misc.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="modules.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="26" column="66" lean-forward="true" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+            <state relative-caret-position="-33">
+              <caret line="45" column="60" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Track.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Track.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2007">
+              <caret line="286" column="22" lean-forward="true" selection-start-line="286" selection-start-column="22" selection-end-line="286" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MixerSetUp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2262">
+              <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -117,7 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>+44100</find>
       <find>mixer</find>
       <find>move</find>
       <find>width</find>
@@ -147,6 +161,7 @@
       <find>Left</find>
       <find>dist</find>
       <find>distortion</find>
+      <find>cut</find>
     </findStrings>
     <replaceStrings>
       <replace>VBox</replace>
@@ -174,7 +189,6 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveView.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/javafx/WaveformGenerator.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ArrangementWindowController.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/Style.css" />
@@ -189,14 +203,15 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="19" />
     <option name="y" value="22" />
     <option name="width" value="1421" />
@@ -220,6 +235,23 @@
             <path>
               <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="dictionaries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="libraries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -239,7 +271,19 @@
               <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Audio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
@@ -496,28 +540,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ByteToFloat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2490">
-          <caret line="168" column="60" selection-start-line="168" selection-start-column="60" selection-end-line="168" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioTrackData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioOutputData.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -543,13 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="462" selection-start-line="462" selection-end-line="462" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -592,13 +607,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/moveablePopup.java" />
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="226" lean-forward="true" selection-start-line="226" selection-end-line="226" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -692,13 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Track.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="286" column="39" selection-start-line="286" selection-start-column="39" selection-end-line="286" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/StereoSplit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -719,13 +720,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/META-INF/MANIFEST.MF" />
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveformGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -767,24 +761,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/NoiseGateGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-287">
-          <caret line="257" column="134" selection-start-line="257" selection-start-column="134" selection-end-line="257" selection-end-column="134" />
         </state>
       </provider>
     </entry>
@@ -802,10 +782,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/dictionaries/gideoncohen.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/MastersDawProject.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="45" column="60" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Track.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2007">
+          <caret line="286" column="22" lean-forward="true" selection-start-line="286" selection-start-column="22" selection-end-line="286" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2262">
+          <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1950">
+          <caret line="353" column="40" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="588" column="31" selection-start-line="588" selection-start-column="31" selection-end-line="588" selection-end-column="31" />
+        <state relative-caret-position="93">
+          <caret line="322" column="35" selection-start-line="322" selection-start-column="35" selection-end-line="322" selection-end-column="35" />
         </state>
       </provider>
     </entry>

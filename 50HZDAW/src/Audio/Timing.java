@@ -22,8 +22,6 @@ public class Timing {
     private Timer timer;
 
     private TimerTask timerTaskMillis;
-    private Metronome metronome;
-    private boolean isMetronome;
     private boolean timerSwitch;
     private int bars;
     private int beats;
@@ -52,7 +50,6 @@ public class Timing {
 
 
         timer = new Timer();
-        this.isMetronome = false;
 
         bpmConverter.setBPM(bpm);
 
@@ -135,32 +132,6 @@ public class Timing {
 
     }
 
-    private void setUpMetronome () {
-
-        try {
-            metronome = new Metronome();
-        }
-        catch (UnsupportedAudioFileException uafe) {
-            System.out.println(uafe.getMessage());
-        }
-        catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-
-        }
-        catch (LineUnavailableException lua) {
-            System.out.println(lua.getMessage());
-
-        }
-    }
-
-    public void setMetronome () {
-        if(isMetronome == false) {
-            isMetronome = true;
-        }
-        else {
-            isMetronome = false;
-        }
-    }
 
     public void setMillis(int millis) {
 

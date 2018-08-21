@@ -47,15 +47,6 @@ public class MixerSetUp {
     private Rectangle r;
 
 
-
-    /*
-    public static void main (String [] args) {
-
-        MixerSetUp mixerSetUp = new MixerSetUp(0);   // set I/0 preferences
-
-    }*/
-
-
     /**
      * Create a mixer object with a given i/o choice from mixinfos. This may be changed in preferences as a later date.
      * @param audioPreferences - I/O preferences
@@ -73,32 +64,6 @@ public class MixerSetUp {
 
         bpm = 120;    // CHANGE BPM HERE FOR TRACK TIMELINE & BEATS AND BAR CHANGES!
         timerOn = true;
-
-
-
-/*        addTrack("Track1",-0.5f);     // create mixer with one track as default.
-        addTrack("Track1", 0.1f);     // create mixer with one track as default.
-        addTrack("Track1", 0.1f);     // create mixer with one track as default.
-
-        System.out.println("tracks: " + tracks.size());
-
-        output.setMute(0);   // mute a track.
-        output.setMute(1);
-        output.setMute(2);
-        output.setSolo(0);
-        output.setSolo(1);
-        output.setSolo(2);
-
-        System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
-*/
-
-/*
-        try {
-            testOutput();
-        } catch (LineUnavailableException e) {
-
-        }
-*/
 
 
     }
