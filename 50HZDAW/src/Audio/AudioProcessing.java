@@ -111,18 +111,42 @@ public class AudioProcessing {
 
 
 
-    public float[] delayLoop(float[] test, int delay, int layers, float fadeOut) {
+    /**
+     * Reverse the data of a PCM float array.
+     */
 
-        float[] newTest = new float[test.length + (delay * layers)];    // delay amount must be greater than sample length.
+    public float [] reverseAudio (float [] originalAudio) {
+
+        float [] reversedAudio = new float [originalAudio.length];
+
+        for(int i = 0; i < originalAudio.length; i++) {
+
+            int reverseIndex = (originalAudio.length - 1) - i;
+            reversedAudio [i] = originalAudio[reverseIndex];
+
+        }
+
+        return reversedAudio;
+
+    }
+
+    public float[] delayLoop(float[] test, int delay, int layers, float fadeOut, int isReversed) {
+
+        float[] newTest = new float[test.length + (delay * layers)];
         int delayFixedValue = delay;
 
         float[] layer = new float[test.length];
+
         for (int i = 0; i< test.length; i++ ) {
             layer[i] = test[i];
         }
 
+        if(isReversed == 1) {
+            layer = reverseAudio(layer);
+        }
+
         for (int i = 0; i < layers; i++) {
-            newTest = add(test, layer, delay,fadeOut);
+            newTest = addOneDelay(test, layer, delay,fadeOut);
             test = newTest;
             delay = delayFixedValue + delay;
             fadeOut = 1 * fadeOut;
@@ -130,13 +154,11 @@ public class AudioProcessing {
         return newTest;
     }
 
+    private float[] addOneDelay(float[] originalFloats, float [] layer, int delay, float fadeOut) { ;
 
-    public float[] add(float[] originalFloats, float [] layer, int delay, float fadeOut) { ;
-
+        delay = 88200 / 1000 * delay;
         int difference = originalFloats.length - layer.length;
         float[] newFloats = new float[(originalFloats.length - difference) + delay];
-
-        delay = (88200/1000) * delay;
 
         for (int i=0; i< layer.length; i++) {
             layer[i] =+ (layer [i] * fadeOut);
@@ -156,6 +178,141 @@ public class AudioProcessing {
         }
         return newFloats;
     }
+
+
+
+    public float[] distortion(float[] test, float threshold) {
+
+        float initialAverageVolume = averageGain(test);
+        for (int i = 0; i < test.length; i++) {
+            if (test[i] > threshold) {
+                test[i] = threshold;
+            }
+            if (test[i] < -threshold) {
+                test[i] = -threshold;
+            }
+        }
+
+        float processedAverageVolume = averageGain(test);
+
+        float amplitudeRegain = initialAverageVolume/processedAverageVolume;
+
+
+        for (int i = 0; i < test.length; i++) {
+            test[i] *= amplitudeRegain;
+        }
+        return test;
+    }
+
+    private float averageGain(float[] floats) {
+        float sum = 0f;
+        for (int i = 0; i < floats.length; i++) {
+            if (floats[i] < 0) {
+                sum += (-1 * floats[i]);
+            }
+            if (floats[i] > 0) {
+                sum += floats[i];
+            }
+        }
+        float averageGain = sum / floats.length;
+        return averageGain;
+    }
+
+
+    /**
+     * Noise gate stereo.
+     * @param signal
+     * @param threshold
+     * @param attack
+     * @param release
+     * @return
+     */
+
+    public float[] noiseGateTwoChannel(float[] signal, float threshold, int attack, int release) {
+        signal = noiseGateOneChannel(signal,threshold,attack,release,0,signal.length-1); // does left channel
+        signal = noiseGateOneChannel(signal,threshold,attack,release,1,signal.length); // does right channel.
+        return signal;
+    }
+
+    /**
+     * Noise gate mono.
+     * @param signal
+     * @param threshold
+     * @param attack
+     * @param release
+     * @param startIndex
+     * @param endIndex
+     * @return
+     */
+
+
+    public float[] noiseGateOneChannel(float[] signal, float threshold, int attack, int release,int startIndex, int endIndex) {
+
+        attack = (88200/1000) * attack;
+        release = (88200/1000) * release;
+
+        boolean isAttacking = false;
+        boolean isReleasing = false;
+        boolean isHolding = false;
+
+        int attackCount = 0;
+        float attackRatio = 1f / attack;
+
+        int releaseCount = release;
+        float releaseRatio = 1f / release;
+
+        for (int i = startIndex; i < endIndex; i = i+2) {
+            if (!isAttacking && !isHolding && !isReleasing && Math.abs(signal[i]) < threshold) {
+                isAttacking = true;
+            }
+
+            if (isAttacking) {
+                if (Math.abs(signal[i]) > threshold) {
+                    signal[i] -= signal[i] * (attackCount * attackRatio);
+                    attackCount--;
+                } else {
+                    signal[i] -= signal[i] * (attackCount * attackRatio);
+                    attackCount++;
+                }
+                if (attackCount == attack + 1) {
+                    attackCount = 0;
+                    isHolding = true;
+                    isAttacking = false;
+                } else if (attackCount <= 0) {
+                    attackCount = 0;
+                    isAttacking = false;
+                }
+            }
+
+            else if (isHolding) {
+                if (Math.abs(signal[i]) > threshold) {
+                    isReleasing = true;
+                    isHolding = false;
+                } else {
+                    signal[i] = 0;
+                }
+            }
+
+            if (isReleasing) {
+                if (Math.abs(signal[i]) > threshold) {
+                    signal[i] -= signal[i] * (releaseCount * releaseRatio);
+                    releaseCount--;
+                } else {
+                    signal[i] -= signal[i] * (releaseCount * releaseRatio);
+                    releaseCount++;
+                }
+                if (releaseCount <= 0) {
+                    isReleasing = false;
+                    releaseCount = release;
+                } else if (releaseCount == release) {
+                    isHolding = true;
+                    isReleasing = false;
+                }
+            }
+        }
+        return signal;
+    }
+
 
 
 

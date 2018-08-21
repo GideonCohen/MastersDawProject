@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.LineUnavailableException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class WaveformEditor {
     private WaveformCanvas waveformCanvas;
     private Canvas waveform;
     private double pixelRatio;
-
+    private AudioProcessing audioProcessing;
     private TrackLineGUI trackLineGUI;
 
     public WaveformEditor(double fileLength, int index, File f, Track track, StackPane waveformStack, WaveformCanvas canvas, TrackLineGUI TLG){
@@ -48,7 +49,9 @@ public class WaveformEditor {
         waveform = waveformCanvas.getCanvas();
         trackLineGUI = TLG;
         pixelRatio = waveformCanvas.getPixelRatio();
+        audioProcessing = new AudioProcessing();
         createEditor();
+
     }
 
     /**
@@ -91,32 +94,38 @@ public class WaveformEditor {
         fileEffects.getChildren().add(effectsLabel);
 
 
-        Button addFadeIn = new Button("Add fade in");
+        Button addFadeIn = new Button("Add Fade In");
         addFadeIn.setOnAction(e -> {
             addFadeIn();
         });
 
-        Button addFadeOut = new Button("Add fade out");
+        Button addFadeOut = new Button("Add Fade Out");
         addFadeOut.setOnAction(e -> {
             addFadeOut();
         });
 
-        Button addDistortion = new Button("Add distortion");
+        Button addNoiseGate = new Button("Add Noise Gate");
+        addNoiseGate.setOnAction(e -> {
+            addNoiseGate();
+        });
+
+
+        Button addDistortion = new Button("Add Distortion");
         addDistortion.setOnAction(e -> {
             addDistortionEffect();
         });
 
-        Button addFaze = new Button("Add faze");
+        Button addFaze = new Button("Add Phase");
         addFaze.setOnAction(e -> {
             addFaze();
         });
 
-        Button addDelayEffect = new Button("Add delay");
+        Button addDelayEffect = new Button("Add Delay");
         addDelayEffect.setOnAction(e -> {
             addDelayEffect();
         });
 
-        Button addPaddingButton = new Button("Set starting position");
+        Button addPaddingButton = new Button("Set Starting Position");
         addPaddingButton.setOnAction(e -> {
             setStartTime();
         });
@@ -152,7 +161,7 @@ public class WaveformEditor {
 
         fileInformation.getChildren().addAll(fileName, fileLength, zoomOutButton, zoomButton, selectedTime);
         fileArrangement.getChildren().addAll(addPaddingButton, cutButton, trimButton, duplicateButton);
-        fileEffects.getChildren().addAll(addFadeIn, addFadeOut, addDistortion, addFaze, addDelayEffect);
+        fileEffects.getChildren().addAll(addFadeIn, addFadeOut, addNoiseGate, addDistortion, addFaze, addDelayEffect);
 
         HBox buttonDivider = new HBox(20);
         buttonDivider.getChildren().addAll(new Region(),fileInformation, fileArrangement, fileEffects, new Region());
@@ -211,9 +220,8 @@ public class WaveformEditor {
         AudioData data = track.getAudioData().get(index);
 
         double position = DelayBox.Display(0, pixelRatio, "end time for fade-in (in ms)");
-        position = position * pixelRatio;
-        position = position * 88200;
-
+        //position = position * pixelRatio;
+        position = ((position * 88200)/1000);
         float[] newFloat = FM.addFadeIn((int) position, data.getStereoFloatArray());
         data.setStereoFloatArray(newFloat);
 
@@ -231,8 +239,8 @@ public class WaveformEditor {
         AudioData data = track.getAudioData().get(index);
 
         double position = DelayBox.Display(0, pixelRatio, "start time for fade-out (in ms)");
-        position = position * pixelRatio;
-        position = position * 88200;
+       // position = position * pixelRatio;
+        position = ((position * 88200)/1000);
 
         float[] newFloat = FM.addFadeOut((int) position, data.getStereoFloatArray());
         data.setStereoFloatArray(newFloat);
@@ -249,7 +257,7 @@ public class WaveformEditor {
 
         float threshold = (float) DelayBox.Display(0, pixelRatio, "value for distortion (largest value is: " + findMinAndMax() + ")");
 
-        track.getAudioData().get(index).setStereoFloatArray(distortion(track.getAudioData().get(index).getStereoFloatArray(), threshold));
+        track.getAudioData().get(index).setStereoFloatArray(audioProcessing.distortion(track.getAudioData().get(index).getStereoFloatArray(), threshold));
         track.addDataToTrack();
 
     }
@@ -260,12 +268,32 @@ public class WaveformEditor {
      */
     public void addDelayEffect() {
 
-        ArrayList<Float> list = PedalGUI.Display();
+        ArrayList<Float> list = PedalGUI.Display(trackLineGUI.getBpm());
 
         int delay = Math.round(list.get(0));
         int feedback = Math.round(list.get(1));
+        int isInvert = Math.round(list.get(3));
 
-        track.getAudioData().get(index).setStereoFloatArray(delayLoop(track.getAudioData().get(index).getStereoFloatArray(), delay, feedback, list.get(2)));
+        track.getAudioData().get(index).setStereoFloatArray(audioProcessing.delayLoop(track.getAudioData().get(index).getStereoFloatArray(), delay, feedback, list.get(2), isInvert));
+        track.getAudioData().get(index).setFinish();
+        track.addDataToTrack();
+
+    }
+
+    /**
+     * Adds a delay effect to an AudioData object. A window will pop up where the user can
+     * enter the desired parameters for the effect
+     */
+    public void addNoiseGate() {
+
+        ArrayList<Float> list = NoiseGateGUI.Display();
+
+        float threshold = list.get(2);
+        int attack = Math.round(list.get(0));
+        int release = Math.round(list.get(1));
+        System.out.println(threshold + ", " + attack + ", " + release);
+
+        track.getAudioData().get(index).setStereoFloatArray(audioProcessing.noiseGateTwoChannel(track.getAudioData().get(index).getStereoFloatArray(), threshold, attack, release));
         track.getAudioData().get(index).setFinish();
         track.addDataToTrack();
 
@@ -412,33 +440,6 @@ public class WaveformEditor {
         } catch (Exception e) {}
     }
 
-
-    private float[] addOneDelay(float[] test, int delay) {
-
-        delay = (88200 / 1000) * delay; //finds index for stereoTrack
-
-
-        float[] newTest = new float[test.length + delay];
-
-        //adds the un-layered beginning to the delayed signal.
-        for (int i = 0; i < delay; i++) {
-            newTest[i] = test[i];
-        }
-
-        int count = 0;
-        // layers the middle part.
-        for (int i = delay; i < test.length; i++) {
-            newTest[i] = test[count] + test[count + delay];
-            count++;
-        }
-        //adds the un-layered tail to the end.
-        int endIndex = test.length - delay;
-        for (int i = endIndex; i < test.length; i++) {
-            newTest[i + delay] = test[i];
-        }
-        return newTest;
-    }
-
     /**
      * Formats a string, namely the name of the file object, so that each line is
      * exactly 15 characters in length
@@ -465,90 +466,7 @@ public class WaveformEditor {
         return newStr;
     }
 
-    public float[] delayLoop(float[] test, int delay, int layers, float fadeOut) {
 
-        float[] newTest = new float[test.length + (delay * layers)];
-        int delayFixedValue = delay;
-
-        float[] layer = new float[test.length];
-
-        for (int i = 0; i< test.length; i++ ) {
-            layer[i] = test[i];
-        }
-
-
-
-        for (int i = 0; i < layers; i++) {
-            newTest = addOneDelay(test, layer, delay,fadeOut);
-            test = newTest;
-            delay = delayFixedValue + delay;
-            fadeOut = 1 * fadeOut;
-        }
-        return newTest;
-    }
-
-    private float[] addOneDelay(float[] originalFloats, float [] layer, int delay, float fadeOut) { ;
-
-        delay = 88200 / 1000 * delay;
-        int difference = originalFloats.length - layer.length;
-        float[] newFloats = new float[(originalFloats.length - difference) + delay];
-
-        for (int i=0; i< layer.length; i++) {
-            layer[i] =+ (layer [i] * fadeOut);
-        }
-
-        int count = 0;
-        for (int i = 0; i < newFloats.length; i++) {
-            if (i < delay) {
-                newFloats[i] = originalFloats[i];
-            } else if (i >= delay && i < originalFloats.length) {
-                newFloats[i] = (originalFloats[i] + layer[count]);
-                count++;
-            } else if (i >= originalFloats.length && count < layer.length) {
-                newFloats[i] = layer[count];
-                count++;
-            }
-        }
-        return newFloats;
-    }
-
-    public float[] distortion(float[] test, float threshold) {
-
-        float initialAverageVolume = averageGain(test);
-        for (int i = 0; i < test.length; i++) {
-            if (test[i] > threshold) {
-                test[i] = threshold;
-            }
-            if (test[i] < -threshold) {
-                test[i] = -threshold;
-            }
-        }
-
-        float processedAverageVolume = averageGain(test);
-
-        float amplitudeRegain = initialAverageVolume/processedAverageVolume;
-
-
-        for (int i = 0; i < test.length; i++) {
-            test[i] *= amplitudeRegain;
-        }
-        return test;
-    }
-
-
-    public float averageGain(float[] floats) {
-        float sum = 0f;
-        for (int i = 0; i < floats.length; i++) {
-            if (floats[i] < 0) {
-                sum += (-1 * floats[i]);
-            }
-            if (floats[i] > 0) {
-                sum += floats[i];
-            }
-        }
-        float averageGain = sum / floats.length;
-        return averageGain;
-    }
 
 }
 

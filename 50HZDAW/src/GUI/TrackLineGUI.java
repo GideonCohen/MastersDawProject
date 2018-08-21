@@ -6,6 +6,8 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -73,6 +75,8 @@ public class TrackLineGUI {
     private int index;
 
     private Rectangle trackingLine;
+    // BPM for the track.
+    private int bpm;
 
     /**
      * Constuctor for the Track Line
@@ -125,6 +129,7 @@ public class TrackLineGUI {
 
         // Allow for files to be dragged and dropped
         acceptDragDrop(trackLine);
+        bpm = mixerSetUp.getBpm();
 
         return trackLine;
     }
@@ -199,6 +204,19 @@ public class TrackLineGUI {
 
         muteSoloDel.getChildren().addAll(mute, solo, deleteChannel);
 
+        Button reverse = new Button("Reverse");
+        reverse.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+        reverse.setOnAction(event -> {
+            track.setReverse();
+            if (track.getReverse()) {
+                reverse.setTextFill(Color.BLUE);
+            } else {
+                reverse.setTextFill(Color.BLACK);
+            }
+        });
+
+
+
         volume = 0;
         // volume volumeSlider
         Slider volumeSlider = new Slider(-18, 6, 0);
@@ -247,38 +265,42 @@ public class TrackLineGUI {
         DoubleProperty panSliderRight = new SimpleDoubleProperty();
         panSliderRight.bind(panSlider.valueProperty().multiply(1));
 
+
         panLabel.textProperty().bind(Bindings.format("Left:%.0fDb" + " Right: %.0fDb", panSliderLeft, panSliderRight));
 
         panSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
               //  System.out.println(panSlider.getValue());
+                try {
+                    double newLeft = panSlider.getValue() * -1;
+                    if (newLeft > 0) {
+                        newLeft = 0;
+                    }
+                    double leftDiff = newLeft - panLeft;
+                    double leftDeci = Math.pow(10, (leftDiff / 10));
+                    //System.out.println("Pan left = " + leftDeci);
+                    panLeft = newLeft;
 
-                double newLeft = panSlider.getValue() * -1;
-                if (newLeft > 0){
-                    newLeft = 0;
+                    double newRight = panSlider.getValue();
+                    if (newRight > 0) {
+                        newRight = 0;
+                    }
+                    double rightDiff = newRight - panRight;
+                    double rightDeci = Math.pow(10, (rightDiff / 10));
+                    //System.out.println("Pan Right = " + rightDeci);
+                    panRight = newRight;
+
+                    track.setPan((float) rightDeci, (float) leftDeci);
+                } catch (NullPointerException npe) {
+                    System.out.println(npe.getMessage());
                 }
-                double leftDiff =  newLeft - panLeft;
-                double leftDeci = Math.pow(10, (leftDiff/ 10));
-                //System.out.println("Pan left = " + leftDeci);
-                panLeft = newLeft;
-
-                double newRight = panSlider.getValue();
-                if (newRight > 0){
-                    newRight = 0;
-                }
-                double rightDiff =  newRight - panRight;
-                double rightDeci = Math.pow(10, (rightDiff/ 10));
-                //System.out.println("Pan Right = " + rightDeci);
-                panRight = newRight;
-
-                track.setPan((float) rightDeci, (float) leftDeci);
             }
         });
 
 
         // Layout for buttons
-        optionsBox.getChildren().addAll(name, muteSoloDel, volumeSlider, volLabel, panSlider, panLabel);
+        optionsBox.getChildren().addAll(name, muteSoloDel, reverse, volumeSlider, volLabel, panSlider, panLabel);
 
 
         // Set button tooltips
@@ -471,4 +493,8 @@ public class TrackLineGUI {
     public String getLineName() {
         return lineName;
     }
+
+    public int getBpm() { return bpm; }
+    public void setBpm(int newBpm) { this.bpm = newBpm; }
+
 }

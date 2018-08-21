@@ -1,10 +1,8 @@
 package GUI;
 
-import Audio.BPMConverter;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -13,14 +11,13 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-
-public class PedalGUI {
+public class NoiseGateGUI {
 
 
 
     static ArrayList<Float> listOfValues;
 
-    public static ArrayList<Float> Display(int bpm) {
+    public static ArrayList<Float> Display() {
 
         listOfValues = new ArrayList<>();
 
@@ -31,40 +28,29 @@ public class PedalGUI {
         window.setMinWidth(200);
 
         Label title = new Label("Please enter desired values: ");
-        Label delayAdvice = new Label("Tip: Double delay value to double the delay length");
-        Label delayLabel = new Label("Delay");
-        Label feedbackLabel = new Label("Feedback");
-        Label fadeOutLabel = new Label("Fade out");
-        CheckBox invertButton = new CheckBox("Invert");
+        Label attack = new Label("Attack");
+        Label release = new Label("Release");
+        Label threshold = new Label("Threshold");
 
-        BPMConverter bpmConverter = new BPMConverter();
-        bpmConverter.setBars(1, bpm);
 
-        String defaultBpm = String.valueOf(bpmConverter.setHalfBeat(1));
-        TextField delayInput = new TextField(defaultBpm);
-        TextField feedbackInput = new TextField("5");
-        TextField fadeOutInput = new TextField("0.8");
+        TextField attackInput = new TextField("250");
+        TextField releaseInput = new TextField("500");
+        TextField thresholdInput = new TextField("0.05");
         Button confirm = new Button("Confirm");
         confirm.setOnAction(event -> {
-            if ((verifyNum(delayInput, delayInput.getText()) && (verifyNum(feedbackInput, delayInput.getText()) &&
-                    (verifyNum(fadeOutInput, delayInput.getText()))))) {
-                listOfValues.add((float) Double.parseDouble(delayInput.getText()));
-                listOfValues.add((float) Double.parseDouble(feedbackInput.getText()));
-                listOfValues.add((float) Double.parseDouble(fadeOutInput.getText()));
-                if(invertButton.isSelected()) {
-                    listOfValues.add((float)1);
-                }
-                else {
-                    listOfValues.add((float)0);
-                }
+            if ((verifyNum(attackInput, attackInput.getText()) && (verifyNum(releaseInput, attackInput.getText()) &&
+                    (verifyNum(thresholdInput, attackInput.getText()))))) {
+                listOfValues.add((float) Double.parseDouble(attackInput.getText()));
+                listOfValues.add((float) Double.parseDouble(releaseInput.getText()));
+                listOfValues.add((float) Double.parseDouble(thresholdInput.getText()));
                 window.close();
             }
         });
 
 
         VBox layout = new VBox(15);
-        layout.getChildren().addAll(title, delayAdvice, delayLabel, delayInput, feedbackLabel,
-                feedbackInput, fadeOutLabel, fadeOutInput, invertButton, confirm);
+        layout.getChildren().addAll(title, attack, attackInput, release,
+             releaseInput, threshold, thresholdInput, confirm);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
