@@ -7,107 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Track.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Track.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ChangeDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/PedalGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/PedalGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ChangeDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/Solo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/SoloBlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/WoodGrain.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomIN.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomOut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/addDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/deleteTrack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/max.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/min.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/mute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/muteRed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/pauseDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/playDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/stopDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Solo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/SoloBlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/WoodGrain.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomIN.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomOut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/addDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/deleteTrack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/emotionalpads.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/emotionalpads.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy2.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/max.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/min.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/mute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/muteRed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/pauseDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/playDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/stopDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ChangeDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/Solo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/SoloBlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/WoodGrain.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/addDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/deleteTrack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/max.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/min.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/mute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/muteRed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/pauseDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/playDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/stopDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ChangeDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Solo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/SoloBlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/WoodGrain.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ZoomIN.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ZoomOut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/addDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/deleteTrack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/max.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/min.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/mute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/muteRed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/pauseDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/playDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/stopDir.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/emotionalpads.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/emotionalpads.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/loopy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/loopy.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Samples/loopy2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/loopy2.wav" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -150,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1185">
@@ -159,11 +61,38 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="NoiseGateGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/NoiseGateGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-287">
+              <caret line="257" column="134" selection-start-line="257" selection-start-column="134" selection-end-line="257" selection-end-column="134" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="-1122">
               <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FXGUIBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="588" column="31" selection-start-line="588" selection-start-column="31" selection-end-line="588" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -171,8 +100,8 @@
       <file leaf-file-name="DelayBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="135">
+              <caret line="26" column="66" lean-forward="true" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -188,8 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SplitPane</find>
-      <find>Double</find>
       <find>+44100</find>
       <find>mixer</find>
       <find>move</find>
@@ -218,6 +145,8 @@
       <find>pan</find>
       <find>left</find>
       <find>Left</find>
+      <find>dist</find>
+      <find>distortion</find>
     </findStrings>
     <replaceStrings>
       <replace>VBox</replace>
@@ -253,7 +182,6 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/JavaFXController.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ImportManager.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/OutputTrack.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java" />
         <option value="$PROJECT_DIR$/50HZDAW/Test/GUI/TrackLineGUITest.groovy" />
@@ -262,13 +190,14 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/electronism/sample/Sample.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="12" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="19" />
     <option name="y" value="22" />
     <option name="width" value="1421" />
     <option name="height" value="878" />
@@ -304,6 +233,13 @@
               <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
               <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MastersDawProject" type="462c0819:PsiDirectoryNode" />
+              <item name="50HZDAW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MastersDawProject" type="b2602c69:ProjectViewProjectNode" />
@@ -461,6 +397,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="22" width="1421" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -559,13 +496,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -739,13 +669,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/Test/GUI/TrackLineGUITest.groovy" />
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="262" column="40" selection-start-line="262" selection-start-column="32" selection-end-line="262" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -792,64 +715,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.html" />
     <entry file="file://$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.jnlp" />
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/META-INF/MANIFEST.MF" />
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="277" column="69" selection-start-line="277" selection-start-column="69" selection-end-line="277" selection-end-column="69" />
-          <folding>
-            <element signature="e#19741#19742#0" expanded="true" />
-            <element signature="e#19770#19771#0" expanded="true" />
-            <element signature="e#19899#19900#0" expanded="true" />
-            <element signature="e#19924#19925#0" expanded="true" />
-            <element signature="e#20027#20028#0" expanded="true" />
-            <element signature="e#20056#20057#0" expanded="true" />
-            <element signature="e#20209#20210#0" expanded="true" />
-            <element signature="e#20242#20243#0" expanded="true" />
-            <element signature="e#20352#20353#0" expanded="true" />
-            <element signature="e#20383#20384#0" expanded="true" />
-            <element signature="e#20506#20507#0" expanded="true" />
-            <element signature="e#20536#20537#0" expanded="true" />
-            <element signature="e#20666#20667#0" expanded="true" />
-            <element signature="e#20699#20700#0" expanded="true" />
-            <element signature="e#20823#20824#0" expanded="true" />
-            <element signature="e#20856#20857#0" expanded="true" />
-            <element signature="e#20971#20972#0" expanded="true" />
-            <element signature="e#21004#21005#0" expanded="true" />
-            <element signature="e#21118#21119#0" expanded="true" />
-            <element signature="e#21151#21152#0" expanded="true" />
-            <element signature="e#21268#21269#0" expanded="true" />
-            <element signature="e#21295#21296#0" expanded="true" />
-            <element signature="e#21426#21427#0" expanded="true" />
-            <element signature="e#21457#21458#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -891,10 +760,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="193" column="9" lean-forward="true" selection-start-line="193" selection-start-column="9" selection-end-line="193" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/NoiseGateGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-287">
+          <caret line="257" column="134" selection-start-line="257" selection-start-column="134" selection-end-line="257" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="26" column="66" lean-forward="true" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1122">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="588" column="31" selection-start-line="588" selection-start-column="31" selection-end-line="588" selection-end-column="31" />
         </state>
       </provider>
     </entry>

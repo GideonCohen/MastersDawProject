@@ -586,7 +586,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
-        pointer.setTranslateX(5);
+        pointer.setTranslateX(9);
 
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 
