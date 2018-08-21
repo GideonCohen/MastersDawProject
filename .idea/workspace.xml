@@ -6,7 +6,109 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="" />
+    <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/AudioProcessing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/MixerSetUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Timing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Track.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/Track.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ChangeDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/PedalGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/PedalGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ChangeDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/Solo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/SoloBlue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/WoodGrain.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomIN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/ZoomOut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/addDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/deleteTrack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/max.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/min.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/mute.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/muteRed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/pauseDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/playDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Resources/stopDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Solo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/SoloBlue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/WoodGrain.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomIN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/ZoomOut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/addDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/deleteTrack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/emotionalpads.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/emotionalpads.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/loopy2.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/max.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/min.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/mute.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/muteRed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/pauseDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/playDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/stopDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/AudioProcessing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/PedalGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ChangeDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/Solo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/SoloBlue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/WoodGrain.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomIN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/ZoomOut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/addDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/deleteTrack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/max.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/min.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/mute.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/muteRed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/pauseDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/playDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Resources/stopDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/ChangeDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ChangeDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Solo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Solo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/SoloBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/SoloBlue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/WoodGrain.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/WoodGrain.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/ZoomIN.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ZoomIN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/ZoomOut.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/ZoomOut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/addDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/addDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/deleteTrack.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/deleteTrack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/max.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/max.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/min.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/min.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/mute.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/mute.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/muteRed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/muteRed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/pauseDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/pauseDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/playDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/playDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/stopDir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/stopDir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/emotionalpads.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/emotionalpads.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/loopy.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/loopy.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Samples/loopy2.wav" beforeDir="false" afterPath="$PROJECT_DIR$/Samples/loopy2.wav" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +141,8 @@
       <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3210">
-              <caret line="246" column="64" selection-start-line="246" selection-start-column="64" selection-end-line="246" selection-end-column="64" />
+            <state relative-caret-position="3450">
+              <caret line="262" column="64" selection-start-line="262" selection-start-column="64" selection-end-line="262" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -367,14 +469,14 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50035185" side_tool="true" visible="true" weight="0.28482586" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28482586" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964812" visible="true" weight="0.28482586" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3290653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721706" visible="true" weight="0.28008446" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49721706" visible="true" weight="0.28008446" />
       <window_info id="Structure" order="1" sideWeight="0.50278294" side_tool="true" weight="0.29992738" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
@@ -781,8 +883,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3210">
-          <caret line="246" column="64" selection-start-line="246" selection-start-column="64" selection-end-line="246" selection-end-column="64" />
+        <state relative-caret-position="3450">
+          <caret line="262" column="64" selection-start-line="262" selection-start-column="64" selection-end-line="262" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

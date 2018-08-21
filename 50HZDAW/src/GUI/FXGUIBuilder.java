@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -42,7 +43,7 @@ public class FXGUIBuilder extends Application implements Serializable {
     private DirectoryViewer directory;
     // Visual representation of the timeline
     private VBox timeLine;
-
+    private HBox timeBox;
     // Controller for handling user events
     private GUIController controller;
     // Audio Player
@@ -67,6 +68,8 @@ public class FXGUIBuilder extends Application implements Serializable {
     private BPMConverter bpmConverter;
     // length of a bar at given BPM.
     private double barLength;
+    private double orgTranslateX;
+    private double orgSceneX;
 
     public static void main(String[] args) {
         // calls the args method of application
@@ -274,10 +277,9 @@ public class FXGUIBuilder extends Application implements Serializable {
         Image playImage = new Image("Resources/play.png");
         play.setGraphic(new ImageView(playImage));
         play.setOnAction(event -> {
-            // play the arrangement
-            //System.out.println("TRACK POS: " + timing.getMillis());
-            controller.play((int)timing.getMillis());
-            // start the timer
+            System.out.println("TRACK POS: " + mixerSetUp.getStart());
+            controller.play(mixerSetUp.getStart());
+            timing.setMillis(mixerSetUp.getStart());
             timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
             timing.startTimer();
         });
@@ -312,6 +314,7 @@ public class FXGUIBuilder extends Application implements Serializable {
             } catch (NullPointerException npe) {
                 // nothing to stop
             }
+            mixerSetUp.setStart(0);
             pointer.setTranslateX(10);
             //System.out.println("TRACK POS: " + timing.getMillis());
             timer.setText("00:00");
@@ -320,22 +323,39 @@ public class FXGUIBuilder extends Application implements Serializable {
         Button zoomIn = new Button("Zoom In");
         zoomIn.setOnAction(event -> {
             setPixelRatio((pixelRatio * 2), (timelineRatio / 2));
-            if(locatorRatio > 1) {
+            double minZoom = 2.0;
+            if(locatorRatio < minZoom) {
                 locatorRatio = locatorRatio * 2;
             }
             else {
-                locatorRatio = 1; 
+                locatorRatio = locatorRatio * 1;
             }
             TT.setToX((1000 * 10) * locatorRatio);
+
+
 
         });
 
         Button zoomOut = new Button("Zoom Out");
         zoomOut.setOnAction(event -> {
             setPixelRatio((pixelRatio / 2), timelineRatio * 2);
-            locatorRatio = locatorRatio / 2;
-            TT.setToX(((1000 * 10) * locatorRatio) + 10);
+            double maxZoom = 0.0625;
+            if(locatorRatio > maxZoom) {
+                locatorRatio = locatorRatio / 2;
+            }
+            else {
+                locatorRatio = locatorRatio * 1;
+            }
+            TT.setToX((1000 * 10) * locatorRatio);
+
+
         });
+
+        Button metronomeButton = new Button("Metronome");
+        metronomeButton.setOnAction(event -> {
+            //timing.setMetronome();
+        });
+
 
         // add tootips
         play.setTooltip(new Tooltip("Play"));
@@ -344,12 +364,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         zoomIn.setTooltip(new Tooltip("Zoom In"));
         zoomOut.setTooltip(new Tooltip("Zoom Out"));
 
-        Button metronomeButton = new Button("Metronome");
-        metronomeButton.setOnAction(event -> {
-            //timing.setMetronome();
-        });
-
-        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut, metronomeButton);
+        playerButtons.getChildren().addAll(r, play, pause, stop, zoomIn, zoomOut);
 
 
         // Timer
@@ -398,6 +413,9 @@ public class FXGUIBuilder extends Application implements Serializable {
             mixerSetUp.setBpm((bpmSelect.getItems().get(bpmSelect.getSelectionModel().getSelectedIndex()).hashCode()));
             System.out.println(mixerSetUp.getBpm());
             bpmLabel.setText(mixerSetUp.getBpm() +  " bpm");
+            for(TrackLineGUI track: trackLines) {
+                track.setBpm(mixerSetUp.getBpm());
+            }
             setPixelBpmChange();
 
         });
@@ -497,7 +515,7 @@ public class FXGUIBuilder extends Application implements Serializable {
 
         // Split between timer and pointer
         VBox timeSplit = new VBox(0);
-        HBox timeBox = new HBox(50);
+        timeBox = new HBox(50);
         for (double i = 1; i < 500; i += timelineRatio) {
             Label label = new Label();
             // bind to current valye to 2dp
@@ -517,8 +535,45 @@ public class FXGUIBuilder extends Application implements Serializable {
         // Add the pointer
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
+        addMouseListeners();
         return timeSplit;
     }
+
+    /**
+     * Add mouse listeners for timeline.
+     * @return
+     */
+
+    public void addMouseListeners () {
+
+        // Set cursor to hand when on the canvas
+        timeBox.setCursor(Cursor.HAND);
+        // Move the canvas and update the delay when dragged
+        timeBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if (button == MouseButton.PRIMARY) {
+                    orgSceneX = event.getX();
+                    System.out.println(orgSceneX);
+
+                    long delayTimeline = (long) (orgSceneX/pixelRatio);
+                    long delayPlayback = ((long)((orgSceneX - 10)/pixelRatio));   // timeline has an offset of 200ms when locator reads ms value...
+                    if(timing.getMillis() > 0) {
+                        timing.pauseTimer();
+                    }
+                    controller.stop((int)delayPlayback);
+                    controller.setStart((int)delayPlayback);
+                    pointer.setTranslateX(orgSceneX);
+                    // pointer.setTranslateX((delayTimeline/20));
+                    System.out.println("Pause and set at: " + delayPlayback + "ms");
+                }
+            }
+        });
+
+    }
+
+
 
     /**
      * Create pointer for tracking current position
@@ -526,25 +581,24 @@ public class FXGUIBuilder extends Application implements Serializable {
      */
     public Rectangle createPointer() {
 
-        // Create pointer
         pointer = new Rectangle();
         pointer.setStroke(Color.BLACK);
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
-        pointer.setTranslateX(10);
+        pointer.setTranslateX(5);
 
-        // Set tranlation speed
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 
-        // Set animation
         TT = new TranslateTransition(Duration.seconds(pointerSpeed), pointer);
         TT.setToX((1000 * 10) * locatorRatio);
         TT.setInterpolator(Interpolator.LINEAR);
+
         mixerSetUp.setTT(TT);
         mixerSetUp.setRectangle(pointer);
 
         return pointer;
+
     }
 
     public void setPixelBpmChange () {

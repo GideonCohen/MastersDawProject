@@ -162,6 +162,12 @@ public class Timing {
         }
     }
 
+    public void setMillis(int millis) {
+
+        this.milliseconds = millis;
+    }
+
+
     public long getMillis() { return milliseconds; }
 
     public long getSeconds() { return seconds; }

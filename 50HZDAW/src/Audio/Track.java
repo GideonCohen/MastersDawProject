@@ -32,6 +32,8 @@ public class Track {
     private int maxValue;
 
     private float volume;
+    private float leftPan;
+    private float rightPan;
 
     private int trackSizeSeconds;
     private float [] trackBuffer;   // fill track buffer with 0's for silence.
@@ -39,6 +41,7 @@ public class Track {
 
     private boolean solo;
     private boolean mute;
+    private boolean reverse;
     private boolean delay;
 
 
@@ -57,7 +60,11 @@ public class Track {
 
         solo = false;
         mute = false;
+        reverse = false;
         delay = false;
+        volume = 1;
+        leftPan = 1;
+        rightPan = 1;
 
         audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
             // default audio format for data line if no file is added. will change once audio file is added.
@@ -95,9 +102,6 @@ public class Track {
         byteToFloat = new ByteToFloat();
 
         addDataToTrack();
-
-        // moveAudioFile(0, 2000);
-
 
         audioProcessing = new AudioProcessing();
 
@@ -282,12 +286,21 @@ public class Track {
     public float getVolume() {
         return volume;
     }
+    public float getLeftPan () {
+        return  leftPan;
+    }
+    public float getRightPan () {
+        return  rightPan;
+    }
 
     /**
      * Add audio processing to a track.
      */
     public void setPan (float leftGain, float rightGain) {
 
+        this.leftPan = leftGain;
+        this.rightPan = rightGain;
+        System.out.println("left: " + leftPan + " right: " + rightPan);
       audioProcessing.setPan(leftGain, rightGain, trackBuffer);
 
     }
@@ -323,6 +336,24 @@ public class Track {
 
         return trackBuffer;
     }
+
+    /**
+     * Set track to reverse. All track data will be reversed.
+     */
+
+    public void setReverse () {
+
+        trackBuffer = audioProcessing.reverseAudio(trackBuffer);
+
+        if(reverse == false) {
+            reverse = true;
+        }
+        else {
+            reverse = false;
+        }
+    }
+
+
 
 
 
@@ -398,6 +429,15 @@ public class Track {
     public boolean getDelay () {
 
         return delay;
+    }
+
+    /**
+     * Find out whether a track is on reverse.
+     */
+
+    public boolean getReverse () {
+
+        return reverse;
     }
 
 

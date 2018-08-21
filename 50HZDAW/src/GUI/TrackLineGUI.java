@@ -75,6 +75,8 @@ public class TrackLineGUI {
     private int index;
 
     private Rectangle trackingLine;
+    // BPM for the track.
+    private int bpm;
 
     /**
      * Constuctor for the Track Line
@@ -127,6 +129,7 @@ public class TrackLineGUI {
 
         // Allow for files to be dragged and dropped
         acceptDragDrop(trackLine);
+        bpm = mixerSetUp.getBpm();
 
         return trackLine;
     }
@@ -200,6 +203,19 @@ public class TrackLineGUI {
         });
 
         muteSoloDel.getChildren().addAll(mute, solo, deleteChannel);
+
+        Button reverse = new Button("Reverse");
+        reverse.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+        reverse.setOnAction(event -> {
+            track.setReverse();
+            if (track.getReverse()) {
+                reverse.setTextFill(Color.BLUE);
+            } else {
+                reverse.setTextFill(Color.BLACK);
+            }
+        });
+
+
 
         volume = 0;
         // volume volumeSlider
@@ -284,7 +300,7 @@ public class TrackLineGUI {
 
 
         // Layout for buttons
-        optionsBox.getChildren().addAll(name, muteSoloDel, volumeSlider, volLabel, panSlider, panLabel);
+        optionsBox.getChildren().addAll(name, muteSoloDel, reverse, volumeSlider, volLabel, panSlider, panLabel);
 
 
         // Set button tooltips
@@ -477,4 +493,8 @@ public class TrackLineGUI {
     public String getLineName() {
         return lineName;
     }
+
+    public int getBpm() { return bpm; }
+    public void setBpm(int newBpm) { this.bpm = newBpm; }
+
 }

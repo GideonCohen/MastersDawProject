@@ -129,7 +129,7 @@ public class WaveformCanvas {
                     start = delay;
                     track.moveAudioFile(index, delay);
                     System.out.println("Start at " + delay + "ms");
-                    //((Canvas)(t.getSource())).setTranslateY(newTranslateY);
+                    updateProcessing(); // update processing after audio file is moved, otherwise original signal is played back.
                     waveformStack.getChildren().remove(ghost);
 
                 }
@@ -172,9 +172,24 @@ public class WaveformCanvas {
                     waveformStack.getChildren().add(ghost);
                 }
             }
-
         });
     }
+
+    /**
+     *  Update processing every time audio file is moved. Volume, pan, delay, distortion.
+     */
+
+    public void updateProcessing () {
+        float newVol = track.getVolume();
+        float leftPan = track.getLeftPan();
+        float rightPan = track.getRightPan();
+        if(track.getReverse()) {
+            track.setReverse();
+        }
+        track.addVolume(newVol);
+        track.setPan(leftPan, rightPan);
+    }
+
 
     public Canvas getCanvas() {
         return canvas;

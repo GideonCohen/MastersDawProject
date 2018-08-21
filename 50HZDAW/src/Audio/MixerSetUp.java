@@ -107,10 +107,20 @@ public class MixerSetUp {
      * Set start pos of project.
      */
 
-    private void setStart(int start) {
+    public void setStart(int start) {
 
         this.startPos = start;
     }
+
+    /**
+     * Get the start position of the track.
+     */
+
+    public int getStart() {
+
+        return this.startPos;
+    }
+
 
     public void testOutput() throws LineUnavailableException{
         // Testing files

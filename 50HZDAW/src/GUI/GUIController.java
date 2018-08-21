@@ -113,6 +113,11 @@ public class GUIController {
         }
     }
 
+    public void setStart(int start) {
+        startPos = start;
+    }
+
+
 
 }
 
