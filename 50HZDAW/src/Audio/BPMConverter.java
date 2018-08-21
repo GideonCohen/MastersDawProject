@@ -16,9 +16,9 @@ public class BPMConverter {
      * Return milliseconds per bar.
      */
 
-    public int setBars (int bars, int myBPM) {
+    public double setBars (int bars, int myBPM) {
         this.bpm = myBPM;
-        int bar = (baseValue / bpm) * 4;
+        double bar = (baseValue / bpm) * 4;
         return (bars) * bar;
     }
 
@@ -27,8 +27,8 @@ public class BPMConverter {
      * Return milliseconds per half a bar.
      */
 
-    public int setHalfBar (int half) {
-        int halfBar = (baseValue / bpm) * 2;
+    public double setHalfBar (int half) {
+        double halfBar = (baseValue / bpm) * 2;
         return (half) * halfBar;
     }
 
@@ -37,8 +37,8 @@ public class BPMConverter {
      * Return milliseconds per beat.
      */
 
-    public int setBeat (int beats) {
-        int beat = baseValue / bpm;
+    public double setBeat (int beats) {
+        double beat = baseValue / bpm;
         return (beats) * beat;
     }
 
@@ -47,8 +47,8 @@ public class BPMConverter {
      * Return milliseconds per eight beat.
      */
 
-    public int setHalfBeat (int halfBeats) {
-        int half = (baseValue / bpm) / 2;
+    public double setHalfBeat (int halfBeats) {
+        double half = (baseValue / bpm) / 2;
         return (halfBeats) * half;
     }
 
@@ -57,8 +57,8 @@ public class BPMConverter {
      * Return milliseconds per quarter beat.
      */
 
-    public int setQuarterBeat (int quarterBeats) {
-        int quarter = (baseValue / bpm) / 4;
+    public double setQuarterBeat (int quarterBeats) {
+        double quarter = (baseValue / bpm) / 4;
         return (quarterBeats) * quarter;
     }
 

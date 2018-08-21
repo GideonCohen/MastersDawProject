@@ -316,6 +316,7 @@ public class FXGUIBuilder extends Application implements Serializable {
             }
             mixerSetUp.setStart(0);
             pointer.setTranslateX(10);
+            TT.setDuration(Duration.seconds(500*barLength));
             //System.out.println("TRACK POS: " + timing.getMillis());
             timer.setText("00:00");
     });
@@ -519,6 +520,7 @@ public class FXGUIBuilder extends Application implements Serializable {
 
         // Split between timer and pointer
         VBox timeSplit = new VBox(0);
+        timeSplit.setTranslateX(10);
         timeBox = new HBox(50);
         for (double i = 1; i < 500; i += timelineRatio) {
             Label label = new Label();
@@ -561,17 +563,18 @@ public class FXGUIBuilder extends Application implements Serializable {
                     orgSceneX = event.getX();
                     System.out.println(orgSceneX);
 
-                    long delayTimeline = (long) (orgSceneX/pixelRatio);
-                    long delayPlayback = ((long)((orgSceneX - 10)/pixelRatio));   // timeline has an offset of 200ms when locator reads ms value...
+                    long delayPlayback = ((long)((orgSceneX - 10)/pixelRatio));  // timeline has an offset of 200ms when locator reads ms value...
                     if(timing.getMillis() > 0) {
                         timing.pauseTimer();
                     }
 
+                    double duration = (500 * barLength) * ((50000 - orgSceneX)/50000);
+                    TT.setDuration(Duration.seconds(duration));
                     controller.stop((int)delayPlayback);
                     controller.setStart((int)delayPlayback);
                     pointer.setTranslateX(orgSceneX);
                     // pointer.setTranslateX((delayTimeline/20));
-                    //System.out.println("Pause and set at: " + delayPlayback + "ms");
+                    System.out.println("Pause and set at: " + delayPlayback + "ms");
                 }
             }
         });
@@ -605,6 +608,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         return pointer;
 
     }
+
 
     public void setPixelBpmChange () {
 

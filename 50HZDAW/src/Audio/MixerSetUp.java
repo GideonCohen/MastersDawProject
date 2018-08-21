@@ -165,7 +165,7 @@ public class MixerSetUp {
 
     public void playOutput (int start) throws LineUnavailableException{
 
-         setStart(start);
+        setStart(start);
 
         output = new OutputTrack("OutPut", startPos);
         System.out.println("Mixer offset is " + startPos);
