@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -536,7 +535,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         // Add the pointer
         createPointer();
         timeSplit.getChildren().addAll(timeBox, pointer);
-        addMouseListeners(pointer);
+        addMouseListeners();
         return timeSplit;
     }
 
@@ -545,38 +544,36 @@ public class FXGUIBuilder extends Application implements Serializable {
      * @return
      */
 
-    public void addMouseListeners (Rectangle pointer) {
-
-
+    public void addMouseListeners () {
 
         // Set cursor to hand when on the canvas
         timeBox.setCursor(Cursor.HAND);
         // Move the canvas and update the delay when dragged
-        timeBox.setOnMouseReleased(new EventHandler<MouseEvent>() {
+        timeBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.PRIMARY) {
                     orgSceneX = event.getX();
+                    System.out.println(orgSceneX);
 
                     long delayTimeline = (long) (orgSceneX/pixelRatio);
-                    System.out.println(delayTimeline);
-                    long delayPlayback = (long) ((orgSceneX - 10)/pixelRatio);
-                    System.out.println(delayPlayback);
+                    long delayPlayback = ((long)((orgSceneX - 10)/pixelRatio));   // timeline has an offset of 200ms when locator reads ms value...
                     if(timing.getMillis() > 0) {
                         timing.pauseTimer();
                     }
                     controller.stop((int)delayPlayback);
                     controller.setStart((int)delayPlayback);
                     pointer.setTranslateX(orgSceneX);
-                   // pointer.setTranslateX((delayTimeline/20));
+                    // pointer.setTranslateX((delayTimeline/20));
                     System.out.println("Pause and set at: " + delayPlayback + "ms");
                 }
             }
         });
 
-
     }
+
+
 
     /**
      * Create pointer for tracking current position
@@ -589,7 +586,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
-        pointer.setTranslateX(10);
+        pointer.setTranslateX(5);
 
         double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
 

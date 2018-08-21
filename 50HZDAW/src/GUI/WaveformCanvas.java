@@ -165,7 +165,6 @@ public class WaveformCanvas {
                     orgSceneX = event.getSceneX();
                     //orgSceneY = t.getSceneY();
                     orgTranslateX = ((Canvas) (event.getSource())).getTranslateX();
-                    System.out.println(orgSceneX);
                     //orgTranslateY = ((Canvas)(t.getSource())).getTranslateY();
                     try {
                         ghostCanvas = new GhostCanvas(durationInMilliSeconds, file, waveformStack, start, pixelRatio);
