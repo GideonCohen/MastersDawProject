@@ -566,11 +566,12 @@ public class FXGUIBuilder extends Application implements Serializable {
                     if(timing.getMillis() > 0) {
                         timing.pauseTimer();
                     }
+
                     controller.stop((int)delayPlayback);
                     controller.setStart((int)delayPlayback);
                     pointer.setTranslateX(orgSceneX);
                     // pointer.setTranslateX((delayTimeline/20));
-                    System.out.println("Pause and set at: " + delayPlayback + "ms");
+                    //System.out.println("Pause and set at: " + delayPlayback + "ms");
                 }
             }
         });
@@ -590,12 +591,12 @@ public class FXGUIBuilder extends Application implements Serializable {
         pointer.setWidth(5);
         pointer.setHeight(5);
         pointer.setFill(Color.BLACK);
-        pointer.setTranslateX(9);
+        pointer.setTranslateX(10);
 
-        double pointerSpeed = 100 * barLength;    // multiple value to make pointer go slower.
+        double pointerSpeed = 500 * barLength;    // multiple value to make pointer go slower.
 
-        TT = new TranslateTransition(Duration.seconds(pointerSpeed), pointer);
-        TT.setToX((1000 * 10) * locatorRatio);
+        TT = new TranslateTransition((Duration.seconds(pointerSpeed)), pointer);
+        TT.setToX((50000) * locatorRatio);
         TT.setInterpolator(Interpolator.LINEAR);
 
         mixerSetUp.setTT(TT);
