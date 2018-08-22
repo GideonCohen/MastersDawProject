@@ -10,7 +10,159 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="397a4580-f9e9-4152-821a-18048cc59af2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/AboutGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/ErrorMessageGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/ArrangementHelper.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/ArrangementHelper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/AudioData.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/AudioData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/AudioProcessing.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/AudioProcessing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/BPMConverter.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/BPMConverter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/BitDepthConverter.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/BitDepthConverter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/ByteToFloat.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/ByteToFloat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/DirectoryPlayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/DirectoryPlayer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/FadeManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/FadeManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/MixerSetUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/MixerSetUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/OutputTrack.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/OutputTrack.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/StereoSplit.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/StereoSplit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/Timing.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/Timing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/Track.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/Track.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/Audio/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ConfirmationBox.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ConfirmationBox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/DelayBox.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/DelayBox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/DirectoryViewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/DirectoryViewer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ExportManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ExportManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/FXGUIBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/FXGUIBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/GUIController.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/GUIController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/GhostCanvas.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/GhostCanvas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ImportManager.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/ImportManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/NoiseGateGUI.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/NoiseGateGUI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/PedalGUI.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/PedalGUI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/TrackLineGUI.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/TrackLineGUI.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/WaveformCanvas.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/WaveformCanvas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/WaveformEditor.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/WaveformEditor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/GUI/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/ByteHelper.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/ByteHelper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/helpers/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioStandardizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/AudioStandardizer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/Generator.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/Generator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/Sample.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/Sample.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleData.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleData.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleHelper.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleHelper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SamplePoint.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SamplePoint.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleRange.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/SampleRange.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/WaveformOption.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/WaveformOption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/AacAudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/AacAudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/AacProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/AacProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/aac/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/FlacAudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/FlacAudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/FlacProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/FlacProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/flac/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/ResolutionChangeEvent.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/ResolutionChangeEvent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/ResolutionChangeListener.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/ResolutionChangeListener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveEditor.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveEditor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveVerticalRule.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveVerticalRule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveView.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveWindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveWindow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveformEditor.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveformEditor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveformGenerator.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/WaveformGenerator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/WaveformGenerator.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/WaveformGenerator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/javafx/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/gui/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/MP3AudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/MP3AudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/MP3Properties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/MP3Properties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/mp3/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/OggAudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/OggAudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/OggProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/OggProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/ogg/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/WaveAudioDecoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/WaveAudioDecoder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/WaveProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/WaveProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/electronism/sample/wave/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-19.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-20.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-20.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/JavaDoc/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.jar" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/artifacts/MastersDawProject/MastersDawProject.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/ByteToFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/ByteToFloat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/FadeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/Audio/FadeManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DelayBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DelayBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/DirectoryViewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/FXGUIBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GUIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GhostCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/GhostCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/TrackLineGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/out/production/MastersDawProject/GUI/WaveformEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,6 +181,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="WaveformCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="95" selection-end-column="55" />
+              <folding>
+                <element signature="method#WaveformCanvas#0;class#WaveformCanvas#0" />
+                <element signature="method#addMouseListeners#0;class#WaveformCanvas#0" />
+                <element signature="method#updateProcessing#0;class#WaveformCanvas#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaveformEditor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="373" column="4" selection-start-line="373" selection-start-column="4" selection-end-line="373" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TrackLineGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -47,53 +222,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ByteToFloat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ByteToFloat.java">
+      <file leaf-file-name="FXGUIBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1758">
-              <caret line="137" column="7" lean-forward="true" selection-start-line="137" selection-start-column="7" selection-end-line="137" selection-end-column="7" />
-              <folding>
-                <element signature="e#4489#4490#0" expanded="true" />
-                <element signature="e#4520#4521#0" expanded="true" />
-                <element signature="e#4629#4630#0" expanded="true" />
-                <element signature="e#4660#4661#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="267">
+              <caret line="253" column="55" selection-start-line="253" selection-start-column="55" selection-end-line="253" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArrangementHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/ArrangementHelper.java">
+      <file leaf-file-name="AboutGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/AboutGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="61" column="72" lean-forward="true" selection-start-line="61" selection-start-column="72" selection-end-line="61" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BitDepthConverter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/BitDepthConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-192">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DelayBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfirmationBox.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+            <state relative-caret-position="300">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
@@ -109,7 +251,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>move</find>
       <find>width</find>
       <find>offset</find>
       <find>moveAud</find>
@@ -139,6 +280,7 @@
       <find>cut</find>
       <find>play</find>
       <find>stop</find>
+      <find>WaveformG</find>
     </findStrings>
     <replaceStrings>
       <replace>VBox</replace>
@@ -177,16 +319,18 @@
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/Timing.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/MixerSetUp.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/BPMConverter.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java" />
-        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/DirectoryViewer.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/Audio/ByteToFloat.java" />
         <option value="$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/AboutGUI.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java" />
+        <option value="$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java" />
       </list>
     </option>
   </component>
@@ -275,26 +419,26 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="GUI" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="GUI" />
+      <recent name="Audio" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/50HZDAW/src/GUI" />
+      <recent name="$PROJECT_DIR$/Samples" />
+      <recent name="$PROJECT_DIR$/50HZDAW" />
+      <recent name="$PROJECT_DIR$/50HZDAW/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="groovy.util.GroovyTestCase" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/50HZDAW" />
       <recent name="$PROJECT_DIR$/50HZDAW/" />
       <recent name="$PROJECT_DIR$/50HZDAW/src" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="groovy.util.GroovyTestCase" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="GUI" />
-      <recent name="Audio" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Samples" />
-      <recent name="$PROJECT_DIR$/50HZDAW" />
-      <recent name="$PROJECT_DIR$/50HZDAW/src" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/50HZDAW/Samples" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -487,14 +631,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/Metronome.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="435" selection-start-line="435" selection-end-line="435" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveformEditor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -511,13 +647,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ExportManager.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="67" lean-forward="true" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/moveablePopup.java" />
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/electronism/sample/gui/WaveView.java">
@@ -651,26 +780,6 @@
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
-          <folding>
-            <element signature="method#WaveformCanvas#0;class#WaveformCanvas#0" />
-            <element signature="method#createWaveform#0;class#WaveformCanvas#0" />
-            <element signature="method#addMouseListeners#0;class#WaveformCanvas#0" />
-            <element signature="method#updateProcessing#0;class#WaveformCanvas#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="385" column="43" selection-start-line="385" selection-start-column="43" selection-end-line="385" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GUIController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2085">
@@ -738,38 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="778" column="25" selection-start-line="778" selection-start-column="25" selection-end-line="778" selection-end-column="25" />
-          <folding>
-            <element signature="e#2455#3923#0" />
-            <element signature="e#3929#6639#0" />
-            <element signature="e#6645#8284#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/GhostCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-27">
           <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="505" column="24" selection-start-line="505" selection-start-column="24" selection-end-line="505" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#17072#17073#0" expanded="true" />
-            <element signature="e#17124#17125#0" expanded="true" />
-            <element signature="e#17337#17338#0" expanded="true" />
-            <element signature="e#17365#17366#0" expanded="true" />
-            <element signature="e#17407#17408#0" expanded="true" />
-            <element signature="e#17441#17442#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -803,6 +884,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ErrorMessageGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-222" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/Audio/FadeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="95" selection-end-column="55" />
+          <folding>
+            <element signature="method#WaveformCanvas#0;class#WaveformCanvas#0" />
+            <element signature="method#addMouseListeners#0;class#WaveformCanvas#0" />
+            <element signature="method#updateProcessing#0;class#WaveformCanvas#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/DelayBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -812,8 +917,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/ConfirmationBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="45">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/TrackLineGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="505" column="24" selection-start-line="505" selection-start-column="24" selection-end-line="505" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17072#17073#0" expanded="true" />
+            <element signature="e#17124#17125#0" expanded="true" />
+            <element signature="e#17337#17338#0" expanded="true" />
+            <element signature="e#17365#17366#0" expanded="true" />
+            <element signature="e#17407#17408#0" expanded="true" />
+            <element signature="e#17441#17442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/AboutGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/FXGUIBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="253" column="55" selection-start-line="253" selection-start-column="55" selection-end-line="253" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/50HZDAW/src/GUI/WaveformEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="373" column="4" selection-start-line="373" selection-start-column="4" selection-end-line="373" selection-end-column="4" />
         </state>
       </provider>
     </entry>

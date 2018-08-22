@@ -1,5 +1,7 @@
 package Audio;
 
+import GUI.ErrorMessageGUI;
+
 public class FadeManager {
 
     /**
@@ -15,9 +17,15 @@ public class FadeManager {
         float scale = 1.0f / fadeInEnd;
         float currentVol = 0.0f;
 
-        for (int i = 0; i < fadeInEnd; i++) {
-            stereoFloatArray[i] = stereoFloatArray[i] * currentVol;
-            currentVol += scale;
+        try {
+
+            for (int i = 0; i < fadeInEnd; i++) {
+                stereoFloatArray[i] = stereoFloatArray[i] * currentVol;
+                currentVol += scale;
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException a) {
+            ErrorMessageGUI.Display();
         }
         return stereoFloatArray;
     }
@@ -35,10 +43,17 @@ public class FadeManager {
         int diff = stereoFloatArray.length - startPosition;
         float scale = 1.0f / diff;
         float currentVol = 1.0f;
-        for (int i = startPosition; i < stereoFloatArray.length; i++) {
-            stereoFloatArray[i] = stereoFloatArray[i] * currentVol;
-            currentVol -= scale;
+
+        if (diff >= 1) {
+            for (int i = startPosition; i < stereoFloatArray.length; i++) {
+                stereoFloatArray[i] = stereoFloatArray[i] * currentVol;
+                currentVol -= scale;
+            }
         }
+        else {
+            ErrorMessageGUI.Display();
+        }
+
 
         return stereoFloatArray;
 
@@ -56,22 +71,28 @@ public class FadeManager {
         float count = 0.00001f * speed;
         boolean up = true;
 
-        for (int i = 0; i < stereoFloatArray.length; i++) {
-            if (count >= 1.0f) {
-                up = false;
-            }
-            if (count <= 0.0f) {
-                up = true;
-            }
-            stereoFloatArray[i] = stereoFloatArray[i] * count;
+        if (count <= 1) {
+            for (int i = 0; i < stereoFloatArray.length; i++) {
+                if (count >= 1.0f) {
+                    up = false;
+                }
+                if (count <= 0.0f) {
+                    up = true;
+                }
+                stereoFloatArray[i] = stereoFloatArray[i] * count;
 
-            if (up) {
-                count += 0.00001f * speed;
-            }
-            if (!up) {
-                count -= 0.00001f * speed;
+                if (up) {
+                    count += 0.00001f * speed;
+                }
+                if (!up) {
+                    count -= 0.00001f * speed;
+                }
             }
         }
+        else {
+            ErrorMessageGUI.Display();
+        }
+
         return stereoFloatArray;
     }
 }

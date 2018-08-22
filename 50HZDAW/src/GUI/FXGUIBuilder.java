@@ -251,6 +251,8 @@ public class FXGUIBuilder extends Application implements Serializable {
         // ABout Menu Items
         MenuItem aboutUs = new MenuItem("About");
         aboutMenu.getItems().add(aboutUs);
+        aboutUs.setOnAction(event -> AboutGUI.Display());
+
 
         // Menu Bar
         MenuBar menuBar = new MenuBar();

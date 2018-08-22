@@ -1,6 +1,7 @@
 package GUI;
 
 import Audio.*;
+import com.sun.org.apache.xpath.internal.operations.Neg;
 import electronism.sample.gui.javafx.WaveformGenerator;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -66,6 +67,8 @@ public class WaveformEditor {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         String filePath = file.getAbsolutePath();
         WaveformGenerator wf = new WaveformGenerator(new File(filePath), gc);
+        wf.setWaveAverageColor(Color.MIDNIGHTBLUE);
+        wf.setBackgroundColor(Color.color(1,1,1));
         wf.draw();
 
         Stage window = new Stage();
@@ -197,6 +200,8 @@ public class WaveformEditor {
             }
             GraphicsContext g = canvas.getGraphicsContext2D();
             WaveformGenerator w = new WaveformGenerator(new File(filePath), g);
+            w.setWaveAverageColor(Color.MIDNIGHTBLUE);
+            w.setBackgroundColor(Color.color(1,1,1));
             w.draw();
         } catch (RuntimeException e) {
             System.out.println("Reached zoom maximum");
@@ -234,7 +239,7 @@ public class WaveformEditor {
         AudioData data = track.getAudioData().get(index);
 
         double position = DelayBox.Display(0, pixelRatio, "start time for fade-out (in ms)");
-       // position = position * pixelRatio;
+        // position = position * pixelRatio;
         position = ((position * 88200)/1000);
 
         float[] newFloat = FM.addFadeOut((int) position, data.getStereoFloatArray());
@@ -252,8 +257,13 @@ public class WaveformEditor {
 
         float threshold = (float) DelayBox.Display(0, pixelRatio, "value for distortion (largest value is: " + findMinAndMax() + ")");
 
-        track.getAudioData().get(index).setStereoFloatArray(audioProcessing.distortion(track.getAudioData().get(index).getStereoFloatArray(), threshold));
-        track.addDataToTrack();
+        if (threshold == 0) {
+            ErrorMessageGUI.Display();
+        }
+        else {
+            track.getAudioData().get(index).setStereoFloatArray(audioProcessing.distortion(track.getAudioData().get(index).getStereoFloatArray(), threshold));
+            track.addDataToTrack();
+        }
 
     }
 
@@ -267,11 +277,25 @@ public class WaveformEditor {
 
         int delay = Math.round(list.get(0));
         int feedback = Math.round(list.get(1));
-        int isInvert = Math.round(list.get(3));
+        int i = Math.round(list.get(2));
+        if (i > 1) {
+            ErrorMessageGUI.Display();
+        }
+        else {
+            int isInvert = Math.round(list.get(3));
 
-        track.getAudioData().get(index).setStereoFloatArray(audioProcessing.delayLoop(track.getAudioData().get(index).getStereoFloatArray(), delay, feedback, list.get(2), isInvert));
-        track.getAudioData().get(index).setFinish();
-        track.addDataToTrack();
+            try {
+                track.getAudioData().get(index).setStereoFloatArray(audioProcessing.delayLoop(track.getAudioData().get(index).getStereoFloatArray(), delay, feedback, list.get(2), isInvert));
+            }
+            catch (ArrayIndexOutOfBoundsException a) {
+                ErrorMessageGUI.Display();
+            }
+            catch (NegativeArraySizeException n) {
+                ErrorMessageGUI.Display();
+            }
+            track.getAudioData().get(index).setFinish();
+            track.addDataToTrack();
+        }
 
     }
 
@@ -330,6 +354,10 @@ public class WaveformEditor {
      * Adds a faze effect to an AudioData object. A window will pop up where the user can
      * enter the desired speed for the effect
      */
+    /**
+     * Adds a faze effect to an AudioData object. A window will pop up where the user can
+     * enter the desired speed for the effect
+     */
     public void addFaze() {
 
         FadeManager FM = new FadeManager();
@@ -337,12 +365,12 @@ public class WaveformEditor {
 
         double speed = DelayBox.Display(0, pixelRatio, "speed for faze effect (recommended 0 - 250)");
 
-        float[] newFloat = FM.fadeInAndOut(data.getStereoFloatArray(), (int) speed);
-        data.setStereoFloatArray(newFloat);
+        if (speed >= 1) {
+            float[] newFloat = FM.fadeInAndOut(data.getStereoFloatArray(), (int) speed);
+            data.setStereoFloatArray(newFloat);
 
-        track.addDataToTrack();
-
-
+            track.addDataToTrack();
+        }
     }
 
     /**
@@ -361,32 +389,41 @@ public class WaveformEditor {
         double end = endX * 88.2;
         double start = startX * 88.2;
 
-        float[] newArray = AH.getRangeOfArrayValues((int) start, (int) end, data.getStereoFloatArray());
-        data.setStereoFloatArray(newArray);
+        try {
+            float[] newArray = AH.getRangeOfArrayValues((int) start, (int) end, data.getStereoFloatArray());
+            data.setStereoFloatArray(newArray);
+            track.addDataToTrack();
+
+            AudioFormat audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
+            int minValue = -((int) Math.pow(2, audioFormat.getSampleSizeInBits() - 1));    // calculate min & max representable int value for n-bit number.
+            int maxValue = ((int) Math.pow(2, audioFormat.getSampleSizeInBits() - 1)) - 1;
 
 
+            waveformStack.getChildren().remove(waveform);
+            waveform = new Canvas(diff * pixelRatio, 150);
+            GraphicsContext gc = waveform.getGraphicsContext2D();
+            ByteToFloat BTF = new ByteToFloat();
+            byte[] b = BTF.floatToByteArray(newArray, minValue, maxValue);
+            WaveformGenerator wf = new WaveformGenerator(b, gc);
+            wf.setWaveAverageColor(Color.MIDNIGHTBLUE);
+            wf.setBackgroundColor(Color.color(1, 1, 1, 0.2));
+            wf.draw();
+            waveform.setTranslateX((startX * pixelRatio) + pos);
+            waveformCanvas.setCanvas(waveform);
+        }
+        catch (ArrayIndexOutOfBoundsException a) {
+            ErrorMessageGUI.Display();
+        }
+        catch (NegativeArraySizeException n) {
+            ErrorMessageGUI.Display();
+        }
+        catch (RuntimeException r) {
+            ErrorMessageGUI.Display();
+        }
+        catch (OutOfMemoryError o) {
+            ErrorMessageGUI.Display();
+        }
 
-        track.addDataToTrack();
-
-        AudioFormat audioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
-        int minValue = - ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1));    // calculate min & max representable int value for n-bit number.
-        int maxValue = ((int)Math.pow(2, audioFormat.getSampleSizeInBits()-1)) - 1;
-
-
-        waveformStack.getChildren().remove(waveform);
-        waveform = new Canvas(diff * pixelRatio, 150);
-        GraphicsContext gc = waveform.getGraphicsContext2D();
-        ByteToFloat BTF = new ByteToFloat();
-        byte[] b = BTF.floatToByteArray(newArray, minValue, maxValue);
-        WaveformGenerator wf = new WaveformGenerator(b, gc);
-        wf.setWaveAverageColor(Color.MIDNIGHTBLUE);
-        wf.setBackgroundColor(Color.color(1,1,1, 0.2));
-        wf.draw();
-        waveform.setTranslateX((startX * pixelRatio) + pos);
-        waveformCanvas.setCanvas(waveform);
-
-
-        //TODO add mouse listeners to new waveform
     }
 
 
