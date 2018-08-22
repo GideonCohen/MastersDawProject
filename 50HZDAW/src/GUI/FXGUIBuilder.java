@@ -71,6 +71,8 @@ public class FXGUIBuilder extends Application implements Serializable {
     private double orgTranslateX;
     private double orgSceneX;
 
+    private boolean timerOn;
+
     public static void main(String[] args) {
         // calls the args method of application
         // must override start method
@@ -103,6 +105,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         pixelRatio = 0.1/ barLength;
         timelineRatio = 1;
         locatorRatio = 1;
+        timerOn = false;
 
         // Directory for storing samples
         directory = new DirectoryViewer(this);
@@ -279,9 +282,12 @@ public class FXGUIBuilder extends Application implements Serializable {
         play.setOnAction(event -> {
             System.out.println("TRACK POS: " + mixerSetUp.getStart());
             controller.play(mixerSetUp.getStart());
-            timing.setMillis(mixerSetUp.getStart());
-            timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
-            timing.startTimer();
+            if (!timerOn) {
+                timerOn = true;
+                timing.setMillis(mixerSetUp.getStart());
+                timing.getTimerMillis(mixerSetUp.getBpm(), timer, beatsAndBarsLabel);   // timer adapts to bpm change (bars & beats calculated)
+                timing.startTimer();
+            }
         });
 
         // Pause all added tracks
@@ -292,12 +298,14 @@ public class FXGUIBuilder extends Application implements Serializable {
             // pause the timer
             try {
                 timing.pauseTimer();
+                timerOn = false;
                 //System.out.println("TRACK POS: " + timing.getMillis());
                 // pause the arrangement
                 controller.pause((int) timing.getMillis());
             } catch (NullPointerException e) {
                 // nothing to pause
             }
+
         });
 
         // Stop all added tracks
@@ -311,6 +319,7 @@ public class FXGUIBuilder extends Application implements Serializable {
             try {
                 timing.stopTimer();
                 TT.stop();
+                timerOn = false;
             } catch (NullPointerException npe) {
                 // nothing to stop
             }
@@ -322,7 +331,7 @@ public class FXGUIBuilder extends Application implements Serializable {
     });
 
         Button zoomIn = new Button();
-        Image zoomInImage = new Image("resources/ZoomIN.png");
+        Image zoomInImage = new Image("Resources/ZoomIN.png");
         zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> {
             setPixelRatio((pixelRatio * 2), (timelineRatio / 2));
@@ -340,7 +349,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         });
 
         Button zoomOut = new Button();
-        Image zoomOutImage = new Image("resources/ZoomOut.png");
+        Image zoomOutImage = new Image("Resources/ZoomOut.png");
         zoomOut.setGraphic(new ImageView(zoomOutImage));
         zoomOut.setOnAction(event -> {
             setPixelRatio((pixelRatio / 2), timelineRatio * 2);

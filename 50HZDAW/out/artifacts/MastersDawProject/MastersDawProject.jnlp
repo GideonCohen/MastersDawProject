@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MastersDawProject.jnlp">
+  <information>
+    <title>JavaDawProject</title>
+    <vendor>Gideon, Ivaan, Patrick, Tom</vendor>
+    <description>MastersDawProject</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="MastersDawProject.jar" size="19888366" download="eager" />
+    <jar href="commons-io-2.4.jar" size="185140" download="eager" />
+    <jar href="jaad-0.8.4.jar" size="669013" download="eager" />
+    <jar href="jflac-1.3.jar" size="185826" download="eager" />
+    <jar href="jlayer-1.0.1.4.jar" size="140987" download="eager" />
+    <jar href="jorbis-0.0.17-2.jar" size="98753" download="eager" />
+    <jar href="mp3spi-1.9.5.4.jar" size="34298" download="eager" />
+    <jar href="tritonus-all-0.3.7.2.jar" size="497243" download="eager" />
+    <jar href="tritonus-share-0.3.7.4.jar" size="132760" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="GUI.FXGUIBuilder"  name="MastersDawProject" />
+  <update check="background"/>
+</jnlp>

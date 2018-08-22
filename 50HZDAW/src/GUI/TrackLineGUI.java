@@ -291,7 +291,7 @@ public class TrackLineGUI {
                     //System.out.println("Pan Right = " + rightDeci);
                     panRight = newRight;
 
-                    track.setPan((float) rightDeci, (float) leftDeci);
+                    track.setPan((float) leftDeci, (float) rightDeci);
                 } catch (NullPointerException npe) {
                     System.out.println(npe.getMessage());
                 }
