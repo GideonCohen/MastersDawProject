@@ -9,7 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
@@ -28,29 +30,41 @@ public class DirectoryViewer{
     private FXGUIBuilder controller;
     // Base pane for the directory
     private StackPane directoryBase;
-    //
+    // Directory view layout
     private BorderPane directory;
-
+    // Path of root folder
     private File rootFolder;
     private Button maximise;
-
+    // Currently selected file
     private File selected;
 
 
+    /**
+     * Constructor
+     * @param controller
+     */
     public DirectoryViewer(FXGUIBuilder controller) {
         this.controller = controller;
+        // root folder
         rootFolder = new File("./");
 
     }
 
+    /**
+     * Make a return the directory view
+     * @return - StackPane
+     */
     public StackPane makeDirectory() {
+        // Base of directory view
         directoryBase = new StackPane();
         directoryBase.getStyleClass().add("directory");
+        // Actual tree view
         TreeView<File> treeView = new TreeView<>();
         treeView.getStyleClass().add("tree-view");
 
         directory = new BorderPane();
 
+        // Create min/mac buttons
         Button minimise = new Button();
         Image minImage = new Image("Resources/min.png");
         minimise.setGraphic(new ImageView(minImage));
@@ -62,13 +76,15 @@ public class DirectoryViewer{
         maximise.setOnAction(event -> maximiseView());
         minimise.setOnAction(event -> minimiseView());
 
-
+        // Create tree view
         DirectoryPlayer player = new DirectoryPlayer();
         treeView.setRoot(getNodesForDirectory(rootFolder));
         treeView.getRoot().setExpanded(true);
+        // Allow drag/drop of wavs
         makeDraggable(treeView);
         HBox hBox = new HBox();
 
+        // Create directory action bas
         Button play = new Button();
         Image playImage = new Image("Resources/playDir.png");
         play.setGraphic(new ImageView(playImage));
@@ -97,6 +113,7 @@ public class DirectoryViewer{
         changeRoot.setOnAction(event -> selectRootFolder(treeView));
 
 
+        // Set button actions
         play.setOnAction(e -> player.play());
         pause.setOnAction(e -> player.pause());
         stop.setOnAction(e -> player.stop());
@@ -109,6 +126,7 @@ public class DirectoryViewer{
         });
         delete.setOnAction(event -> deleteFile(selected, treeView));
 
+        // Set tooltips
         play.setTooltip(new Tooltip("Play"));
         pause.setTooltip(new Tooltip("Pause"));
         stop.setTooltip(new Tooltip("Stop"));
@@ -153,8 +171,6 @@ public class DirectoryViewer{
         directoryBase.setMinWidth(200);
         return directoryBase;
     }
-
-
 
     /**
      * Creates a tree structure of a users directories from a given root.
@@ -318,6 +334,5 @@ public class DirectoryViewer{
      */
     public void setRootFolder(File newFolder) {
         rootFolder = newFolder;
-
     }
 }

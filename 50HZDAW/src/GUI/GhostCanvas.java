@@ -24,6 +24,15 @@ public class GhostCanvas {
 
     private StackPane waveformStack;
 
+    /**
+     * Alternate waveform canvas for creating ghosts
+     * @param duration
+     * @param f
+     * @param stack
+     * @param start
+     * @param pixRatio
+     * @throws Exception
+     */
     public GhostCanvas(double duration, File f, StackPane stack, long start, double pixRatio) throws Exception {
 
         // intialise global variables
@@ -37,6 +46,10 @@ public class GhostCanvas {
     }
 
 
+    /**
+     * Create ghost canvas
+     * @return - Ghost canvas
+     */
     public Canvas createWaveform() {
 
         // +5 to help deal with padding issue in waveform generation

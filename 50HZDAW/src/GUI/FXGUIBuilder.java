@@ -23,7 +23,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -334,6 +334,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         Image zoomInImage = new Image("Resources/ZoomIN.png");
         zoomIn.setGraphic(new ImageView(zoomInImage));
         zoomIn.setOnAction(event -> {
+            // Zoom in on timeline and adjust timer and waveforms
             setPixelRatio((pixelRatio * 2), (timelineRatio / 2));
             double minZoom = 2.0;
             if(locatorRatio < minZoom) {
@@ -352,6 +353,7 @@ public class FXGUIBuilder extends Application implements Serializable {
         Image zoomOutImage = new Image("Resources/ZoomOut.png");
         zoomOut.setGraphic(new ImageView(zoomOutImage));
         zoomOut.setOnAction(event -> {
+            // Zoom out on timeline and adjust timer and waveforms
             setPixelRatio((pixelRatio / 2), timelineRatio * 2);
             double maxZoom = 0.0625;
             if(locatorRatio > maxZoom) {
@@ -364,12 +366,6 @@ public class FXGUIBuilder extends Application implements Serializable {
 
 
         });
-
-        Button metronomeButton = new Button("Metronome");
-        metronomeButton.setOnAction(event -> {
-            //timing.setMetronome();
-        });
-
 
         // add tootips
         play.setTooltip(new Tooltip("Play"));
@@ -569,21 +565,27 @@ public class FXGUIBuilder extends Application implements Serializable {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.PRIMARY) {
+                    // Get pointer position
                     orgSceneX = event.getX();
-                    System.out.println(orgSceneX);
+                    //System.out.println(orgSceneX);
 
+                    // Calculate delay
                     long delayPlayback = ((long)((orgSceneX - 10)/pixelRatio));  // timeline has an offset of 200ms when locator reads ms value...
                     if(timing.getMillis() > 0) {
                         timing.pauseTimer();
                     }
 
+                    // update animation
                     double duration = (500 * barLength) * ((50000 - orgSceneX)/50000);
                     TT.setDuration(Duration.seconds(duration));
+
+                    //update delay
                     controller.stop((int)delayPlayback);
                     controller.setStart((int)delayPlayback);
+
+                    // update position
                     pointer.setTranslateX(orgSceneX);
-                    // pointer.setTranslateX((delayTimeline/20));
-                    System.out.println("Pause and set at: " + delayPlayback + "ms");
+                    //System.out.println("Pause and set at: " + delayPlayback + "ms");
                 }
             }
         });
@@ -607,6 +609,7 @@ public class FXGUIBuilder extends Application implements Serializable {
 
         double pointerSpeed = 500 * barLength;    // multiple value to make pointer go slower.
 
+        // animation
         TT = new TranslateTransition((Duration.seconds(pointerSpeed)), pointer);
         TT.setToX((50000) * locatorRatio);
         TT.setInterpolator(Interpolator.LINEAR);
@@ -619,6 +622,9 @@ public class FXGUIBuilder extends Application implements Serializable {
     }
 
 
+    /**
+     *
+     */
     public void setPixelBpmChange () {
 
         barLength = (bpmConverter.setBars(1, mixerSetUp.getBpm()))/(double)1000;
@@ -769,6 +775,9 @@ public class FXGUIBuilder extends Application implements Serializable {
         return channels;
     }
 
+    /**
+     * Kill timer on stop
+     */
     public void killTimer () {
         if(mixerSetUp.getTimerStatus() == false) {
             try {

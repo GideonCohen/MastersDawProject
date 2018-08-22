@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-import java.awt.*;
 import java.io.File;
 
 public class WaveformCanvas {
@@ -31,19 +30,35 @@ public class WaveformCanvas {
     private Track track;
     // pixel to millisecond ration
     private double pixelRatio;
+    // Original positions, saved when moving canvas
     private double orgSceneX, orgSceneY;
     private double orgTranslateX, orgTranslateY;
 
+    // Ghost displayed when canvas is moved
     private GhostCanvas ghostCanvas;
     private Canvas ghost;
 
+    // Parent stack pane
     private StackPane waveformStack;
 
+    // Parent trackline
     private TrackLineGUI trackLineGUI;
 
+    // Draws the waveform on a given canvas
     private WaveformGenerator wf;
 
 
+    /**
+     * Constructor for the Waveform Canvas
+     * @param duration - Duration of the audio clip
+     * @param f - Wav File
+     * @param i - Index in the trackline
+     * @param stack - Parent stackpane
+     * @param start - Starting position
+     * @param track - Associated Track
+     * @param pixRatio - current pixel ratio
+     * @param trackLine - Parent trackLine
+     */
     public WaveformCanvas(double duration, File f, int i, StackPane stack, long start, Track track, double pixRatio, TrackLineGUI trackLine){
 
         // intialise global variables
@@ -58,6 +73,10 @@ public class WaveformCanvas {
     }
 
 
+    /**
+     * Create the canvas with an audio waveform drawn on it
+     * @return - Canvas with waveform
+     */
     public Canvas createWaveform() {
 
         // +5 to help deal with padding issue in waveform generation
@@ -87,8 +106,6 @@ public class WaveformCanvas {
         addMouseListeners(canvas);
         return canvas;
     }
-
-
 
     /**
      * Adds interactivity to the canvas
@@ -126,6 +143,7 @@ public class WaveformCanvas {
                     ((Canvas) (event.getSource())).setTranslateX(newTranslateX);
                     orgTranslateX = newTranslateX;
 
+                    // Set the delay in the track
                     long delay = (long) (newTranslateX/pixelRatio);
                     start = delay;
                     track.moveAudioFile(index, delay);
@@ -137,6 +155,7 @@ public class WaveformCanvas {
             }
         });
 
+        // Move the ghost canvas as the mouse is dragged
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -156,7 +175,7 @@ public class WaveformCanvas {
         });
 
 
-        // get the position of the canvas on click
+        // get the position of the canvas and generate a ghost
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -179,7 +198,6 @@ public class WaveformCanvas {
     /**
      *  Update processing every time audio file is moved. Volume, pan, delay, distortion.
      */
-
     public void updateProcessing () {
         float newVol = track.getVolume();
         float leftPan = track.getLeftPan();
@@ -192,31 +210,59 @@ public class WaveformCanvas {
     }
 
 
+    /**
+     * @return Current Canvas
+     */
     public Canvas getCanvas() {
         return canvas;
     }
 
+    /**
+     * Set a new pixel ratio
+     * @param pixelRatio
+     */
     public void setPixelRatio(double pixelRatio) {
         this.pixelRatio = pixelRatio;
     }
 
+    /**
+     * Get current starting position
+     * @return start
+     */
     public long getPosition() {
         return start;
     }
 
+    /**
+     * Set starting position
+     * @param start
+     */
     public void setPosition(long start) {
         canvas.setTranslateX(start*pixelRatio);
     }
 
+    /**
+     * Get current pixel ratio
+     * @return pixelRatio
+     */
     public double getPixelRatio() {
         return pixelRatio;
     }
 
+    /**
+     * Replace the current canvas with a new canvas
+     * @param canvas - new canvas
+     */
     public void setCanvas(Canvas canvas) {
+        // remove the current canvas
         waveformStack.getChildren().remove(this.canvas);
+        // update
         this.canvas = canvas;
+        // add new canvas
         waveformStack.getChildren().add(this.canvas);
+        // re-add listeners to new canvas
         addMouseListeners(this.canvas);
+        // set start
         start = (long) (canvas.getTranslateX()/pixelRatio);
         track.moveAudioFile(index, start);
 

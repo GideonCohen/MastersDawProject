@@ -6,8 +6,6 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -67,13 +65,12 @@ public class TrackLineGUI {
 
     // TranslateTransition object used to move pointer over time
     private TranslateTransition TT;
-
+    // Controller for playing input and output
     private GUIController controller;
-
+    // Parent GUI Builder
     private FXGUIBuilder FXController;
-
+    // Index within Builder
     private int index;
-
     private Rectangle trackingLine;
     // BPM for the track.
     private int bpm;
@@ -87,6 +84,7 @@ public class TrackLineGUI {
     public TrackLineGUI(String name, FXGUIBuilder control) {
         lineName = name;
         FXController = control;
+        // get values from parent
         channels = FXController.getChannelBox();
         mainWindow = FXController.getMainWindow();
         mixerSetUp = FXController.getMixerSetUp();
@@ -157,6 +155,7 @@ public class TrackLineGUI {
         mute.setOnAction(event -> {
             try {
                 track.setMute();
+                // visual change for mute
                 if (track.getMute()) {
                     mute.setGraphic(new ImageView(muteActive));
                 } else {
@@ -174,6 +173,7 @@ public class TrackLineGUI {
         solo.setOnAction(event -> {
             try {
                 track.setSolo();
+                // visual change for solo
                 if (track.getSolo()) {
                     solo.setGraphic(new ImageView(soloActive));
                 } else {
@@ -204,6 +204,7 @@ public class TrackLineGUI {
 
         muteSoloDel.getChildren().addAll(mute, solo, deleteChannel);
 
+        // Play the entire trackLine in reverse
         Button reverse = new Button("Reverse");
         reverse.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
         reverse.setOnAction(event -> {
@@ -232,6 +233,7 @@ public class TrackLineGUI {
             public void handle(MouseEvent event) {
                 double newVol = volumeSlider.getValue();
                 double diff = newVol - volume;
+                // Convert to decibels
                 double deci = Math.pow(10, (diff / 10));
                 /*
                 System.out.println("The volume went from " + volume + " to " + newVol);
@@ -274,6 +276,11 @@ public class TrackLineGUI {
               //  System.out.println(panSlider.getValue());
                 try {
                     double newLeft = panSlider.getValue() * -1;
+                    /*
+                     Max value for either left/right is 0,
+                     Pan on decrease volume on one side
+                     volume can be reduce or returned to original
+                      */
                     if (newLeft > 0) {
                         newLeft = 0;
                     }
@@ -494,7 +501,20 @@ public class TrackLineGUI {
         return lineName;
     }
 
-    public int getBpm() { return bpm; }
-    public void setBpm(int newBpm) { this.bpm = newBpm; }
+    /**
+     * Get current Bpm
+     * @return int - BPM
+     */
+    public int getBpm() {
+        return bpm;
+    }
+
+    /**
+     * Set new Bpm
+     * @param newBpm
+     */
+    public void setBpm(int newBpm) {
+        this.bpm = newBpm;
+    }
 
 }
