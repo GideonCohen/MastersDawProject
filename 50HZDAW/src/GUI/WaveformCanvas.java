@@ -89,6 +89,7 @@ public class WaveformCanvas {
     }
 
 
+
     /**
      * Adds interactivity to the canvas
      */

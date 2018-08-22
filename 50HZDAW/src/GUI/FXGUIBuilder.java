@@ -342,7 +342,7 @@ public class FXGUIBuilder extends Application implements Serializable {
             else {
                 locatorRatio = locatorRatio * 1;
             }
-            TT.setToX((1000 * 10) * locatorRatio);
+            TT.setToX((50000) * locatorRatio);
 
 
 
@@ -360,7 +360,7 @@ public class FXGUIBuilder extends Application implements Serializable {
             else {
                 locatorRatio = locatorRatio * 1;
             }
-            TT.setToX((1000 * 10) * locatorRatio);
+            TT.setToX((50000) * locatorRatio);
 
 
         });
