@@ -400,7 +400,7 @@ public class TrackLineGUI {
         // if there are no clips create a track and add the file
         if (audioClips.size() == 0) {
             //System.out.ptinln("I tried to add a track");
-            track = mixerSetUp.addTrack(file.getName(), file, 1, 0);
+            track = mixerSetUp.addTrack(file.getName(), file, 0);
             name.textProperty().setValue(file.getName());
             lineName = file.getName();
         } else {

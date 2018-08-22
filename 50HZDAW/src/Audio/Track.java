@@ -12,8 +12,6 @@ import java.util.ArrayList;
  * Track may be a superclass of other tracks that can be created. We may have audio data (recorded and sample based) as
  * well as MIDI data for a track.
  */
-
-
 public class Track {
 
     private AudioFormat audioFormat;
@@ -45,18 +43,13 @@ public class Track {
     private boolean delay;
 
 
-
-
-
-
-
-
     /**
      * Create a data line with specific audio settings that may be changed by the user. One must specify the format
-     * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
+    * of the audio file prior to creating a line. Working with .wav formats only. (PCM-Signed, little endian).
+     * @param name - Name for the track
+     * @throws LineUnavailableException
      */
-;
-    public Track (String name, float volume) throws LineUnavailableException {
+    public Track (String name) throws LineUnavailableException {
 
         solo = false;
         mute = false;
@@ -450,6 +443,10 @@ public class Track {
         return dataFinish;
     }
 
+    /**
+     * Get array of audio data
+     * @returnn ArrayList of audio data
+     */
     public ArrayList<AudioData> getAudioData() {
         return audioData;
     }

@@ -21,11 +21,11 @@ public class StereoSplit {
 
 
     /**
-     * Split a stereo float arrays in to two mono left and right channels represented as new float arrays.
-     * For 16-bit stereo audio files, each sample will take 2 bytes. (24-bit may be different).
-     *
+     * Split a stereo float array in to two mono left and right channels represented as new float arrays.
+     * The first value of a stereo float array will represent a left channel value and the second value will
+     * represent a right channel value. This pattern is followed for the whole of the array.
+     * @param trackBuffer The array of float data to be split.
      */
-
     public void split(float [] trackBuffer) {
 
         this.stereoFloatArray = trackBuffer;
@@ -54,9 +54,10 @@ public class StereoSplit {
     }
 
     /**
-     * Set panning positions of stereo audio.
+     * Set panning positions of stereo audio. Multiply each value of the array by a factor of x.
+     * @param monoArray The array to be multiplied.
+     * @param gain The amount to multiply by.
      */
-
     public void setPanning (float [] monoArray, float gain) {
 
         for(int i = 0; i < monoArray.length; i++) {
@@ -68,9 +69,10 @@ public class StereoSplit {
 
     /**
      * Converge two mono array channels (left & right) into one stereo array channel.
-     * This new stereo array will be the result of processed audio (panning/volume/EQ).
+     * This new stereo array will be the result of pan-processed audio.
+     * @param leftGain The value to multiply the left channel by.
+     * @param rightGain The value to multiply the right channel by.
      */
-
     public void convergeMonoArrays (float leftGain, float rightGain) {
 
         System.out.println("LEFT: " + leftGain);
@@ -96,8 +98,8 @@ public class StereoSplit {
 
     /**
      * Get left channel.
+     * @return The left channel (mono).
      */
-
     public float [] getLeftArray () {
 
         return leftFloatArray;
@@ -107,8 +109,8 @@ public class StereoSplit {
 
     /**
      * Get right channel.
+     * @return The right channel (mono).
      */
-
     public float [] getRightArray () {
 
         return rightFloatArray;

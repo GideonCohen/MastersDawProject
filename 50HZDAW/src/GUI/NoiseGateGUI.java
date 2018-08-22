@@ -17,6 +17,10 @@ public class NoiseGateGUI {
 
     static ArrayList<Float> listOfValues;
 
+    /**
+     * Popout window for the noise gate, Takes values from the user and applies the effect
+     * @return Float array with effect added
+     */
     public static ArrayList<Float> Display() {
 
         listOfValues = new ArrayList<>();

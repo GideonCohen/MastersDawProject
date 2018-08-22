@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 
 public class AboutGUI {
 
+    /**
+     * Display the about message
+     */
     public static void Display() {
 
         Stage window = new Stage();

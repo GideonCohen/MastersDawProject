@@ -447,6 +447,7 @@ public class FXGUIBuilder extends Application implements Serializable {
 
     /**
      * Allows .wav files to be added to the application. Will create channels as files are added
+     * @param scroll - The scroll pane to make draggable
      */
     private void dragDropTracks(ScrollPane scroll){
 
@@ -554,9 +555,7 @@ public class FXGUIBuilder extends Application implements Serializable {
 
     /**
      * Add mouse listeners for timeline.
-     * @return
      */
-
     public void addMouseListeners () {
 
         // Set cursor to hand when on the canvas
@@ -594,8 +593,6 @@ public class FXGUIBuilder extends Application implements Serializable {
 
     }
 
-
-
     /**
      * Create pointer for tracking current position
      * @return Rectangle pointer
@@ -623,9 +620,8 @@ public class FXGUIBuilder extends Application implements Serializable {
 
     }
 
-
     /**
-     *
+     * Set the new pixel ratio based on change in BPM
      */
     public void setPixelBpmChange () {
 

@@ -7,6 +7,11 @@ import java.io.File;
 
 public class ExportManager {
 
+    /**
+     * Export a .wav file from the current arrangment
+     * @param window - the main window of the program
+     * @return - File - the output .wav file
+     */
     public File exportAsWAV(Stage window) {
 
         FileChooser FC = new FileChooser();

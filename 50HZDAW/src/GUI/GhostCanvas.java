@@ -8,6 +8,9 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
+/**
+ * Alternative Waveform canvas for creating ghosts when moving waveforms in the editor
+ */
 public class GhostCanvas {
 
     // Duration of track, used to calculate width
@@ -41,8 +44,6 @@ public class GhostCanvas {
         waveformStack = stack;
         this.start = start;
         pixelRatio = pixRatio;
-
-
     }
 
 

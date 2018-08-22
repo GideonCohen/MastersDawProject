@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 public class ErrorMessageGUI {
 
+    /**
+     * Display an error message window to the user
+     */
     public static void Display() {
 
         Stage window = new Stage();

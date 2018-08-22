@@ -87,38 +87,18 @@ public class MixerSetUp {
     }
 
 
-    public void testOutput() throws LineUnavailableException{
-        // Testing files
-        String filepath_24bit = "50HZDAW/Samples/emotionalpads.wav";
-        String hello16bit = "50HZDAW/Samples/Hello16bit.wav";
-        String filepath_16bit = "50HZDAW/Samples/doublebass.wav";
-        String filepath1_24bit = "50HZDAW/Samples/loopy3.wav";
-
-        File file = new File(filepath_16bit);
-        File file1 = new File(filepath_24bit);
-        File file2 = new File(filepath1_24bit);
-        File file3 = new File(hello16bit);
-
-        // For testing without the GUI
-        //addTrack("Track1", file3, 0.8f, 0);     // create mixer with one track as default.
-        //addTrack("Track1", file2, 0.8f, 10000);     // create mixer with one track as default.
-        System.out.println("tracks: " + tracks.size());
-        System.out.println("\nTracks in project: " + trackCount());    // TEST TO SEE LINES IN MIXER CORRESPONDS TO ADD TRACK.
-        playOutput(startPos);
-    }
-
     /**
      * Add a new track to the mixer. Specify parameter for type of track set-up.
      * @param name - The name of the track
      * @param file - File to add to the track
      * @return - The Track created
      */
-    public Track addTrack (String name, File file, float volume, long start) {
+    public Track addTrack (String name, File file, long start) {
 
         Track track = null;
 
         try {
-            track = new Track(name,  volume);
+            track = new Track(name);
             tracks.add(track);
             track.addAudioTrackData(file, start);
         } catch (LineUnavailableException lue) {
@@ -221,6 +201,11 @@ public class MixerSetUp {
     }
 
 
+    /**
+     * prepare the output track to be played
+     * @return Output track
+     * @throws LineUnavailableException
+     */
     public OutputTrack prepareOutput() throws LineUnavailableException {
 
         output = new OutputTrack("OutPut", startPos);
@@ -233,27 +218,41 @@ public class MixerSetUp {
         return output;
     }
 
+    /**
+     * get the current play offset
+     * @return long play offset
+     */
     public long getPlayOffset() {
         return playOffset;
     }
 
+    /**
+     * get current play position of the output
+     * @return long play offset
+     */
     public long getCurrentPosition() {
         return output.getCurrentPosition();
     }
     /**
      * Get the bpm of the project.
      */
-
     public int getBpm() {
 
         return bpm;
     }
 
+    /**
+     * kill the timers
+     */
     public void killTimer () {
 
         timerOn = false;
     }
 
+    /**
+     * return true is the timer is on
+     * @return boolean
+     */
     public boolean getTimerStatus() {
 
         return timerOn;
@@ -262,19 +261,24 @@ public class MixerSetUp {
     /**
      * Set the bpm of the project.
      */
-
     public int setBpm(int newBpm) {
 
         this.bpm = newBpm;
         return this.bpm;
     }
 
-
-
+    /**
+     * set the animation for the timer
+     * @param t - Translate Transition - animation for the pointer
+     */
     public void setTT(TranslateTransition t) {
         TT = t;
     }
 
+    /**
+     * Set the node for the pointer of the tracking line
+     * @param rect - Rectangle tracking line node
+     */
     public void setRectangle(Rectangle rect) {
         r = rect;
     }

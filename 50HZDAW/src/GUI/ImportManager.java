@@ -8,6 +8,13 @@ import java.io.File;
 
 public class ImportManager {
 
+    /**
+     * Import file from file choose to the arrangment window
+     * @param channels - Parent VBox that houses the channels
+     * @param FXGUIBuilder - Parent Builder
+     * @param window - Main Window
+     * @return - Trackline that houses the added file
+     */
     public TrackLineGUI importFile(VBox channels, FXGUIBuilder FXGUIBuilder, Stage window){
         // JavaFX prebuilt file chooser
         FileChooser fileChooser = new FileChooser();

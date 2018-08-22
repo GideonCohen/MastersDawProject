@@ -115,7 +115,7 @@ public class OutputTrack {
     }
 
     /**
-     *
+     * Remove a track from the output
      * @param track
      */
     public void removeTrack(Track track) {
@@ -128,6 +128,11 @@ public class OutputTrack {
     }
 
 
+    /**
+     * Convert Milli seconds to bytes
+     * @param millis - Milliseconds
+     * @return - int number of bytes
+     */
     private int millisToBytes(int millis) {
 
         int bytes = 264600; // bytes per second for 24-bit output.
@@ -287,6 +292,10 @@ public class OutputTrack {
 
     }
 
+    /**
+     * Pause the output
+     * @return - long pausing point
+     */
     public long pause() {
 
         trackOffset = count * readBuffer.length;
@@ -307,6 +316,10 @@ public class OutputTrack {
     }
 
 
+    /**
+     * stop the track
+     * @return
+     */
     public long stop() {
 
         pause = true;
@@ -318,10 +331,18 @@ public class OutputTrack {
         return 0;
     }
 
+    /**
+     * return true if the track is playing
+     * @return
+     */
     public boolean isPlaying(){
         return pause;
     }
 
+    /**
+     * Add data to output track
+     * @return
+     */
     public byte[] addDataForOutput1Export() {
 
         outputLength = 0;
@@ -377,6 +398,10 @@ public class OutputTrack {
         return outputBytes;
     }
 
+    /**
+     * get the current position of the output
+     * @return long current position
+     */
     public long getCurrentPosition() {
         return count * bufferSize;
     }

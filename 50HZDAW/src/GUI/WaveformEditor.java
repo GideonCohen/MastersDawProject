@@ -26,7 +26,10 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.io.File;
 import java.util.ArrayList;
 
-
+/**
+ * Editor window for a waveform. Allows minor editing,
+ * addition of effects and provides information
+ */
 public class WaveformEditor {
 
     private double durationInSeconds;
@@ -40,6 +43,16 @@ public class WaveformEditor {
     private AudioProcessing audioProcessing;
     private TrackLineGUI trackLineGUI;
 
+    /**
+     * Constructor for the editor window
+     * @param fileLength - Duration of a given file
+     * @param index - Index within the trackline
+     * @param f - File that relates to the waveform
+     * @param track - audio track
+     * @param waveformStack - Parent stack pane
+     * @param canvas - Canvas the waveform is drawn on
+     * @param TLG - TracklineGui parent
+     */
     public WaveformEditor(double fileLength, int index, File f, Track track, StackPane waveformStack, WaveformCanvas canvas, TrackLineGUI TLG){
         durationInSeconds = fileLength/100;
         this.index = index;

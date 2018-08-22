@@ -13,6 +13,9 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
+/**
+ * Canvas manager for an individual waveform on a trackline
+ */
 public class WaveformCanvas {
 
     // Duration of track, used to calculate width

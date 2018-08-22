@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Timer for beats and bars and seconds
+ */
 public class Timing {
 
 
@@ -30,9 +33,9 @@ public class Timing {
     private BPMConverter bpmConverter;
 
 
-
-
-
+    /**
+     * Constructor for timing
+     */
     public Timing() {
 
         //TimeGui timeGui = new TimeGui();
@@ -56,11 +59,8 @@ public class Timing {
         // timerSwitch = true;
         timerTaskMillis = new TimerTask() {
 
-
-
             @Override
             public void run() {
-
 
                 timeStart = System.currentTimeMillis();
                 if (milliseconds >= 1000) {

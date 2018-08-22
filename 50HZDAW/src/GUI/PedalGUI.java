@@ -20,6 +20,11 @@ public class PedalGUI {
 
     static ArrayList<Float> listOfValues;
 
+
+    /**
+     * Popout window for several effects, Takes values from the user and applies the effect
+     * @return Float array with effect added
+     */
     public static ArrayList<Float> Display(int bpm) {
 
         listOfValues = new ArrayList<>();
